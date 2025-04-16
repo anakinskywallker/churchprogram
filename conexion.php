@@ -1,11 +1,12 @@
 <?php
 
-$host = "mysql.gestionplus.co";
+$host = "localhost";
 
-$user = "adminplus";
+$user = "root";
 
-$pw = "hH75dWoe9f";
+$pw = "";
 
-$db = "gestionplusbd";
+$db = "despacho";
 
 ?>
+

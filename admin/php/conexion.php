@@ -1,9 +1,9 @@
 <?php 
 		function conexion()  {
-			$servidor="mysql.gestionplus.co";
-			$usuario="adminplus";
-			$password="hH75dWoe9f";
-			$bd="gestionplusbd";
+			$servidor="localhost";
+			$usuario="root";
+			$password="";
+			$bd="despacho";
 
 			$conexion=mysqli_connect($servidor,$usuario,$password,$bd);
 

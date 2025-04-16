@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="form-group">
                                       
-                                                <input type="password" id="password" class="form-control form-control-user" name="pass" placeholder="&#128272;Contraseña" require>
+                                        <input type="password" id="password" class="form-control form-control-user" name="pass" placeholder="&#128272;Contraseña" require>
                                         </div>
                                         
                                         <input type="submit"  class="btn btn-primary btn-user btn-block"  value="Iniciar Sesión" name="login">

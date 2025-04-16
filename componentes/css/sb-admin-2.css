@@ -31,7 +31,7 @@
   --warning: #f6c23e;
   --danger: #e74a3b;
   --light: #f8f9fc;
-  --dark: #5a5c69;
+  --dark: #6f7283;
   --breakpoint-xs: 0;
   --breakpoint-sm: 576px;
   --breakpoint-md: 768px;
@@ -2374,34 +2374,34 @@ fieldset:disabled a.btn {
 }
 .btn-primary {
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #896847;
+  border-color: #896847;
 }
 
 .btn-primary:hover {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
+  background-color: #d4ac83;
+  border-color: #d4ac83;
 }
 
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
-  background-color: #2e59d9;
-  border-color: #2653d4;
+  background-color: #896847;
+  border-color: #896847;
   box-shadow: 0 0 0 0.2rem rgba(105, 136, 228, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
   color: #fff;
-  background-color: #4e73df;
-  border-color: #4e73df;
+  background-color: #896847;
+  border-color: #896847;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active,
 .mostrar > .btn-primary.dropdown-toggle {
   color: #fff;
-  background-color: #2653d4;
-  border-color: #244ec9;
+  background-color: #896847;
+  border-color: #896847;
 }
 
 .btn-primary:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus,
@@ -6540,17 +6540,20 @@ button.bg-dark:focus {
 
 .bg-bar-ges {
   background-color: #0f1664;
-  background-image: linear-gradient(90deg, #fff 10%, #0f1664 100%);
+  background-image: linear-gradient(90deg, #41250d 10%, #f9cea1 100%);
   background-size: cover;
 }
 .bg-bar-ready {
   background-color: #0f1664;
-  background-image: linear-gradient(300deg, #fff 10%, #54cde5 100%);
+  background-image: linear-gradient(300deg, #41250d 10%, #f9cea1 100%);
   background-size: cover;
 }
 
 .bg-white {
   background-color: #fff !important;
+}
+.bg-white-brownd {
+  background-color: #f4dec7 !important;
 }
 
 .bg-transparent {
@@ -9651,7 +9654,7 @@ button.bg-dark:focus {
 }
 
 .text-primary {
-  color: #4e73df !important;
+  color: #896847 !important;
 }
 
 a.text-primary:hover, a.text-primary:focus {
@@ -10918,7 +10921,7 @@ a:focus {
 }
 .bg-login{
   background-color: #0f1664;
-  background-image: linear-gradient(180deg, #0f1664 10%, #56d3e9 100%);
+  background-image: linear-gradient(180deg, #41250d 10%, #f9cea1 100%);
   background-size: cover;
   
 }

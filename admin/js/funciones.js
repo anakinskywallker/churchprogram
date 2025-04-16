@@ -1083,9 +1083,9 @@ $.ajax({
     success: function(r) {
         if (r == 1) { 
         
-             alert("listo");
+            alert("listo");
 			location.reload();  
-                         $('#infoadmin').val("");
+             $('#infoadmin').val("");
 			 $('#informaciongeneral').load('tablas/informacion_general.php');
         } else {
 			 alert("NO");

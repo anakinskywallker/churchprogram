@@ -10,7 +10,7 @@ if(isset($_POST['login'])){
   
   $mysqli = new mysqli($host, $user, $pw, $db);
                 
-  $sql = "SELECT * from personal where EMP_LOGIN_NOMBRE='$username'";
+  $sql = "SELECT * from usuarios where USR_LOGIN_NOMBRE='$username'";
   $result1 = $mysqli->query($sql);
   $row1 = $result1->fetch_array(MYSQLI_NUM);
   $numero_filas = $result1->num_rows;
@@ -18,8 +18,8 @@ if(isset($_POST['login'])){
      
   if ($numero_filas > 0)
     {
-      $password = $row1[9]; 
-      $habilitado = $row1[10];
+      $password = $row1[8]; 
+      $habilitado = $row1[9];
     
       if($habilitado == '1'){
         
@@ -82,8 +82,8 @@ if(isset($_POST['login'])){
       
       else{
         echo'<script type="text/javascript">
-                                alert("Usuario Suspendido");
-                                window.location="index.php"; 
+                    alert("Usuario Suspendido");
+                    window.location="index.php"; 
          </script>';
        } 
   

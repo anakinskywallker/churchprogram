@@ -56,9 +56,11 @@ $fila = mysqli_fetch_row($result);
         <ul class="navbar-nav bg-login sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
+             
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <img width="40px" src="../componentes/img/icono.png" alt="">
-                <div class="sidebar-brand-text mx-3">GestiónPlus<sup></sup></div>
+                <div class="sidebar-brand-text mx-3">Gestión
+                    Parroquial<sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -67,7 +69,7 @@ $fila = mysqli_fetch_row($result);
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="admin.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="fas fa-fw fa-church"></i>
                     <span>Inicio</span></a>
             </li>
 
@@ -83,16 +85,15 @@ $fila = mysqli_fetch_row($result);
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Turnos</span>
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Despacho</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Solicitud:</h6>
-                        <a class="collapse-item" href="clientes.php">Clientes</a>
-                        <a class="collapse-item" href="agregar_turnos.php">Nuevo Turno</a>
-                        <a class="collapse-item" href="gestionturnos.php">Gestion de Turnos</a>
-                        <a class="collapse-item" href="turnoslistos.php">Turnos Listos</a>
+                        <a class="collapse-item" href="tramites.php">Trámites</a>                   
+                        <a class="collapse-item" href="registrar_egresos.php">Registrar Egreso</a>
+                        <a class="collapse-item" href="registro.php">Registro</a>
                         
                     </div>
                 </div>
@@ -102,15 +103,16 @@ $fila = mysqli_fetch_row($result);
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
+                    <i class="fas fa-fw fa-comment-dollar"></i>
                     <span>Contabilidad</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestrion de Facturas</h6>
-                        <a class="collapse-item" href="contabilidadPendientes.php">Pendientes </a>
-                        <a class="collapse-item" href="contabilidadPagos.php">Pagos </a>
+                        <h6 class="collapse-header">gestion contable</h6>
+                        <a class="collapse-item" href="ingresos.php">Ingresos</a>
+                        <a class="collapse-item" href="egresos.php">Egresos</a>
+                        <a class="collapse-item" href="reportes.php">Reportes</a>
                     </div>
                 </div>
             </li>
@@ -120,14 +122,14 @@ $fila = mysqli_fetch_row($result);
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Gestion Empresarial
+            Gestion Iglesia
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fas fa-fw fa-people-arrows"></i>
                     <span>Colaboradores</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -147,11 +149,11 @@ $fila = mysqli_fetch_row($result);
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            <!-- Sidebar Message -->
+            <!-- Sidebar Message 
             <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="../componentes/img/undraw_rocket.png" alt="...">
+                <img class="sidebar-card-illustration mb-2" src="" alt="...">
             </div>
-
+            -->
 
         </ul>
         <!-- End of Sidebar -->
@@ -163,7 +165,7 @@ $fila = mysqli_fetch_row($result);
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-bar-ges topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -380,7 +382,7 @@ $fila = mysqli_fetch_row($result);
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white-brownd">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; QCodely 2023</span>

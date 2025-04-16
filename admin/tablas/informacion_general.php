@@ -9,10 +9,10 @@ $usuario = $_SESSION["nombre_usuario"];
 <script src="../js/funciones.js"></script>
 </script>
                                 <?php 
-                                $sql= " SELECT * FROM informacion";
+                                $sql= "SELECT * FROM informacion";
                                 $result=mysqli_query($conexion,$sql);
                                 while($ver=mysqli_fetch_row($result)){
-                                        $sql3= " SELECT * FROM personal WHERE EMP_ID = '$ver[3]'";
+                                        $sql3= " SELECT * FROM usuarios";
                                         $result3=mysqli_query($conexion,$sql3);
                                         $var=mysqli_fetch_row($result3);
                                         $nombre = $var[1]." ".$var[2];

@@ -14,19 +14,10 @@ $usuario = $_SESSION["nombre_usuario"];
 
 
                                 <?php 
-                                $sql3= " SELECT * FROM personal WHERE EMP_NOMBRE = '$usuario'";
+                                $sql3= " SELECT * FROM usuarios WHERE USR_NOMBRE = '$usuario'";
                                 $result3=mysqli_query($conexion,$sql3);
                                 $var=mysqli_fetch_row($result3);
                                 $id_p = $var[0];
- 
-                                        $sqlr="SELECT * FROM turno WHERE TR_EMP_ID = '$var[0]' ORDER BY TR_ID DESC LIMIT 1";
-                                        $result=mysqli_query($conexion,$sqlr);
-                                        $fila = mysqli_fetch_row($result);                                         
-                                        $saldo = $fila[4] - $fila[3];
-
-                                $sql2= " SELECT * FROM clientes WHERE CL_ID = '$fila[1]'";
-                                $result2=mysqli_query($conexion,$sql2);
-                                $var2=mysqli_fetch_row($result2);
                                 ?>
 
                 <div class="row">
@@ -38,28 +29,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <h6 class="m-0 font-weight-bold text-primary">Datos turno actual </h6> 
                                     </div>
                                         
-                                <div class="card-body"> <!-- area de ingreso de datos -->
-                                        <ul class="list-inline">
-                                        <li class="list-inline-item"><strong>Identificador turno :</strong></li>
-                                        <li class="list-inline-item"><?php echo 'TR'.$fila[0];?></li>
-                                        <li class="list-inline-item"><strong>Creado Por :</strong></li>
-                                        <li class="list-inline-item"><?php echo $usuario;?></li>
-                                        <li class="list-inline-item"><strong>Fecha :</strong></li>
-                                        <li class="list-inline-item"><?php echo $fila[2];?></li>
-                                        </ul>
-                                        
-                                        <ul class="list-inline">
-                                        <?php if($fila[9]==2){?>
-                                        <li class="list-inline-item"><strong>Saldo:</strong></li>
-                                        <li class="list-inline-item"><?php echo '$'.$saldo;?></li>
-                                        <?php }?>
-                                        <li class="list-inline-item"><strong>Nombre Cliente :</strong></li>
-                                        <li class="list-inline-item"><?php echo $var2[1].' '.$var2[2];?></li>
-                                        </ul>
-                                        <ul class="list-inline">                                        
-                                        </ul>
-                                </div>
-
+                               
                                 <div class="col-12">
                                         <button type="submit" href="#agregarcita" data-toggle="modal" class="btn btn-primary">Agendar Cita</button>
                                         <button type="submit" href="#retiroexam" data-toggle="modal" class="btn btn-primary">Retiro Examenes</button>

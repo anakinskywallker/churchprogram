@@ -8,7 +8,7 @@
     date_default_timezone_set('America/Bogota');
     $fecha_actual = date ("Y-m-d H:i:s");
 
-    $sql3= " SELECT * FROM personal WHERE EMP_NOMBRE = '$usuario'";
+    $sql3= " SELECT * FROM usuarios WHERE USR_NOMBRE = '$usuario'";
     $result3=mysqli_query($conexion,$sql3);
     $var=mysqli_fetch_row($result3);
     $id_p = $var[0];
