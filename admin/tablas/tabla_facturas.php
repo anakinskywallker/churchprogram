@@ -3,13 +3,24 @@ session_start();
 require_once "../php/conexion.php";
 $conexion=conexion();
     
-    $sql="SELECT DISTINCT T.TR_ID, C.CL_DOCUMENTO, T.TR_FECHA, T.TR_PAGO, T.TR_PRECIO, P.EMP_NOMBRE, P.EMP_APELLIDOS, C.CL_MUNICIPIO
-    FROM turno T
-    INNER JOIN clientes C ON T.TR_CL_ID = C.CL_ID
-    INNER JOIN personal P ON P.EMP_ID = T.TR_EMP_ID
-    INNER JOIN tramite TM ON TM.GS_TURNO = T.TR_ID
-    WHERE (TM.GS_ESTADO = 9 OR TM.GS_ESTADO = 4 OR TM.GS_ESTADO = 3 OR TM.GS_ESTADO = 2 OR TM.GS_ESTADO = 1)
-    ORDER BY T.TR_FECHA ASC";
+    $sql="SELECT
+    f.id_factura, 
+    f.nombre_apellido_contacto,
+    f.telefono_contacto,
+    ti.nombre_tipo AS nombre_tipo_ingreso,
+    ru.nombre AS nombre_rubro,
+    f.ofrenda,
+    f.fecha_diligenciamiento
+FROM 
+    factura f
+JOIN 
+    registro r ON f.id_registro = r.id_registro
+LEFT JOIN 
+    tipo_ingreso ti ON r.id_tipo_ingreso = ti.id_tipo_ingreso
+LEFT JOIN 
+    rubro ru ON f.id_rubro = ru.id
+ORDER BY 
+    f.fecha_diligenciamiento DESC;";
     
     
 ?>
@@ -21,47 +32,44 @@ $conexion=conexion();
     <thead>
                                        <tr>
                                         <th>Mirar </th>
-                                            <th>No. Turno</th>
-                                            <th>Cedula Cliente</th>
-                                            <th>Municipio</th>
-                                            <th>Fecha Creado</th>
-                                            <th>Pago</th>
-                                            <th>Precio</th>
-                                            <th>Creado Por</th>
-                                            <th>Pagar Saldo</th>
+                                            <th>No. Factura</th>
+                                            <th>Nombre</th>
+                                            <th>Telefono</th>
+                                            <th>Tipo</th>
+                                            <th>Rubro</th>
+                                            <th>Ofrenda</th>
+                                            <th>Fecha</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                         <th>Mirar</th>
-                                        <th>No. Turno</th>
-                                            <th>Cedula Cliente</th>
-                                            <th>Municipio</th>
-                                            <th>Fecha Creado</th>
-                                            <th>Pago</th>
-                                            <th>Precio</th>
-                                            <th>Creado Por</th>
-                                            <th>Pagar Saldo</th>
+                                        <th>No. Factura</th>
+                                            <th>Nombre</th>
+                                            <th>Telefono</th>
+                                            <th>Tipo</th>
+                                            <th>Rubro</th>
+                                            <th>Ofrenda</th>
+                                            <th>Fecha</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php
                                         $result=mysqli_query($conexion,$sql);
                                         while($ver=mysqli_fetch_row($result)){ 
-                                            $saldo = $ver[4] - $ver[3];                                            
+                                                                                       
                                         
                                         ?>
                                         <tr>
                                         <td> <button onclick="mostrarTramites('<?php echo $ver[0]?>','<?php echo $_SESSION["nombre_usuario"]?>')"type="button" class="btn btn-secondary btn-sm">Mirar</button></td>
-                                            <td><?php echo 'TR'.$ver[0]?></td>
+                                            <td><?php echo 'FA'.$ver[0]?></td>
                                             <td><?php echo $ver[1]?></td>
-                                            <td><?php echo $ver[7]?></td>
                                             <td><?php echo $ver[2]?></td>
                                             <td><?php echo $ver[3]?></td>
                                             <td><?php echo $ver[4]?></td>
-                                            <td><?php echo $ver[5]; echo ' '.$ver[6];?></td>                                            
-                                            <td><?php if($saldo > 0) {echo '<button onclick="pagarSaldoTramites('.$ver[4].','.$ver[0].')"type="button" class="btn btn-secondary btn-sm">Pagar Saldo</button>';}else{echo '<button class="btn btn-secondary-green btn-sm">Cancelado</button>';}?></td>
-                                        </tr>
+                                            <td><?php echo $ver[5]?></td>
+                                            <td><?php echo $ver[6]?></td>                                           
+                                            </tr>
                                         <?php
                                         }
                                         ?>

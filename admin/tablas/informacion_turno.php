@@ -13,12 +13,7 @@ $usuario = $_SESSION["nombre_usuario"];
 
 
 
-                                <?php 
-                                $sql3= " SELECT * FROM usuarios WHERE USR_NOMBRE = '$usuario'";
-                                $result3=mysqli_query($conexion,$sql3);
-                                $var=mysqli_fetch_row($result3);
-                                $id_p = $var[0];
-                                ?>
+                              
 
                 <div class="row">
                        <!-- Content Column -->
@@ -31,7 +26,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         
                                
                                 <div class="col-12">
-                                        <button type="submit" href="#agregarcita" data-toggle="modal" class="btn btn-primary">Agendar Cita</button>
+                                        <button type="submit" href="#misasprueba" data-toggle="modal" class="btn btn-primary">Agendar Cita</button>
                                         <button type="submit" href="#retiroexam" data-toggle="modal" class="btn btn-primary">Retiro Examenes</button>
                                         <button type="submit" href="#retiromed" data-toggle="modal" class="btn btn-primary">Retiro Medicamentos</button>
                                         <button type="submit" href="#agregarotro" data-toggle="modal" class="btn btn-primary">Otro Tramite</button>   
@@ -67,7 +62,7 @@ $usuario = $_SESSION["nombre_usuario"];
   
 
 $(document).ready(function(){
-    $('#agregartrm').click(function(){
+    $('#agregarmisaprueba').click(function(){
     idcliente = '<?php echo $fila[1] ?>';     
     idturno =  '<?php echo $fila[0] ?>';
     usuario = '<?php echo $usuario?>';

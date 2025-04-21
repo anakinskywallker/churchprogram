@@ -29,7 +29,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gestion de Turnos</title>
+    <title>Facturas</title>
 
     <!-- Custom fonts for this template -->
     <link href="../componentes/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -64,7 +64,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <img width="40px" src="../componentes/img/icono.png" alt="">
-                <div class="sidebar-brand-text mx-3">GestiónPlus<sup></sup></div>
+                <div class="sidebar-brand-text mx-3">Facturas<sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -73,7 +73,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="admin.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-church"></i>
                     <span>Inicio</span></a>
             </li>
 
@@ -86,36 +86,22 @@ $usuario = $_SESSION["nombre_usuario"];
             </div>
 
             <!-------- Nav Item - Pages Collapse Menu ---------->
+            
+
+            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Turnos</span>
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Despacho</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Solicitud:</h6>
-                        <a class="collapse-item" href="clientes.php">Clientes</a>
-                        <a class="collapse-item" href="agregar_turnos.php">Nuevo Turno</a>
-                        <a class="collapse-item" href="gestionturnos.php">Gestion de Turnos</a>
-                        <a class="collapse-item" href="turnoslistos.php">Turnos Listos</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Contabilidad</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestrion de Facturas</h6>
-                        <a class="collapse-item" href="contabilidadPendientes.php">Pendientes </a>
-                        <a class="collapse-item" href="contabilidadPagos.php">Pagos Listos</a>
+                        <a class="collapse-item" href="tramites.php">Trámites</a>
+                        <a class="collapse-item" href="registrar_egresos.php">Registrar Egreso</a>
+                        <a class="collapse-item" href="registro.php">Registro</a>
+                        
                     </div>
                 </div>
             </li>
@@ -125,20 +111,24 @@ $usuario = $_SESSION["nombre_usuario"];
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Gestion Empresarial
+                Gestion Iglesia
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Colaboradores</span>
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-comment-dollar"></i>
+                    <span>Contabilidad</span>
                 </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion</h6>
-                        <a class="collapse-item" href="usuarios.php">Agregar</a>
+                        <h6 class="collapse-header">gestion contable</h6>
+                        <a class="collapse-item" href="facturas.php">Facturas</a>
+                        <a class="collapse-item" href="ingresos.php">Diario</a>
+                        <a class="collapse-item" href="egresos.php">Egresos</a>
+                        <a class="collapse-item" href="reportes.php">Reportes</a>
                     </div>
                 </div>
             </li>
@@ -152,11 +142,11 @@ $usuario = $_SESSION["nombre_usuario"];
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            <!-- Sidebar Message -->
+            <!-- Sidebar Message 
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="../componentes/img/undraw_rocket.png" alt="...">
             </div>
-
+            -->
         </ul>
 
        
@@ -179,10 +169,7 @@ $usuario = $_SESSION["nombre_usuario"];
                     </form>
 
                     <!-- Topbar buscar -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Gestion de turnos</h1>
-                        
-                </div>
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -235,35 +222,35 @@ $usuario = $_SESSION["nombre_usuario"];
                 
 
                    
-                    <!------------------------------------------------- DataTales Turnos ------------------------------------------->
+                    <!------------------------------------------------- DataTales Facturas ------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Turnos</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Facturas</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_turnos" class="table-responsive">                                
+                            <div  id="tabla_facturas" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
                       <!-------------------------------------------------- Boton PDFs ------------------------------------------------>
                     
-                    <!------------------------------------------------ DataTales Tramites -------------------------------------------->  
+                    <!------------------------------------------------ Mas Datos Facturas -------------------------------------------->  
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tramites</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Datos Contacto</h6>
                         </div>
                         <div class="card-body">
                             <div  id="tabla_tramites" class="table-responsive">
                             </div>
                         </div>
                     </div>
-                    <!------------------------------------------------ DataTales Tramites -------------------------------------------->
+                    <!------------------------------------------------ DataTales Evento -------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos Clinete</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Datos Evento</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_datos_cliente" class="table-responsive">
+                            <div  id="tabla_datos_evento" class="table-responsive">
                             </div>
                         </div>
                     </div>
@@ -338,9 +325,9 @@ $usuario = $_SESSION["nombre_usuario"];
         cambiarFactura2(id_el,observacion) 
         });
                   
-        $('#tabla_turnos').load('tablas/tabla_turnos.php'); 
+        $('#tabla_facturas').load('tablas/tabla_facturas.php'); 
         $('#tabla_tramites').load('tablas/tabla_tramites.php'); 
-        $('#tabla_datos_cliente').load('tablas/tabla_datos_cliente.php');
+        $('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
      });
 </script>
 

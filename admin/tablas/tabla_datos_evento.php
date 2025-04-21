@@ -9,17 +9,10 @@ $var=mysqli_fetch_row($result3);
 $id_turno = $var[1];
 
 $sql2="SELECT 
-    f.id_factura,
-    f.nombre_apellido_contacto,
-    f.identificacion,
-    f.celular_contacto,
-    f.correo_contacto,
-    f.direccion_contacto,
-    f.recibido_de,
-    f.celular_adicional,
-    f.Observacion,
     ti.nombre_tipo AS nombre_tipo_ingreso,
-    ru.nombre AS nombre_rubro
+    ru.nombre AS nombre_rubro,
+    r.*
+   
 FROM 
     factura f
 JOIN 
@@ -28,10 +21,10 @@ LEFT JOIN
     tipo_ingreso ti ON r.id_tipo_ingreso = ti.id_tipo_ingreso
 LEFT JOIN 
     rubro ru ON f.id_rubro = ru.id
-WHERE
+WHERE 
     f.id_factura = '$id_turno'
 ORDER BY 
-    f.fecha_diligenciamiento DESC;
+    f.fecha_diligenciamiento DESC    
 "; 
 $result2=mysqli_query($conexion,$sql2);
 $ver=mysqli_fetch_row($result2);
@@ -48,17 +41,23 @@ $ver=mysqli_fetch_row($result2);
     <thead>
                                        <tr> 
                                          
-                                            <th>Id_Factura</th>
-                                            <th>Nombre_contacto</th>
-                                            <th>Identificacion</th>
-                                            <th>Celular</th>
-                                            <th>Correo</th>
-                                            <th>Direccion</th>
-                                            <th>Recibido de</th>
-                                            <th>Celular_adicional</th>
-                                            <th>Observaciones</th>
-                                            <th>Tipo</th>
-                                            <th>Rubro</th>
+                                            <th>Tipo_Tramite</th>
+                                            <th>libro_registro</th>
+                                            <th>Folio_registro</th>
+                                            <th>Numero_registro</th>
+                                            <th>Nombre_Apellido</th>
+                                            <th>Lugar_nacimiento</th>
+                                            <th>Fecha_nacimiento</th>
+                                            <th>Fecha_muerte</th>
+                                            <th>Edad</th>
+                                            <th>Estado_Civil</th>
+                                            <th>Nombre_Conyugue</th>
+                                            <th>Nombre_Hijos</th>
+                                            <th>Nombre_padre</th>
+                                            <th>Nombre_madre</th>
+                                            <th>Nombre_padrino</th>
+                                            <th>Nombre_madrina</th>
+                                            <th>Acciones</th>
                                         </tr>
                                     </thead>
                                     
@@ -68,16 +67,21 @@ $ver=mysqli_fetch_row($result2);
                                            
                                            
                                             <td><?php echo $ver[0]?></td>
-                                            <td><?php echo $ver[1]?></td>
-                                            <td><?php echo $ver[2]?></td>
-                                            <td><?php echo $ver[3]?></td>
-                                            <td><?php echo $ver[4]?></td>
                                             <td><?php echo $ver[5]?></td>
                                             <td><?php echo $ver[6]?></td>
                                             <td><?php echo $ver[7]?></td>
                                             <td><?php echo $ver[8]?></td>
                                             <td><?php echo $ver[9]?></td>
-                                            <td><?php echo $ver[10]?></td>                                           
+                                            <td><?php echo $ver[10]?></td>
+                                            <td><?php echo $ver[11]?></td>
+                                            <td><?php echo $ver[12]?></td>
+                                            <td><?php echo $ver[13]?></td>
+                                            <td><?php echo $ver[14]?></td>
+                                            <td><?php echo $ver[15]?></td>  
+                                            <td><?php echo $ver[16]?></td>  
+                                            <td><?php echo $ver[17]?></td>
+                                            <td><?php echo $ver[18]?></td>
+                                            <td><?php echo $ver[19]?></td>                                             
                                                                                    
                                         </tr>
                                        

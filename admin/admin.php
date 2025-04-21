@@ -110,7 +110,8 @@ $fila = mysqli_fetch_row($result);
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">gestion contable</h6>
-                        <a class="collapse-item" href="ingresos.php">Ingresos</a>
+                        <a class="collapse-item" href="facturas.php">Facturas</a>
+                        <a class="collapse-item" href="ingresos.php">Diario</a>
                         <a class="collapse-item" href="egresos.php">Egresos</a>
                         <a class="collapse-item" href="reportes.php">Reportes</a>
                     </div>
