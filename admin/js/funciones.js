@@ -12,8 +12,8 @@ function mostrarTramites(id, usuario){
 				if(r==1){
 				    alertify.success("Listo!");
 					$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
-        $('#tabla_tramites').load('tablas/tabla_tramites.php'); 
-        $('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
+        			$('#tabla_tramites').load('tablas/tabla_tramites.php'); 
+       				$('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
 										               
 				}else{
 				 alert('Fallo el servicio');
@@ -118,9 +118,11 @@ function creartramite() {
 				success:function(r){
 				   if(r==1){
 						location.reload();
+						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
 					 }else{
 						alert('listo :)');
 						location.reload();
+						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
 				   }
 				}
 				
