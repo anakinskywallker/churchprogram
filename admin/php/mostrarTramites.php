@@ -11,6 +11,5 @@
     $sql="INSERT into auxsg (NUMERO_TURNO,USUARIO)
 								values ('$ide','$nombre_usuario')";
     echo $result3=mysqli_query($conexion,$sql);
-    
 //------------------------------------------------------------------------------------------------------------------------	
  ?>

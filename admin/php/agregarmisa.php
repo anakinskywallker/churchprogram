@@ -24,7 +24,6 @@ $var_ofrenda=mysqli_fetch_row($result_ofrenda);
 $valor_ofrenda = $var_ofrenda[1];
 
 $sql_registro = "INSERT INTO `registro` (
-    `id_rubro`,
     `id_tipo_ingreso`,
     `libro_reg`,
     `folio_reg`,
@@ -54,7 +53,6 @@ $sql_registro = "INSERT INTO `registro` (
     `informacion_bautismo`,
     `biagrafia`
 ) VALUES (
-    '$id_rubro',
     '$id_tipo_ingreso',
     NULL,
     NULL,
@@ -96,7 +94,7 @@ $sql_registro = "INSERT INTO `registro` (
             `fecha_ofrenda`,           `fecha_diligenciamiento`
         ) VALUES (
             '$id_rubro',               '$id_registro',            '$nombre_contacto',
-            NULL,                      NULL,                      NULL,
+            NULL,                      NULL,                      '$celular_contacto',
             '$celular_contacto',       NULL,                      '$nombre_contacto',
             '$identificacion',         '$valor_ofrenda',          NULL,
             '$fecha_actual',           '$fecha_actual'

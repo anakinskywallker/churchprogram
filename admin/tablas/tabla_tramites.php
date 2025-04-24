@@ -41,11 +41,10 @@ $ver=mysqli_fetch_row($result2);
 <script src="../librerias/alertifyjs/alertify.js"></script>  
 
 
-<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 
-                    
-                                      
-    <thead>
+
+<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                    <thead>
                                        <tr> 
                                          
                                             <th>Id_Factura</th>
@@ -80,7 +79,7 @@ $ver=mysqli_fetch_row($result2);
                                             <td><?php echo $ver[10]?></td>                                           
                                                                                    
                                         </tr>
-                                       
-                                       
     </tbody>
 </table>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

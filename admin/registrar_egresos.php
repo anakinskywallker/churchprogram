@@ -266,7 +266,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             <h6 class="m-0 font-weight-bold text-primary">Facturas</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_facturas" class="table-responsive">                                
+                            <div  id="tabla_egresos" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
@@ -332,7 +332,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <!-- Page level custom scripts -->
     <script src="../componentes/js/demo/datatables-demo.js"></script>
 <script type="text/javascript">
-$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+$('#tabla_egresos').load('tablas/tabla_egresos.php'); 
 $(document).ready(function(){
     $('#agregarmisa').click(function(){
         creartramite()
@@ -352,7 +352,7 @@ $(document).ready(function(){
 
 
 
-<!------------------------------------------------------modal -------------------------------------------------------------------------------->
+<!------------------------------------------------------modal egreso-------------------------------------------------------------------------------->
 
 <div class="modal fade" id="registraregreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
         aria-hidden="true">
@@ -375,23 +375,18 @@ $(document).ready(function(){
                             <!--Botones Inicio -->
                             <div class=" row no-guters ">
                                 <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">Forma de pago</label>
-                                        <select id="local_pago" class="form-select">
-                                        <option selected>Cuenta</option> 
-                                        <option selected>Efectivo</option> 
-                                        </select>
-                                     </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-6">
-                                        <label for="inputState" class="form-label">Tipo de ingreso</label>
-                                        <select id="local_pago" class="form-select">
-                                        <option selected>Locales parroquiales</option> 
-                                        <option selected>Ofrendas parroquiales</option>
-                                        <option selected>Cementerio</option> 
-                                        <option selected>Tienda</option> 
-                                        <option selected>Otros Ingresos</option>  
+                                        <label for="inputState" class="form-label">Tipo de egreso</label>
+                                        <select id="egreso_egreso" class="form-select">
+                                        <option selected>Talento humano</option> 
+                                        <option selected>Servicios publicos</option>
+                                        <option selected>Diosesis de Pasto</option> 
+                                        <option selected>Vehiculo parroquial</option> 
+                                        <option selected>Templo Parroquial</option> 
+                                        <option selected>Casa Cural</option>
+                                        <option selected>Despacho</option>
+                                        <option selected>Otros egresos</option>
+                                        <option selected></option>
                                         </select>
                                      </div>
                                 </div>  
@@ -402,26 +397,21 @@ $(document).ready(function(){
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="local_cedula" class="form-control  " placeholder="Cedula o Nit" required>
+                                        <input type="text" id="egreso_cedula" class="form-control  " placeholder="Cedula o Nit" >
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="local_celular" class="form-control  " placeholder="Celular" >
+                                        <input type="text" id="egreso_celular" class="form-control  " placeholder="Celular" >
                                     </div>
                                 </div><div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="local_concepto" class="form-control  " placeholder="Concepto" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="number" id="local_ofrenda" class="form-control  " placeholder="Ofrenda" required>
+                                        <input type="text" id="egreso_concepto" class="form-control  " placeholder="Concepto" >
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="misa_intencion" placeholder="Observacion" rows="3" required></textarea>
+                                        <textarea class="form-control" id="egreso_observacion" placeholder="Observacion" rows="3" ></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">

@@ -6,11 +6,14 @@ $conexion=conexion();
     $sql="SELECT
     f.id_factura, 
     f.nombre_apellido_contacto,
+    f.identificacion,
     f.telefono_contacto,
     ti.nombre_tipo AS nombre_tipo_ingreso,
     ru.nombre AS nombre_rubro,
     f.ofrenda,
-    f.fecha_diligenciamiento
+    f.fecha_diligenciamiento,
+    f.correo_contacto,
+    f.id_registro
 FROM 
     factura f
 JOIN 
@@ -34,6 +37,7 @@ ORDER BY
                                         <th>Mirar </th>
                                             <th>No. Factura</th>
                                             <th>Nombre</th>
+                                            <th>Identificacion</th>
                                             <th>Telefono</th>
                                             <th>Tipo</th>
                                             <th>Rubro</th>
@@ -46,6 +50,7 @@ ORDER BY
                                         <th>Mirar</th>
                                         <th>No. Factura</th>
                                             <th>Nombre</th>
+                                            <th>Identificacion</th>
                                             <th>Telefono</th>
                                             <th>Tipo</th>
                                             <th>Rubro</th>
@@ -59,14 +64,15 @@ ORDER BY
                                         while($ver=mysqli_fetch_row($result)){                                                                                       
                                         ?>
                                         <tr>
-                                        <td> <button onclick="mostrarTramites('<?php echo $ver[0]?>','<?php echo $_SESSION["nombre_usuario"]?>')"type="button" class="btn btn-secondary btn-sm">Mirar</button></td>
+                                        <td> <button onclick="imprimirFila3(this)" type="button" class="btn btn-secondary btn-sm">Descargar</button></td>
                                             <td><?php echo 'FA'.$ver[0]?></td>
                                             <td><?php echo $ver[1]?></td>
                                             <td><?php echo $ver[2]?></td>
                                             <td><?php echo $ver[3]?></td>
-                                            <td><?php echo $ver[4]?></td>
+                                            <td><?php if($ver[9] == 20){echo $ver[8];}else{echo $ver[4];}?></td>                                            
                                             <td><?php echo $ver[5]?></td>
-                                            <td><?php echo $ver[6]?></td>                                           
+                                            <td><?php echo $ver[6]?></td>
+                                            <td><?php echo $ver[7]?></td>                                             
                                             </tr>
                                         <?php
                                         }
@@ -81,6 +87,9 @@ ORDER BY
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+
 
 
 <!-- Plugin AutoTable para jsPDF -->
