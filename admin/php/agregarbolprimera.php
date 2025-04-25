@@ -74,7 +74,7 @@ if (mysqli_query($conexion, $sql_registro)) {
         '$bol_pri_recibido',
         NULL,
         NULL,
-        NULL,
+        '$bol_pri_celular',
         '$bol_pri_celular',
         NULL,
         '$bol_pri_recibido',

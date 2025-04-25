@@ -10,9 +10,15 @@ $id_turno = $var[1];
 
 $sql2="SELECT 
     ti.nombre_tipo AS nombre_tipo_ingreso,
-    ru.nombre AS nombre_rubro,
-    r.*
-   
+    f.nombre_apellido_contacto,
+    f.identificacion,
+    f.celular_contacto,
+    r.fecha_misa,
+    r.hora_misa,
+    r.lugar_evento,
+    r.ministro,
+    r.causa,
+    f.Observacion
 FROM 
     factura f
 JOIN 
@@ -28,7 +34,7 @@ ORDER BY
 "; 
 $result2=mysqli_query($conexion,$sql2);
 $ver=mysqli_fetch_row($result2);
-
+ 
    ?>
    
 <script src="../librerias/alertifyjs/alertify.js"></script>  
@@ -38,53 +44,33 @@ $ver=mysqli_fetch_row($result2);
 
                     
                                       
-    <thead>
-                                       <tr> 
-                                         
-                                            <th>Tipo_Tramite</th>
-                                            <th>libro_registro</th>
-                                            <th>Folio_registro</th>
-                                            <th>Numero_registro</th>
-                                            <th>Nombre_Apellido</th>
-                                            <th>Lugar_nacimiento</th>
-                                            <th>Fecha_nacimiento</th>
-                                            <th>Fecha_muerte</th>
-                                            <th>Edad</th>
-                                            <th>Estado_Civil</th>
-                                            <th>Nombre_Conyugue</th>
-                                            <th>Nombre_Hijos</th>
-                                            <th>Nombre_padre</th>
-                                            <th>Nombre_madre</th>
-                                            <th>Nombre_padrino</th>
-                                            <th>Nombre_madrina</th>
-                                            <th>Acciones</th>
+                                    <thead>
+                                       <tr>                                          
+                                            <th>Evento</th>
+                                            <th>Nombre Contacto</th>
+                                            <th>Identificacion</th>
+                                            <th>Celular</th>
+                                            <th>Fecha_Evento</th>
+                                            <th>Hora_evento</th>
+                                            <th>Lugar</th>
+                                            <th>Ministro</th>
+                                            <th>Intencion</th>
+                                            <th>Observacion</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>                                       
                                         <tr>                                    
-                                    
-                                           
-                                           
                                             <td><?php echo $ver[0]?></td>
+                                            <td><?php echo $ver[1]?></td>
+                                            <td><?php echo $ver[2]?></td>
+                                            <td><?php echo $ver[3]?></td>
+                                            <td><?php echo $ver[4]?></td>
                                             <td><?php echo $ver[5]?></td>
                                             <td><?php echo $ver[6]?></td>
                                             <td><?php echo $ver[7]?></td>
                                             <td><?php echo $ver[8]?></td>
-                                            <td><?php echo $ver[9]?></td>
-                                            <td><?php echo $ver[10]?></td>
-                                            <td><?php echo $ver[11]?></td>
-                                            <td><?php echo $ver[12]?></td>
-                                            <td><?php echo $ver[13]?></td>
-                                            <td><?php echo $ver[14]?></td>
-                                            <td><?php echo $ver[15]?></td>  
-                                            <td><?php echo $ver[16]?></td>  
-                                            <td><?php echo $ver[17]?></td>
-                                            <td><?php echo $ver[18]?></td>
-                                            <td><?php echo $ver[19]?></td>                                             
-                                                                                   
+                                            <td><?php echo $ver[9]?></td>                                               
                                         </tr>
-                                       
-                                       
     </tbody>
 </table>

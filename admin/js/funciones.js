@@ -345,7 +345,6 @@ function agregarbolprimera() {
 	bol_pri_recibido=$('#bol_pri_recibido').val();
 	bol_pri_identificacion=$('#bol_pri_identificacion').val();
 	bol_pri_celular=$('#bol_pri_celular').val();
-	
 
 	cadena= "id_rubro=" + id_rubro +
 			"&id_tipo_ingreso=" + id_tipo_ingreso +
@@ -354,11 +353,11 @@ function agregarbolprimera() {
 			"&bol_pri_fecha_nacimiento=" + bol_pri_fecha_nacimiento +
 			"&bol_pri_nombre_padre=" + bol_pri_nombre_padre +
 			"&bol_pri_nombre_madre=" + bol_pri_nombre_madre +
-			"&bol_ba_nombre_padrino=" + bol_pri_nombre_padrino +
-			"&bol_ba_nombre_madrina=" + bol_pri_nombre_madrina +
-			"&bol_ba_abuelos_paternos=" + bol_pri_ministro + 
-			"&bol_ba_abuelos_maternos=" + bol_pri_recibido + 
-			"&bol_ba_ministro_bautizo=" + bol_pri_identificacion + 
+			"&bol_pri_nombre_padrino=" + bol_pri_nombre_padrino +
+			"&bol_pri_nombre_madrina=" + bol_pri_nombre_madrina +
+			"&bol_pri_ministro=" + bol_pri_ministro +
+			"&bol_pri_recibido=" + bol_pri_recibido +
+			"&bol_pri_identificacion=" + bol_pri_identificacion +
 			"&bol_pri_celular=" + bol_pri_celular;
 			
 		let nombre = bol_pri_nombre_y_apellido.length;
@@ -639,6 +638,297 @@ function agregarcem() {
 		}	
 			
 }
+function agregaregreso() {
+
+	egreso_tipo=$('#egreso_tipo').val();
+	switch (egreso_tipo) {
+		case "Talento humano":
+			var id_tipo_egreso = 1
+		  break;
+		case "Servicios publicos":
+			var id_tipo_egreso = 2
+		  break;
+		case "Diosesis de Pasto":
+			var id_tipo_egreso = 3
+		  break;
+		case "Templo Parroquial":
+			var id_tipo_egreso = 4
+		  break;
+		case "Casa Cural":
+			var id_tipo_egreso = 5
+		  break;
+		case "Despacho":
+			var id_tipo_egreso = 6
+		  break;
+		case "Otros egresos":
+			var id_tipo_egreso = 7
+		  break;
+		default:
+		  alert('seleccione un tipo de egreso');
+	  }
+
+	egreso_nombreapellido=$('#egreso_nombreapellido').val();
+	egreso_cedula=$('#egreso_cedula').val();
+	egreso_celular=$('#egreso_celular').val();
+	egreso_observacion=$('#egreso_observacion').val();
+	egreso_valor=$('#egreso_valor').val();	
+
+			cadena = "id_tipo_egreso=" + id_tipo_egreso +
+    "&egreso_nombreapellido=" + egreso_nombreapellido +
+    "&egreso_cedula=" + egreso_cedula +
+    "&egreso_celular=" + egreso_celular +
+    "&egreso_observacion=" + egreso_observacion +
+    "&egreso_valor=" + egreso_valor;
+
+		let nombre = egreso_nombreapellido.length;
+		let valores = egreso_valor.length;
+
+		alert(cadena);
+		
+		if(nombre > 1 &&  valores > 2)
+		{			
+			$.ajax({
+				type:"POST",
+				url:"php/agregaregreso.php",
+				data:cadena,
+				success:function(r){
+				   if(r==1){
+						alert('listo :)');
+						location.reload();
+						$('#tabla_egresos').load('tablas/tabla_egresos.php'); 
+					 }else{
+						alert('listo :)');
+						location.reload();
+						$('#tabla_egresos').load('tablas/tabla_egresos.php'); 
+				   }
+				}
+				
+			}
+		   );
+		}else{
+		alert('Faltan datos importantes');
+		}	
+			
+}
+function regagregarbautizo() {
+	
+id_tipo_ingreso = 8;
+reg_ba_nombre_y_apellido = $('#reg_ba_nombre_y_apellido').val();
+reg_ba_lugar_nacimiento = $('#reg_ba_lugar_nacimiento').val();
+reg_ba_fecha_nacimiento = $('#reg_ba_fecha_nacimiento').val();
+reg_ba_nombre_padre = $('#reg_ba_nombre_padre').val();
+reg_ba_nombre_madre = $('#reg_ba_nombre_madre').val();
+reg_ba_nombre_padrino = $('#reg_ba_nombre_padrino').val();
+reg_ba_nombre_madrina = $('#reg_ba_nombre_madrina').val();
+reg_ba_abuelos_paternos = $('#reg_ba_abuelos_paternos').val();
+reg_ba_abuelos_maternos = $('#reg_ba_abuelos_maternos').val();
+reg_ba_ministro_bautizo = $('#reg_ba_ministro_bautizo').val();
+reg_ba_libro = $('#reg_ba_libro').val();
+reg_ba_folio = $('#reg_ba_folio').val();
+reg_ba_numero_reg = $('#reg_ba_numero_reg').val();
+
+
+cadena = "id_tipo_ingreso=" + id_tipo_ingreso +
+         "&reg_ba_nombre_y_apellido=" + reg_ba_nombre_y_apellido +
+         "&reg_ba_lugar_nacimiento=" + reg_ba_lugar_nacimiento +
+         "&reg_ba_fecha_nacimiento=" + reg_ba_fecha_nacimiento +
+         "&reg_ba_nombre_padre=" + reg_ba_nombre_padre +
+         "&reg_ba_nombre_madre=" + reg_ba_nombre_madre +
+         "&reg_ba_nombre_padrino=" + reg_ba_nombre_padrino +
+         "&reg_ba_nombre_madrina=" + reg_ba_nombre_madrina +
+         "&reg_ba_abuelos_paternos=" + reg_ba_abuelos_paternos + 
+         "&reg_ba_abuelos_maternos=" + reg_ba_abuelos_maternos + 
+         "&reg_ba_ministro_bautizo=" + reg_ba_ministro_bautizo +
+         "&reg_ba_libro=" + reg_ba_libro +
+         "&reg_ba_folio=" + reg_ba_folio +
+         "&reg_ba_numero_reg=" + reg_ba_numero_reg;
+
+
+	    let nombre = reg_ba_nombre_y_apellido.length;
+		if(nombre > 1)
+		{			
+			$.ajax({
+				type:"POST",
+				url:"php/regagregarbautizo.php",
+				data:cadena,
+				success:function(r){
+				   if(r==1){
+						alertify.success("Listo!");
+						$('#tabla_registro').load('tablas/tabla_registro.php');
+						location.reload();
+					 }else{
+						alertify.error("Error!");
+						$('#tabla_registro').load('tablas/tabla_registro.php');
+				   }
+				}
+				
+			}
+		   );
+		}else{
+		alert('Faltan datos importantes');
+		}	
+			
+}
+function regagregarprimera() {
+	
+id_tipo_ingreso = 9;
+reg_pri_nombre_y_apellido = $('#reg_pri_nombre_y_apellido').val();
+reg_pri_lugar_nacimiento = $('#reg_pri_lugar_nacimiento').val();
+reg_pri_fecha_nacimiento = $('#reg_pri_fecha_nacimiento').val();
+reg_pri_nombre_padre = $('#reg_pri_nombre_padre').val();
+reg_pri_nombre_madre = $('#reg_pri_nombre_madre').val();
+reg_pri_nombre_padrino = $('#reg_pri_nombre_padrino').val();
+reg_pri_nombre_madrina = $('#reg_pri_nombre_madrina').val();
+reg_pri_libro = $('#reg_pri_libro').val();
+reg_pri_folio = $('#reg_pri_folio').val();
+reg_pri_numero_reg = $('#reg_pri_numero_reg').val();
+reg_pri_ministro = $('#reg_pri_ministro').val();
+
+cadena = "id_tipo_ingreso=" + id_tipo_ingreso +
+         "&reg_pri_nombre_y_apellido=" + reg_pri_nombre_y_apellido +
+         "&reg_pri_lugar_nacimiento=" + reg_pri_lugar_nacimiento +
+         "&reg_pri_fecha_nacimiento=" + reg_pri_fecha_nacimiento +
+         "&reg_pri_nombre_padre=" + reg_pri_nombre_padre +
+         "&reg_pri_nombre_madre=" + reg_pri_nombre_madre +
+         "&reg_pri_nombre_padrino=" + reg_pri_nombre_padrino +
+         "&reg_pri_nombre_madrina=" + reg_pri_nombre_madrina +
+         "&reg_pri_libro=" + reg_pri_libro +
+         "&reg_pri_folio=" + reg_pri_folio +
+         "&reg_pri_numero_reg=" + reg_pri_numero_reg +
+         "&reg_pri_ministro=" + reg_pri_ministro;
+
+
+		let nombre = reg_pri_nombre_y_apellido.length;
+		if(nombre > 1)
+		{			
+			$.ajax({
+				type:"POST",
+				url:"php/regagregarprimera.php",
+				data:cadena,
+				success:function(r){
+				   if(r==1){
+					alertify.success("Listo!");
+					$('#tabla_registro').load('tablas/tabla_registro.php');
+				 	}else{
+					alertify.error("Error!");
+					$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+				   }
+				}
+				
+			}
+		   );
+		}else{
+		alert('Faltan datos importantes');
+		}	
+			
+}
+function regagregarconfirma() {
+id_rubro = 1;
+id_tipo_ingreso = 10;
+reg_con_parroquia = $('#reg_con_parroquia').val();
+reg_con_nombre_y_apellido = $('#reg_con_nombre_y_apellido').val();
+reg_con_lugar_bautizo = $('#reg_con_lugar_bautizo').val();
+reg_con_fecha_bautismo = $('#reg_con_fecha_bautismo').val();
+reg_con_informacion_bautizo = $('#reg_con_informacion_bautizo').val();
+reg_con_fecha_confirmacion = $('#reg_con_fecha_confirmacion').val();
+reg_con_nombre_padre = $('#reg_con_nombre_padre').val();
+reg_con_nombre_madre = $('#reg_con_nombre_madre').val();
+reg_con_nombre_padrino_madrina = $('#reg_con_nombre_padrino_madrina').val();
+reg_con_ministro = $('#reg_con_ministro').val();
+reg_con_libro = $('#reg_con_libro').val();
+reg_con_folio = $('#reg_con_folio').val();
+reg_con_numero_reg = $('#reg_con_numero_reg').val();
+
+cadena = "id_rubro=" + id_rubro +
+         "&id_tipo_ingreso=" + id_tipo_ingreso +
+         "&reg_con_parroquia=" + reg_con_parroquia +
+         "&reg_con_nombre_y_apellido=" + reg_con_nombre_y_apellido +
+         "&reg_con_lugar_bautizo=" + reg_con_lugar_bautizo +
+         "&reg_con_fecha_bautismo=" + reg_con_fecha_bautismo +
+         "&reg_con_informacion_bautizo=" + reg_con_informacion_bautizo +
+         "&reg_con_fecha_confirmacion=" + reg_con_fecha_confirmacion +
+         "&reg_con_nombre_padre=" + reg_con_nombre_padre +
+         "&reg_con_nombre_madre=" + reg_con_nombre_madre +
+		 "&reg_con_nombre_padrino_madrina=" + reg_con_nombre_padrino_madrina +
+         "&reg_con_ministro=" + reg_con_ministro +
+         "&reg_con_libro=" + reg_con_libro +
+         "&reg_con_folio=" + reg_con_folio +
+         "&reg_con_numero_reg=" + reg_con_numero_reg;
+
+		let nombre = reg_con_nombre_y_apellido.length;
+		if(nombre > 1)
+		{			
+			$.ajax({
+				type:"POST",
+				url:"php/regagregarconfirma.php",
+				data:cadena,
+				success:function(r){
+					if(r==1){
+						alertify.success("Listo!");
+						$('#tabla_registro').load('tablas/tabla_registro.php');
+						 }else{
+						alertify.error("Error!");
+						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+					}
+				}
+				
+			}
+		   );
+		}else{
+		alert('Faltan datos importantes');
+		}	
+			
+}
+function formaregistro(datos){
+
+	d=datos.split('||');
+	window.idregistro = d[0];       
+    $('#mod_libro').val(d[1]);
+	$('#mod_folio').val(d[2]);
+	$('#mod_num_reg').val(d[3]);
+
+}
+function subirregistro(){
+	id_registro = window.idregistro;
+
+	mod_libro = $('#mod_libro').val();
+	mod_folio = $('#mod_folio').val();
+	mod_num_reg = $('#mod_num_reg').val();
+	
+	cadena = "id_registro=" + id_registro +
+			 "&mod_libro=" + mod_libro +
+			 "&mod_folio=" + mod_folio +
+			 "&mod_num_reg=" + mod_num_reg;
+
+	    	let libro = mod_libro.length;
+			let folio = mod_folio.length;
+			let registro = mod_num_reg.length;
+			if(libro >= 1 && folio >= 1 && registro >= 1)
+			{			
+				$.ajax({
+					type:"POST",
+					url:"php/subirregistro.php",
+					data:cadena,
+					success:function(r){
+						if(r==1){
+							alert('listo');
+							$('#tabla_registro').load('tablas/tabla_registro.php');
+							location.reload();
+							loc
+							 }else{
+							alertify.error("Error!");
+							$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+						}
+					}
+					
+				}
+			   );
+			}else{
+			alert('Faltan datos importantes');
+			}	
+				
+	}
+
 async function imprimirFila3(boton) {
     const { jsPDF } = window.jspdf;
 
@@ -705,7 +995,7 @@ async function imprimirBoleta4(boton) {
 	const response = await fetch('/churchprogram/admin/js/escudo.txt');
     const escudoBase64 = await response.text();
 
-    const datos = Array.from(celdas).slice(1).map(td => ({
+    const datos = Array.from(celdas).slice(2).map(td => ({
         clave: td.dataset.label,
         valor: td.innerText.trim()
     })).filter(d => d.valor !== '');

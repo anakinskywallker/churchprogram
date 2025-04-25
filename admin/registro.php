@@ -29,7 +29,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Tramites</title>
+    <title>Registro</title>
 
     <!-- Custom fonts for this template -->
     <link href="../componentes/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -236,13 +236,34 @@ $usuario = $_SESSION["nombre_usuario"];
           
             
 <!-------------------------------------------------------- Boletas ------------------------------------------------------------>
-            
+<div class="container-fluid">
+                   <div class="row">
+                       <!-- Content Column -->
+                       <div class="col-md-12 mb-4">
+                            <!-- Approach -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Boletas </h6> 
+                                </div>                                      
+                                
+                                <div class="col-12 flex-wrap p-3">
+                                
+                                        <button type="submit" href="#regbautizo" data-toggle="modal" class="btn btn-primary">Registrar Bautizo</button>
+                                        <button type="submit" href="#regprimeracomunion" data-toggle="modal" class="btn btn-primary">Registrar Comunión</button>
+                                        <button type="submit" href="#regconfirmacion" data-toggle="modal" class="btn btn-primary">Registrar Confirmación</button>
+                                        <button type="submit" href="#regmatrimonio" data-toggle="modal" class="btn btn-primary">Registrar Matrimonio</button>  
+                                </div>
+                                                                 
+                            </div>
+                        </div>
+                    </div>
+            </div>
            
 <!------------------------------------------------------- Tabla ------------------------------------------------------------> 
 
             <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Facturas</h6>
+                        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                             <h5 class="m-0 font-weight-bold text-primary">Registros</h5>
                         </div>
                         <div class="card-body">
                             <div  id="tabla_registro" class="table-responsive">                                
@@ -313,64 +334,36 @@ $usuario = $_SESSION["nombre_usuario"];
     <!-- Page level custom scripts -->
     <script src="../componentes/js/demo/datatables-demo.js"></script>
 <script type="text/javascript">
-    $('#tabla_registro').load('tablas/tabla_registro.php'); 
+    $('#tabla_registro').load('tablas/tabla_registro.php');
     $(document).ready(function(){
-    $('#agregarmisa').click(function(){
-        creartramite()
-    });   
-    });
-    $(document).ready(function(){
-    $('#agregarentierro').click(function(){       
-        agregarentierro()
-    });   
-    });
-    $(document).ready(function(){
-    $('#agregarresponso').click(function(){       
-        agregarresponso()
-    });   
-    });
-    $(document).ready(function(){
-    $('#agregarbolbautizo').click(function(){       
-        agregarbolbautizo()
+    $('#regagregarbautizo').click(function(){ 
+        regagregarbautizo()
     });   
     });
 
     $(document).ready(function(){
-    $('#agregarbolprimera').click(function(){       
-        agregarbolprimera()
+    $('#regagregarprimera').click(function(){       
+        regagregarprimera()
     });   
     });
 
     $(document).ready(function(){
-    $('#agregarbolconfirma').click(function(){       
-        agregarbolconfirma()
+    $('#regagregarconfirma').click(function(){       
+        regagregarconfirma()
     });   
     });
     $(document).ready(function(){
-    $('#agregarbolmatri').click(function(){       
-        agregarbolmatri()
+    $('#regagregarmatri').click(function(){       
+        regagregarmatri()
     });   
     });
-    $(document).ready(function(){
-    $('#agregarpartidas').click(function(){       
-        agregarpartidas()
-    });   
-    }); 
-    $(document).ready(function(){
-    $('#agregarotros').click(function(){       
-        agregarotros()
-    });   
-    });  
-    $(document).ready(function(){
-    $('#agregarcem').click(function(){       
-        agregarcem()
-    });   
-    });  
-
     
+    $(document).ready(function(){
+    $('#modificar').click(function(){
+        subirregistro();
+    });  
+    });
 
-   
-    
 </script>
 
 <!---------------------------------------------------Modal agregar misa------------------------------------------------------------------>
@@ -381,347 +374,8 @@ $usuario = $_SESSION["nombre_usuario"];
 </body>
 </html>
 
-
-<!---------------------------------------------------Modal agregar misa------------------------------------------------------------------>
-<div class="modal fade" id="misas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Misas</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">Tipo Misa</label>
-                                        <select id="tipomisa" class="form-select">
-                                        <option selected>Particular</option> 
-                                        <option selected>Santisimo</option>
-                                        <option selected>Oficio</option>
-                                        <option selected>Oficio sin pago</option>
-                                        <option selected></option>                                      
-                                        </select>
-                                     </div>
-                                </div> 
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="misa_nombreofrece" class="form-control  " placeholder="Nombre Ofrece" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="misa_lugar" class="form-control  " placeholder="Lugar" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha Misa</label>
-                                        <input type="date" id="misa_fecha" class="form-control  " placeholder="Fecha Misa " required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Hora</label>
-                                        <input type="time" id="misa_hora" class="form-control  " placeholder="Hora Misa" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="misa_intencion" placeholder="Intencion" rows="3" required></textarea>
-                                    </div>
-                                </div>
-                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="nombre_contacto" class="form-control  " placeholder="Nombre y apellido " >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="identificacion" class="form-control  " placeholder="Identificacion" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="celular_contacto" class="form-control  " placeholder="Celular" >
-                                    </div>
-                                </div>
-                                                                 
-                            </div>
-                            
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarmisa" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Registrar
-                                        </button>                                   
-                                </div>
-                            </div>
-                            
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!-----------------------------------------------modal entierro--------------------------------------------------------------------------------------->
-<div class="modal fade" id="entierro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Exequias</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">Tipo exequias</label>
-                                        <select id="ent_tipo_exequia" class="form-select">
-                                        <option selected>Rural</option> 
-                                        <option selected>Urbana</option>                                      
-                                        </select>
-                                     </div>
-                                </div>                                 
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_nombre_difunto" class="form-control  " placeholder="Nombre difunto" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha de muerte</label>
-                                        <input type="date" id="ent_fecha_muerte" class="form-control  " placeholder="Fecha Muerte " required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="number" id="ent_edad" class="form-control  " placeholder="Edad" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha misa</label>
-                                        <input type="date" id="ent_fecha_misa" class="form-control  " placeholder="Fecha Misa " required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Hora misa</label>
-                                        <input type="time" id="ent_hora_misa" class="form-control  " placeholder="Hora Misa" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_lugar_del_funeral" class="form-control  " placeholder="Lugar del funeral" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="ent_causa_de_muerte" placeholder="Causa de muerte" rows="3" required></textarea>
-                                    </div>
-                                </div>  
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_estado_civil" class="form-control  " placeholder="Estado civil" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_nombre_conyugue" class="form-control  " placeholder="Nombre conyugue" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_nombre_hijos" class="form-control  " placeholder="Nombre hijos" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <input type="text" class="form-control"  id="ent_ultimos_sacramentos" placeholder="Ultimos sacramentos" rows="3" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="ent_biografia" placeholder="Biografia" rows="3" required></textarea>
-                                    </div>
-                                </div> 
-                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_nombre_contacto" class="form-control  " placeholder="Recibido de " >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_identificacion" class="form-control  " placeholder="Identificacion" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="ent_celular_contacto" class="form-control  " placeholder="Celular" >
-                                    </div>
-                                </div>
-                                                             
-                            </div>
-                            
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarentierro" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Registrar
-                                        </button>                                   
-                                </div>
-                            </div>
-                            
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!-------------------------------------------------------modal responso normal----------------------------------------------------->
-<div class="modal fade" id="res_normal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Responso Normal </h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-6">
-                                        <label for="inputState" class="form-label">Tipo responso</label>
-                                        <select id="res_tipo_responso" class="form-select">
-                                        <option selected>Semana Santa</option>   
-                                        <option selected>Normal</option>                                                                            
-                                        </select>
-                                     </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="res_nombre_ofrece" class="form-control  " placeholder="Nombre Ofrece" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="res_lugar" class="form-control  " placeholder="Lugar" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha Misa</label>
-                                        <input type="date" id="res_fecha" class="form-control  " placeholder="Fecha Misa " required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Hora</label>
-                                        <input type="time" id="res_hora" class="form-control  " placeholder="Hora Misa" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="res_intencion" placeholder="Intencion" rows="3" required></textarea>
-                                    </div>
-                                </div>
-                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="res_nombre_contacto" class="form-control  " placeholder="Nombre y apellido " >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="res_identificacion" class="form-control  " placeholder="Identificacion" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="res_celular_contacto" class="form-control  " placeholder="Celular" >
-                                    </div>
-                                </div>
-                                                                 
-                            </div>
-                            
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarresponso" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Registrar
-                                        </button>                                   
-                                </div>
-                            </div>
-                            
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
 <!---------------------------------------------------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------------------------------------------------------------------------------------------------->
-<div class="modal fade" id="bautizo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="regbautizo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content ">
@@ -744,79 +398,78 @@ $usuario = $_SESSION["nombre_usuario"];
                                  
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_nombre_y_apellido" class="form-control  " placeholder="Nombre y apellido" required>
+                                        <input type="text" id="reg_ba_nombre_y_apellido" class="form-control  " placeholder="Nombre y apellido" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_lugar_nacimiento" class="form-control  " placeholder="Lugar de nacimiento" required>
+                                        <input type="text" id="reg_ba_lugar_nacimiento" class="form-control  " placeholder="Lugar de nacimiento" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
                                         <label for="inputState" class="form-label">Fecha de nacimiento</label>
-                                        <input type="date" id="bol_ba_fecha_nacimiento" class="form-control  " placeholder="Fecha nacimiento " required>
+                                        <input type="date" id="reg_ba_fecha_nacimiento" class="form-control  " placeholder="Fecha nacimiento " required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
+                                        <input type="text" id="reg_ba_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
+                                        <input type="text" id="reg_ba_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_nombre_padrino" class="form-control  " placeholder="Nombre padrino" required>
+                                        <input type="text" id="reg_ba_nombre_padrino" class="form-control  " placeholder="Nombre padrino" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_nombre_madrina" class="form-control  " placeholder="Nombre madrina" required>
+                                        <input type="text" id="reg_ba_nombre_madrina" class="form-control  " placeholder="Nombre madrina" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_abuelos_paternos" class="form-control  " placeholder="Abuelos paternos" required>
+                                        <input type="text" id="reg_ba_abuelos_paternos" class="form-control  " placeholder="Abuelos paternos" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_abuelos_maternos" class="form-control  " placeholder="Abuelos maternos" required>
+                                        <input type="text" id="reg_ba_abuelos_maternos" class="form-control  " placeholder="Abuelos maternos" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_ministro_bautizo" class="form-control  " placeholder="Ministro de bautizo" required>
+                                        <input type="text" id="reg_ba_ministro_bautizo" class="form-control  " placeholder="Ministro de bautizo" required>
                                     </div>
                                 </div>
-                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
+                                <h6 class="mx-5">------------------ Datos del registro ------------------</h6>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_recibido" class="form-control  " placeholder="Recibido de " >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_identificacion" class="form-control  " placeholder="Identificacion" >
+                                        <input type="text" id="reg_ba_libro" class="form-control  " placeholder="Libro" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_ba_celular" class="form-control  " placeholder="Celular" >
+                                        <input type="text" id="reg_ba_folio" class="form-control  " placeholder="Folio" required>
                                     </div>
                                 </div>
-                               
-                                                             
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="reg_ba_numero_reg" class="form-control  " placeholder="Numero Registro" required>
+                                    </div>
+                                </div>
                             </div>
-                            
+                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>                                                     
+                            </div>
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
                                 <div class=" col-md-10 mb-2">
-                                        <button id="agregarbolbautizo" type="button"
+                                        <button id="regagregarbautizo" type="button"
                                         class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false" requerid>                                        
                                         Registrar
@@ -835,7 +488,7 @@ $usuario = $_SESSION["nombre_usuario"];
     </div>
 
 <!------------------------------------------------------modal primera comunion-------------------------------------------------------------------------------->
-<div class="modal fade" id="primeracomunion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="regprimeracomunion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content ">
@@ -858,69 +511,66 @@ $usuario = $_SESSION["nombre_usuario"];
                                  
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_nombre_y_apellido" class="form-control  " placeholder="Nombre y apellido" required>
+                                        <input type="text" id="reg_pri_nombre_y_apellido" class="form-control  " placeholder="Nombre y apellido" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_lugar_nacimiento" class="form-control  " placeholder="Lugar de nacimiento" required>
+                                        <input type="text" id="reg_pri_lugar_nacimiento" class="form-control  " placeholder="Lugar de nacimiento" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
                                         <label for="inputState" class="form-label">Fecha de nacimiento</label>
-                                        <input type="date" id="bol_pri_fecha_nacimiento" class="form-control  " placeholder="Fecha nacimiento " required>
+                                        <input type="date" id="reg_pri_fecha_nacimiento" class="form-control  " placeholder="Fecha nacimiento " required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
+                                        <input type="text" id="reg_pri_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
+                                        <input type="text" id="reg_pri_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_nombre_padrino" class="form-control  " placeholder="Nombre padrino" required>
+                                        <input type="text" id="reg_pri_nombre_padrino" class="form-control  " placeholder="Nombre padrino" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_nombre_madrina" class="form-control  " placeholder="Nombre madrina" required>
+                                        <input type="text" id="reg_pri_nombre_madrina" class="form-control  " placeholder="Nombre madrina" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_ministro" class="form-control  " placeholder="Ministro" required>
+                                        <input type="text" id="reg_pri_ministro" class="form-control  " placeholder="Ministro" required>
                                     </div>
                                 </div>
-                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
+                                <h6 class="mx-5">------------------ Datos del registro ------------------</h6>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_recibido" class="form-control  " placeholder="Recibido de " >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_identificacion" class="form-control  " placeholder="Identificacion" >
+                                        <input type="text" id="reg_pri_libro" class="form-control  " placeholder="Libro" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_pri_celular" class="form-control  " placeholder="Celular" >
+                                        <input type="text" id="reg_pri_folio" class="form-control  " placeholder="Folio" required>
                                     </div>
                                 </div>
-                               
-                                                             
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="reg_pri_numero_reg" class="form-control  " placeholder="Numero Registro" required>
+                                    </div>
+                                </div>
                             </div>
-                            
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
                                 <div class=" col-md-10 mb-2">
-                                        <button id="agregarbolprimera" type="button"
+                                        <button id="regagregarprimera" type="button"
                                         class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false" requerid>                                        
                                         Registrar
@@ -938,7 +588,7 @@ $usuario = $_SESSION["nombre_usuario"];
         </div>
     </div>
 <!----------------------------------------------------------modal confirmacion------------------------------------------------------------------------------->
-<div class="modal fade" id="confirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="regconfirmacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content ">
@@ -959,84 +609,80 @@ $usuario = $_SESSION["nombre_usuario"];
                             <!--Botones Inicio -->
                             <div class=" row no-guters ">
 
-                                  <div class="col-md-12 mb-2 my-2 mx-5">
+                                <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_parroquia" class="form-control  " placeholder="Parroquia" required>
+                                        <input type="text" id="reg_con_parroquia" class="form-control  " placeholder="Parroquia" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_y_apellido" class="form-control  " placeholder="Nombre y apellido" required>
+                                        <input type="text" id="reg_con_nombre_y_apellido" class="form-control  " placeholder="Nombre y apellido" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_lugar_bautizo" class="form-control  " placeholder="Lugar de bautismo" required>
+                                        <input type="text" id="reg_con_lugar_bautizo" class="form-control  " placeholder="Lugar de bautismo" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
                                         <label for="inputState" class="form-label">Fecha de bautismo</label>
-                                        <input type="date" id="bol_con_fecha_bautismo" class="form-control  " placeholder="Fecha de bautismo " required>
+                                        <input type="date" id="reg_con_fecha_bautismo" class="form-control  " placeholder="Fecha de bautismo " required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha de nacimiento</label>
-                                        <input type="date" id="bol_con_bautismo_libro" class="form-control  " placeholder="Bautismo (libro y folio) " required>
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="reg_con_informacion_bautizo" class="form-control  " placeholder="Informacion de Bautizo" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
                                         <label for="inputState" class="form-label">Fecha de confirmación</label>
-                                        <input type="date" id="bol_con_fecha_confirmacion" class="form-control  " placeholder="Fecha de confirmación " required>
+                                        <input type="date" id="reg_con_fecha_confirmacion" class="form-control  " placeholder="Fecha de confirmación " required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
+                                        <input type="text" id="reg_con_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
+                                        <input type="text" id="reg_con_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_padrino_madrina" class="form-control  " placeholder="Nombre padrino o madrina" required>
+                                        <input type="text" id="reg_con_nombre_padrino_madrina" class="form-control  " placeholder="Nombre padrino o madrina" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_ministro" class="form-control  " placeholder="Ministro" required>
+                                        <input type="text" id="reg_con_ministro" class="form-control  " placeholder="Ministro" required>
                                     </div>
                                 </div>                               
                                 
-                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
+                                <h6 class="mx-5">------------------ Datos del registro -------------------</h6>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_recibido" class="form-control  " placeholder="Recibido de " >
+                                        <input type="text" id="reg_con_libro" class="form-control  " placeholder="Libro" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_identificacion" class="form-control  " placeholder="Identificacion" >
+                                        <input type="text" id="reg_con_folio" class="form-control  " placeholder="Folio" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_celular" class="form-control  " placeholder="Celular" >
+                                        <input type="text" id="reg_con_numero_reg" class="form-control  " placeholder="Numero Registro" required>
                                     </div>
                                 </div>
-                               
-                                                             
                             </div>
-                            
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
                                 <div class=" col-md-10 mb-2">
-                                        <button id="agregarbolconfirma" type="button"
+                                        <button id="regagregarconfirma" type="button"
                                         class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false" requerid>                                        
                                         Registrar
@@ -1054,7 +700,7 @@ $usuario = $_SESSION["nombre_usuario"];
         </div>
     </div>
 <!---------------------------------------------------Modal matrimonio --------------------------------------------------------->
-<div class="modal fade" id="matrimonio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="regmatrimonio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content ">
@@ -1187,18 +833,16 @@ $usuario = $_SESSION["nombre_usuario"];
         </div>
     </div> 
 <!--------------------------------------------------------------------------------------------------------------------------------------->
-<!---------------------------------------------------Modal partidas --------------------------------------------------------->
-<div class="modal fade" id="partidasactuales" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+<div class="modal fade" id="modregistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Partidas</h3>        
+                    <h3 class="mx-5 section-heading text-uppercase ">Agregar Registro</h3>        
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
                 <div class="modal-body ">
                     <div class=" container-Agregar">
                         <!---->
@@ -1208,52 +852,37 @@ $usuario = $_SESSION["nombre_usuario"];
                         <form class="was-validated">
                             <!--Botones Inicio -->
                             <div class=" row no-guters ">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-6">
-                                        <label for="inputState" class="form-label">Tipo de partida</label>
-                                        <select id="partida_tipo" class="form-select">
-                                        <option selected>Bautismo</option>
-                                        <option selected>Bautismo sacramento</option>
-                                        <option selected>Comunión</option>
-                                        <option selected>Confirmacion</option>
-                                        <option selected>Matrimonio</option>
-                                        <option selected>Defunción</option>
-                                        <option selected>Partida Vieja</option>
-                                        <option selected></option>                                      
-                                        </select>
-                                     </div>
-                                </div> 
-                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                <div class="col-md-12 mb-2 mx-5">
+                                    <label class="From-label">Libro del registro</label>
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="partida_observacion" class="form-control  " placeholder="Observacion" required>
-                                    </div>
-                                </div>
-                                <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="partida_recibido" class="form-control  " placeholder="Recibido de" required>
+                                        <input type="text" id="mod_libro" class="form-control  " placeholder="Libro" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <label class="From-label">Folio del registro</label>
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="partida_identificacion" class="form-control  " placeholder="Identificacion" >
+                                        <input type="text" id="mod_folio" class="form-control  " placeholder="Folio" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                <div class="col-md-12 mb-2 mx-5">
+                                    <label class="From-label">Numero de registro</label>
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="partida_con_celular" class="form-control  " placeholder="Celular" >
+                                        <input type="text" id="mod_num_reg" class="form-control  " placeholder="Numero de registro" required>
                                     </div>
                                 </div>
+                                <div class="col-md-4">
                             </div>
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarpartidas" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Registrar
-                                        </button>                                   
+                                <div class=" col-md-20 mb-10">
+                                    <button id="modificar" type="button"
+                                        class="mx-5 col-md-6 btn btn-secondary" data-dismiss="modal" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" requerid>
+                                        Agregar
+                                    </button>
                                 </div>
+                            </div>
+                                <div class="col-md-3"></div>
                             </div>
                         </form>
                     </div>
@@ -1261,232 +890,6 @@ $usuario = $_SESSION["nombre_usuario"];
             </div>
         </div>
     </div>
-
-
-
-   
-<!--------------------------------------------------------modal partidas viejas----------------------------------------------------------------------------->
-<div class="modal fade" id="partidasviejas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Partidas viejas </h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">Tipo de partida</label>
-                                        <select id="partida_tipo" class="form-select">
-                                        <option selected>Bautismo</option> 
-                                        <option selected>Comunión</option>
-                                        <option selected>Matrimonio</option>
-                                        <option selected>Defunción</option>
-                                        <option selected></option>                                      
-                                        </select>
-                                     </div>
-                                </div> 
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="partida_vieja_recibido" class="form-control  " placeholder="Recibido de" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="partida_vieja_concepto" class="form-control  " placeholder="Por concepto de" required>
-                                    </div>
-                                </div>
-                               
-                                                                 
-                            </div>
-                            
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarmisa" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Registrar
-                                        </button>                                   
-                                </div>
-                            </div>
-                            
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!--------------------------------------------------------modal otros----------------------------------------------------------------------------->
-<div class="modal fade" id="registraringreso" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Registrar Ingreso</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-6">
-                                        <label for="inputState" class="form-label">Tipo de ingreso</label>
-                                        <select id="otros_tipo" class="form-select">
-                                        <option selected>Locales parroquiales</option> 
-                                        <option selected>Ofrendas parroquiales</option>
-                                        <option selected>Tienda</option> 
-                                        <option selected>Otros Ingresos</option>  
-                                        </select>
-                                     </div>
-                                </div>  
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="otros_recibido" class="form-control  " placeholder="Recibido de" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="otros_cedula" class="form-control  " placeholder="Cedula o Nit" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="number" id="otros_ofrenda" class="form-control  " placeholder="Ofrenda" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="otros_observacion" placeholder="Concepto" rows="3" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="otros_celular" class="form-control  " placeholder="Celular" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="otros_ciudad" class="form-control  " placeholder="Ciudad" >
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarotros" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Registrar
-                                        </button>                                   
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
-<div class="modal fade" id="registrarcementerio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Cementerio</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                               
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-6">
-                                        <label for="inputState" class="form-label">Tipo</label>
-                                        <select id="cem_tipo" class="form-select">
-                                        <option selected>Osarios</option>
-                                        <option selected>Bobedas</option> 
-                                        </select>
-                                     </div>
-                                </div>  
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="cem_recibido" class="form-control  " placeholder="Recibido de" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="cem_cedula" class="form-control  " placeholder="Cedula o Nit" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="cem_observacion" placeholder="Onservacion" rows="3" required></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="cem_celular" class="form-control  " placeholder="Celular" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="cem_ciudad" class="form-control  " placeholder="Ciudad" >
-                                    </div>
-                                </div>                            
-                            </div>
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarcem" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Registrar
-                                        </button>                                   
-                                </div>
-                            </div>
-                            
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
-
-
 <?php
 } 
 ?>

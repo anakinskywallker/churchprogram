@@ -232,19 +232,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             </div>
                         </div>
                     </div>
-                      <!-------------------------------------------------- Boton PDFs ------------------------------------------------>
-                    
-                    <!------------------------------------------------ Mas Datos Facturas -------------------------------------------->  
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos Contacto</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_tramites" class="table-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <!------------------------------------------------ DataTales Evento -------------------------------------------->
+    <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Datos Evento</h6>

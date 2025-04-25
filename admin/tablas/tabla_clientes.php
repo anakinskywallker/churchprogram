@@ -60,7 +60,7 @@ $conexion=conexion();
                                         
                                         ?>
                                         <tr>
-                                    </a>
+                                    </a> 
                                             <td> <button data-toggle="modal" data-target="#modcliente" onclick="agregaformCliente('<?php echo $datos?>')" type="button" class="btn btn-secondary btn-sm">Editar</button></td>
                                             <td><?php echo $ver[1]?></td>
                                                 <td><?php echo $ver[2]?></td>

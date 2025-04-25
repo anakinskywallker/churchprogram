@@ -50,6 +50,7 @@ ORDER BY r.id_registro DESC;";
        <thead>
         <tr>
             <th>Descargar</th>
+            <th>Registrar</th>
             <th>Tipo de Sacramento</th>
             <th>Libro</th>
             <th>Folio</th>
@@ -83,6 +84,7 @@ ORDER BY r.id_registro DESC;";
     <tfoot>
     <tr>
             <th>Descargar</th>
+            <th>Registrar</th>
             <th>Tipo de Sacramento</th>
             <th>Libro</th>
             <th>Folio</th>
@@ -117,11 +119,14 @@ ORDER BY r.id_registro DESC;";
         <?php
         $result = mysqli_query($conexion, $sql);
         while($ver = mysqli_fetch_row($result)){
+            $datos=$ver[0]."||".
+            $ver[2]."||".
+            $ver[3]."||".
+            $ver[4]."||";    
         ?>
         <tr>
     <td><button onclick="imprimirBoleta4(this)" type="button" class="btn btn-primary btn-sm">Descargar</button></td>
-    <!--   <td><button onclick="realizarAccion(<?php echo $ver[0]; ?>)" type="button" class="btn btn-primary btn-sm">Mirar</button></td> -->
-
+    <td> <button data-toggle="modal" data-target="#modregistro" onclick="formaregistro('<?php echo $datos?>')" type="button" class="btn btn-primary btn-sm">Registrar</button></td>
     <td data-label="Tipo de Sacramento"><?php if($ver[1]==4 || $ver[1]==5){echo 'Boleta Defuncion';}else{echo $ver[29];}?></td> 
     <td data-label="Libro">             <?php echo $ver[2]?></td> 
     <td data-label="Folio">             <?php echo $ver[3]?></td> 

@@ -334,8 +334,8 @@ $usuario = $_SESSION["nombre_usuario"];
 <script type="text/javascript">
 $('#tabla_egresos').load('tablas/tabla_egresos.php'); 
 $(document).ready(function(){
-    $('#agregarmisa').click(function(){
-        creartramite()
+    $('#agregaregreso').click(function(){
+        agregaregreso()
     });
  });
    
@@ -359,7 +359,7 @@ $(document).ready(function(){
         <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Registrar Egresos </h3>        
+                    <h3 class="mx-5 section-heading text-uppercase ">Registrar Egresos</h3>        
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -377,7 +377,7 @@ $(document).ready(function(){
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-6">
                                         <label for="inputState" class="form-label">Tipo de egreso</label>
-                                        <select id="egreso_egreso" class="form-select">
+                                        <select id="egreso_tipo" class="form-select">
                                         <option selected>Talento humano</option> 
                                         <option selected>Servicios publicos</option>
                                         <option selected>Diosesis de Pasto</option> 
@@ -392,7 +392,7 @@ $(document).ready(function(){
                                 </div>  
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="local_recibido" class="form-control  " placeholder="Recibido de" required>
+                                        <input type="text" id="egreso_nombreapellido" class="form-control  " placeholder="Nombre y apellido" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
@@ -406,28 +406,19 @@ $(document).ready(function(){
                                     </div>
                                 </div><div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="egreso_concepto" class="form-control  " placeholder="Concepto" >
+                                        <input type="text" id="egreso_observacion" class="form-control  " placeholder="Observacion" >
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="egreso_observacion" placeholder="Observacion" rows="3" ></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                </div><div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="local_ciudad" class="form-control  " placeholder="Ciudad" >
+                                        <input type="number" id="egreso_valor" class="form-control  " placeholder="Valor Egreso" required>
                                     </div>
                                 </div>
-                                
-                               
-                                                                 
                             </div>
-                            
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
                                 <div class=" col-md-10 mb-2">
-                                        <button id="agregarmisa" type="button"
+                                        <button id="agregaregreso" type="button"
                                         class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false" requerid>                                        
                                         Registrar

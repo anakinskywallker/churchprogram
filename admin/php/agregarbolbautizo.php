@@ -20,7 +20,6 @@ $bol_ba_abuelos_maternos    = $_POST['bol_ba_abuelos_maternos'];
 $bol_ba_ministro_bautizo    = $_POST['bol_ba_ministro_bautizo'];
 $bol_ba_recibido            = $_POST['bol_ba_recibido'];
 $bol_ba_identificacion      = $_POST['bol_ba_identificacion'];
-$ent_ultimos_sacramentos    = $_POST['ent_ultimos_sacramentos'];
 $bol_ba_celular             = $_POST['bol_ba_celular'];
 
 // Obtener valor de la ofrenda desde tipo_ingreso
@@ -41,7 +40,6 @@ $sql_registro = "INSERT INTO registro (
     nombre_madrina,
     abuelos_paternos,
     abuelos_maternos,
-    ultimos_sacramentos,
     ministro
 ) VALUES (
     '$id_tipo_ingreso',
@@ -54,7 +52,6 @@ $sql_registro = "INSERT INTO registro (
     '$bol_ba_nombre_madrina',
     '$bol_ba_abuelos_paternos',
     '$bol_ba_abuelos_maternos',
-    '$ent_ultimos_sacramentos',
     '$bol_ba_ministro_bautizo'
 )";
 
