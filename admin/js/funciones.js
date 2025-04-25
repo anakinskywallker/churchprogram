@@ -639,65 +639,6 @@ function agregarcem() {
 		}	
 			
 }
-
-async function imprimirFila(boton) {
-    const [{ jsPDF }] = await Promise.all([
-        window.jspdf ? Promise.resolve(window.jspdf) : import("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js")
-    ]);
-
-    const fila = boton.closest('tr');
-    const celdas = fila.querySelectorAll('td');
-    const valores = Array.from(celdas).slice(1).map(td => td.innerText); // omitir la celda del botón
-
-    const columnas = ["No. Factura", "Nombre", "Telefono", "Tipo", "Rubro", "Ofrenda", "Fecha"];
-
-    const doc = new jsPDF();
-    doc.autoTable({
-        head: [columnas],
-        body: [valores]
-    });
-    doc.save('fila.pdf');
-}
-async function imprimirFila2(boton) {
-    const { jsPDF } = window.jspdf;
-
-    const fila = boton.closest('tr');
-    const celdas = fila.querySelectorAll('td');
-    const valores = Array.from(celdas).slice(1).map(td => td.innerText);
-
-    // Ancho 58mm = ~220 puntos (1mm ≈ 2.83pt)
-    const doc = new jsPDF({
-        unit: 'pt',
-        format: [220, 500], // ancho 58mm, alto ajustable
-    });
-
-    const now = new Date();
-    const fecha = now.toLocaleDateString();
-    const hora = now.toLocaleTimeString();
-
-    doc.setFontSize(10);
-	doc.text("-------------------------------", 10, 70);
-	doc.text("-------------------------------", 10, 70);
-    doc.text("** FACTURA DE SERVICIO **", 110, 20, { align: "center" });
-    doc.text(`Fecha: ${fecha}`, 10, 40);
-    doc.text(`Hora: ${hora}`, 10, 55);
-    doc.text("-------------------------------", 10, 70);
-
-    const labels = ["Factura", "Nombre", "Teléfono", "Tipo", "Rubro", "Ofrenda", "Fecha"];
-    let y = 85;
-    for (let i = 0; i < labels.length; i++) {
-        doc.text(`${labels[i]}: ${valores[i]}`, 10, y);
-        y += 15;
-    }
-
-    doc.text("-------------------------------", 10, y + 10);
-    doc.text("¡Gracias por su visita!", 110, y + 30, { align: "center" });
-	doc.text("-------------------------------", 10, 70);
-	doc.text("¡Gracias por su visita!", 110, y + 30, { align: "center" });
-
-    doc.save('factura.pdf');
-}
-
 async function imprimirFila3(boton) {
     const { jsPDF } = window.jspdf;
 
@@ -755,6 +696,60 @@ async function imprimirFila3(boton) {
 
     doc.save('factura.pdf');
 }
+async function imprimirBoleta4(boton) {
+    const { jsPDF } = window.jspdf;
+
+    const fila = boton.closest('tr');
+    const celdas = fila.querySelectorAll('td');
+
+	const response = await fetch('/churchprogram/admin/js/escudo.txt');
+    const escudoBase64 = await response.text();
+
+    const datos = Array.from(celdas).slice(1).map(td => ({
+        clave: td.dataset.label,
+        valor: td.innerText.trim()
+    })).filter(d => d.valor !== '');
+	const titulo = datos[0]?.valor || ""; 
+	
+
+    const doc = new jsPDF();
+
+    // 🔰 Insertar escudo (base64 o URL convertida)
+	
+    doc.addImage(escudoBase64.trim(), 'PNG', 90, 10, 30, 30); // centrado arriba
+    // Título debajo del escudo
+	
+    doc.setFontSize(16);
+    doc.text(titulo, 105, 50, { align: "center" });
+
+    // Tabla de datos
+    const headers = [["Campo", "Valor"]];
+    const body = datos.map(d => [d.clave, d.valor]);
+
+    doc.autoTable({
+        startY: 60,
+        head: headers,
+        body: body,
+        theme: 'grid',
+        headStyles: { fillColor: [26, 188, 156] }
+    });
+
+    let finalY = doc.lastAutoTable.finalY;
+
+    // Firma
+    doc.setFontSize(12);
+    doc.text("Firma y Sello:", 20, finalY + 30);
+    doc.line(20, finalY + 35, 100, finalY + 35);
+
+    // Pie de página
+    doc.setFontSize(10);
+    doc.setTextColor(150);
+    doc.text("Parroquia Nuestra Señora del Carmen", 105, 285, { align: "center" });
+
+    doc.save('registro.pdf');
+}
+
+
 
 
 
