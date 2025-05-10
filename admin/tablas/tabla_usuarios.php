@@ -2,8 +2,8 @@
 session_start();
 require_once "../php/conexion.php";
 $conexion=conexion();
-    //$sql2="SELECT * from aux2 WHERE id='1'"; con esta linea se puede discriminar para la parte de contable
-    $sql="SELECT * from personal where EMP_ESTADO = '1'";
+
+    $sql="SELECT * from usuarios where USR_ESTADO = '1'";
     
   
 ?>
@@ -19,10 +19,8 @@ $conexion=conexion();
                                             <th>Apellido</th>
                                             <th>Documento</th>
                                             <th>Celular</th>
-                                            <th>Salario</th>
-                                            <th>Tipo</th>
-                                            <th>Lugar</th>
                                             <th>Nombre Usuario</th>
+                                            <th>Contraseña</th>
                                             <th>Suspender</th>
 
                                         </tr>
@@ -39,11 +37,9 @@ $conexion=conexion();
                                                 <td><?php echo $ver[2]?></td>
                                                 <td><?php echo $ver[3]?></td>
                                                 <td><?php echo $ver[4]?></td>
-                                                <td><?php echo $ver[5]?></td>
-                                                <td><?php if($ver[6] == 1) {echo 'Administrador';}else{echo 'Gestionador Citas';} ?></td>
-                                                <td><?php echo $ver[11]?></td>
+                                                <td><?php echo $ver[7]?></td>
                                                 <td><?php echo $ver[8]?></td>
-                                            <td> <button onclick=" preguntarSiNosuspenderUsuario('<?php echo $ver[0]?>')"type="button" class="btn btn-secondary btn-sm">Suspender</button></td>
+                                            <td> <button onclick=" preguntarSiNosuspenderUsuario('<?php echo $ver[0]?>')"type="button" class="btn btn-primary btn-sm">Suspender</button></td>
                                         </tr>
                                         <?php
                                         }

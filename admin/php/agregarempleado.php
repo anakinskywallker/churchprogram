@@ -1,20 +1,48 @@
 <?php 
-	require_once "conexion.php";
-	$conexion=conexion();
-//-----------------------------------------------------------------------------------------------	
-    $nombre=$_POST['nombre'];
-    $apellido=$_POST['apellido'];
-    $tipousuario=$_POST['tipousuario'];
-    $lugartrabajo=$_POST['lugartrabajo'];
-    $documento=$_POST['documento'];
-    $contacto=$_POST['contacto'];
-    $salario=$_POST['salario'];
-    $nombreUsuario=$_POST['nombreUsuario'];
-    $psw=$_POST['psw'];
+require_once "conexion.php";
+$conexion = conexion();
 
-    $sql="INSERT INTO personal (EMP_NOMBRE, EMP_APELLIDOS, EMP_CEDULA, EMP_CELULAR, EMP_SALARIO, EMP_TIPO, EMP_LOGIN_NOMBRE, EMP_PASSWORD, EMP_ESTADO, EMP_LUGAR) 
-                            VALUES ('$nombre','$apellido','$documento','$contacto','$salario','$tipousuario','$nombreUsuario','$psw','1','$lugartrabajo')";
-    echo $result=mysqli_query($conexion,$sql);
+
+$nombre         = $_POST['nombre'];
+$apellido       = $_POST['apellido'];
+$lugartrabajo   = $_POST['lugartrabajo'];
+$documento      = $_POST['documento'];
+$contacto       = $_POST['contacto'];
+$nombreUsuario  = $_POST['nombreUsuario'];
+$psw            = $_POST['psw'];
+
+
+$salario    = 0;              
+
+// Construir e insertar
+$sql = "INSERT INTO usuarios (
+            USR_NOMBRE, 
+            USR_APELLIDOS, 
+            USR_CEDULA, 
+            USR_CELULAR, 
+            USR_SALARIO, 
+            USR_TIPO, 
+            USR_LOGIN_NOMBRE, 
+            USR_PASSWORD, 
+            USR_ESTADO, 
+            USR_LUGAR
+        ) VALUES (
+            '$nombre',
+            '$apellido',
+            '$documento',
+            '$contacto',
+            '$salario',
+            1,
+            '$nombreUsuario',
+            '$psw',
+            1,
+            '$lugartrabajo'
+        )";
+
+     echo $result=mysqli_query($conexion,$sql);
+?>
+
+
     
 //------------------------------------------------------------------------------------------------------------------------	
  ?>

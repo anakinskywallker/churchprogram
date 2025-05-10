@@ -56,110 +56,13 @@ $usuario = $_SESSION["nombre_usuario"];
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
+        <!------------------------------------------------------- Sidebar ----------------------------------------------------->
         <ul class="navbar-nav bg-login sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
-                <img width="40px" src="../componentes/img/icono.png" alt="">
-                <div class="sidebar-brand-text mx-3">GestiónPlus<sup></sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="admin.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Inicio</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Solicitudes
-            </div>
-
-            <!-------- Nav Item - Pages Collapse Menu ---------->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Turnos</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Solicitud:</h6>
-                        <a class="collapse-item" href="clientes.php">Clientes</a>
-                        <a class="collapse-item" href="agregar_turnos.php">Nuevo Turno</a>
-                        <a class="collapse-item" href="gestionturnos.php">Gestion de Turnos</a>
-                        <a class="collapse-item" href="turnoslistos.php">Turnos Listos</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Contabilidad</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestrion de Facturas</h6>
-                        <a class="collapse-item" href="contabilidadPendientes.php">Pendientes </a>
-                        <a class="collapse-item" href="contabilidadPagos.php">Pagos </a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Gestion Empresarial
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Colaboradores</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion</h6>
-                        <a class="collapse-item" href="usuarios.php">Agregar</a>
-                    </div>
-                </div>
-            </li>
-
-           
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message -->
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="../componentes/img/undraw_rocket.png" alt="...">
-            </div>
-
         </ul>
+        <!------------------------------------------------------- End of Sidebar ------------------------------------------------------->
 
-       
-        <!---------------------------------------------------- End of Sidebar ---------------------------------------->
+
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -177,7 +80,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         </button>
                     </form>
                     <div class="col-xs-2 col-md-3">
-                        <a class="btn btn-secondary col" href="#empleados" role="button" data-toggle="modal">
+                        <a class="btn btn-primary col" href="#empleados" role="button" data-toggle="modal">
                             <i class="fas fa-user-plus"></i> Agregar Usuario</a>
                     </div>
 
@@ -320,9 +223,9 @@ $usuario = $_SESSION["nombre_usuario"];
         observacion=$('#validationTextarea22').val();
         cambiarFactura2(id_el,observacion) 
         });
-        
-        $('#tabla_usuarios').load('tablas/tabla_usuarios.php'); 
-      
+
+        $('#accordionSidebar').load('tablas/accordionSidebar.php');          
+        $('#tabla_usuarios').load('tablas/tabla_usuarios.php');       
 
  	});
 </script>
@@ -365,22 +268,6 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="col-md-12 mb-2 my-2 mx-5">
 
                                     <div class="col-md-4">
-                                        <label for="inputState" class="form-label">Tipo de Usuarios</label>
-                                        <select id="tipousuario" class="form-select">
-                                        <option selected>Administrador</option>
-                                        <option selected>Gestor</option>
-                                        </select>
-                                     </div>
-                                
-                                     <?php 
-                                     $sql="SELECT * FROM eps";
-                                     $result=mysqli_query($conexion,$sql);
-                                     
-                                    ?>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-
-                                    <div class="col-md-4">
                                         <label for="inputState" class="form-label">Lugar de Trabajo</label>
                                         <select id="lugartrabajo" class="form-select">
                                         <option selected>Pasto </option>
@@ -388,12 +275,6 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <option selected>La Cruz </option>
                                         </select>
                                      </div>
-                                
-                                     <?php 
-                                     $sql="SELECT * FROM eps";
-                                     $result=mysqli_query($conexion,$sql);
-                                     
-                                    ?>
                                 </div>                    
                                 <div class="col-md-12 mb-2 mx-5">
 
@@ -402,25 +283,16 @@ $usuario = $_SESSION["nombre_usuario"];
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 mx-5">
-
                                     <div class="input-group col-md-9">
                                         <input type="number" id="contacto" class="form-control  " placeholder="Contacto" required>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-
-                                    <div class="input-group col-md-9">
-                                        <input type="number" id="salario" class="form-control  " placeholder="Salario">
-                                    </div>
-                                </div>
-
                                 <div class="col-md-12 mx-5 mb-2">
 
                                     <div class="input-group col-md-9">
                                         <input type="text"  id="nombreUsuario" class="form-control  " placeholder="Nombre de usuario" required>
                                     </div>
                                 </div>
-
                                 <div class="col-md-12 mb-2 mx-5">
 
                                     <div class="input-group col-md-9">
@@ -468,7 +340,6 @@ $(document).ready(function(){
         agregarColaborador() 
         });
      });
-
    
 </script>
 

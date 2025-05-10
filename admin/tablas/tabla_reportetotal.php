@@ -30,12 +30,14 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
     $aux = mysqli_fetch_row($resultofrendas);
     $ofrendas = $aux[0];  
 
-    $sql = "SELECT * FROM `contabilidad` WHERE ID_CONTABILIDAD = 2";
+    $sql = "SELECT * FROM contabilidad WHERE ID_CONTABILIDAD = 2";
     $result = mysqli_query($conexion, $sql);  
     $ver = mysqli_fetch_row($result);  
 
     $total = $ver[1] + $ver[2] + $ver[3] + $ofrendas;
-    
+    $Egresos = $ver[4];
+    $Utilidades = $total - $Egresos;
+     
 ?>
 <script src="js/funciones.js"></script>
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -59,16 +61,13 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
     </thead>
 </table>
 <div class="row">
-    <!-- Earnings (Monthly) Card Example -->
-    <div class="col-xl-6 col-md-12 mb-4">
+    <div class="col-xl-4 col-md-12 mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                     <div class="text-s font-weight-bold text-success text-uppercase mb-1">
-                                Total <?php
-                                                    echo date('Y-m-d', strtotime($rowfecha[0])) . '-' . date('Y-m-d', strtotime($rowfecha[1]));
-                                                ?>
+                                Total Ingresos
                             </div>
                             <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".number_format($total)?></div>
                     </div>
@@ -78,10 +77,44 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Earnings (Monthly) Card Example -->
-    <!-- Pending Requests Card Example -->
-   
+    </div>   
+
+    <div class="col-xl-4 col-md-12 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                    <div class="text-s font-weight-bold text-warning text-uppercase mb-1">
+                                Total Egresos
+                            </div>
+                            <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".number_format($Egresos)?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div class="col-xl-4 col-md-12 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                    <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                                Utilidades en :  <?php
+                                        echo date('Y-m-d', strtotime($rowfecha[0])) . '-' . date('Y-m-d', strtotime($rowfecha[1]));
+                                      ?>
+                            </div>
+                            <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".number_format($Utilidades)?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

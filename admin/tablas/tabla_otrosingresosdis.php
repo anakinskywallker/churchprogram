@@ -88,9 +88,6 @@ ORDER BY
                                             </tr>
                                         <?php
                                         }
-                                        $sqlin="UPDATE contabilidad SET UTIL_TOTAL = '$utilidad'  
-                                         WHERE ID_CONTABILIDAD = '1';";
-                                         $resultin=mysqli_query($conexion,$sqlin);
                                         ?>
                                        
     </tbody>

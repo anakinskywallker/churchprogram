@@ -972,6 +972,84 @@ function agregarfechas(usuario) {
 			alert('Faltan datos importantes');
 		}
 }
+function agregarColaborador(){
+
+	nombre=$('#nombreColaborador').val();
+	apellido=$('#apellidoColaborador').val();		
+	lugartrabajo=$('#lugartrabajo').val();
+	documento=$('#documentoColaborador').val();
+	contacto=$('#contacto').val();	
+	nombreUsuario=$('#nombreUsuario').val();
+	psw=$('#psw').val();
+
+
+	let nombreclienteAux = nombre.length;
+	let apellidoclienteAux = apellido.length;
+	let lugartrabajoAux = lugartrabajo.length;
+	let nombreUsuarioAux = nombreUsuario.length;
+	let pswAux = psw.length;
+	
+
+	if(lugartrabajoAux > 1 && nombreUsuarioAux > 1 && pswAux > 1 && apellidoclienteAux > 1 && nombreclienteAux > 1)
+	{
+	
+	cadena= "nombre=" + nombre +
+	"&apellido=" + apellido +
+	"&lugartrabajo=" + lugartrabajo +
+	"&documento=" + documento +
+	"&contacto=" + contacto +
+	"&nombreUsuario=" + nombreUsuario +
+	"&psw=" + psw;
+		  
+			 $.ajax({
+			 type:"POST",
+			 url:"php/agregarempleado.php",
+			 data:cadena,
+			 success:function(r){
+				if(r==1){					
+					location.reload();
+					$('#tabla_usuarios').load('tablas/tabla_usuarios.php'); 
+					
+				}else{
+					$('#tabla_usuarios').load('tablas/tabla_usuarios.php'); 
+				}
+			 }
+			
+  });
+}else{
+	alert('Faltan datos importantes');
+}
+
+
+}
+function preguntarSiNosuspenderUsuario(id){
+	alertify.confirm('Suspender Usuario', '¿Esta seguro de suspender a esta usuario?', 
+					function(){ suspenderUsuario(id); }
+                , function(){ alertify.error('Se cancelo')});
+
+
+}
+function suspenderUsuario(id){
+	
+	cadena="id=" + id;
+ 
+	         $.ajax({
+			 type:"POST",
+			 url:"php/suspenderUsuario.php",
+			 data:cadena,
+			 success:function(r){
+				if(r==1){
+					
+				    alertify.success("Listo!");
+					$('#tabla_usuarios').load('tablas/tabla_usuarios.php');
+                    
+                    
+				}else{
+				   
+				}
+			 }
+		     });
+}
 
 async function imprimirFila3(boton) {
     const { jsPDF } = window.jspdf;
