@@ -18,7 +18,8 @@ $sql2="SELECT
     r.lugar_evento,
     r.ministro,
     r.causa,
-    f.Observacion
+    f.Observacion,
+    f.id_factura
 FROM 
     factura f
 JOIN 
@@ -39,7 +40,7 @@ $ver=mysqli_fetch_row($result2);
    
 <script src="../librerias/alertifyjs/alertify.js"></script>  
 
-
+<label >Numero de factura <?php echo $ver[10]?></label>
 <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 
                     

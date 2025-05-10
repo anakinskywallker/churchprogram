@@ -243,21 +243,21 @@ $usuario = $_SESSION["nombre_usuario"];
                             <h6 class="m-0 font-weight-bold text-primary">Facturas</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_facturas" class="table-responsive">                                
+                            <div  id="tabla_facturasdiario" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Facturas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_egresosdiario" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
     <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos Evento</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_datos_evento" class="table-responsive">
-                            </div>
-                        </div>
-                    </div>
-
+                    
                 </div>
                 <!-- /.container-fluid -->
 
@@ -328,9 +328,10 @@ $usuario = $_SESSION["nombre_usuario"];
         cambiarFactura2(id_el,observacion) 
         });
                   
-        $('#tabla_facturas').load('tablas/tabla_facturas.php'); 
-        $('#tabla_tramites').load('tablas/tabla_tramites.php'); 
-        $('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
+        $('#tabla_facturasdiario').load('tablas/tabla_facturasdiario.php'); 
+        $('#tabla_tramites').load('tablas/tabla_tramites.php');
+        $('#tabla_egresosdiario').load('tablas/tabla_egresosdiario.php');  
+        
      });
 </script>
 

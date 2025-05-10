@@ -111,7 +111,7 @@ $fila = mysqli_fetch_row($result);
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">gestion contable</h6>
                         <a class="collapse-item" href="facturas.php">Facturas</a>
-                        <a class="collapse-item" href="ingresos.php">Diario</a>
+                        <a class="collapse-item" href="diario.php">Diario</a>
                         <a class="collapse-item" href="egresos.php">Egresos</a>
                         <a class="collapse-item" href="reportes.php">Reportes</a>
                     </div>
@@ -414,7 +414,7 @@ $fila = mysqli_fetch_row($result);
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccione "Cerrar Sesion" para cerrar Gestio Plus</div>
+                <div class="modal-body">Seleccione "Cerrar Sesion" para cerrar Despacho</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="../cerrar_sesion.php">Cerrar Sesion</a>

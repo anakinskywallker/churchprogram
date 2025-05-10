@@ -14,6 +14,8 @@ function mostrarTramites(id, usuario){
 					$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
         			$('#tabla_tramites').load('tablas/tabla_tramites.php'); 
        				$('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
+					$('#tabla_facturasdiario').load('tablas/tabla_facturasdiario.php'); 
+
 										               
 				}else{
 				 alert('Fallo el servicio');
@@ -70,7 +72,7 @@ function creartramite() {
       
 	tipomisa=$('#tipomisa').val();
 	
-
+    var flag = 0;
 	switch (tipomisa) {
 		case "Particular":
 			var id_tipo_ingreso = 1
@@ -85,6 +87,7 @@ function creartramite() {
 		  	 var id_tipo_ingreso = 18
 		  break;
 		default:
+			flag = 1;
 		  alert('seleccione un tipo de misa');
 	  }
 
@@ -110,7 +113,7 @@ function creartramite() {
 			"&misa_hora=" + misa_hora +
 			"&misa_intencion=" + misa_intencion;
 				
-		
+		if(flag == 0){
 			$.ajax({
 				type:"POST",
 				url:"php/agregarmisa.php",
@@ -127,7 +130,10 @@ function creartramite() {
 				}
 				
 			}
-		   );				
+		   );	
+		}else{
+			alert('Faltan datos importantes');
+		}			
 }
 function agregarentierro() {
 
@@ -229,7 +235,7 @@ function agregarresponso() {
       id_rubro = 1;
 	res_nombre_ofrece=$('#res_nombre_ofrece').val();
 	res_lugar=$('#res_lugar').val();
-	res_lugar=$('#res_fecha').val();
+	res_fecha=$('#res_fecha').val();
 	res_hora=$('#res_hora').val();
 	res_intencion=$('#res_intencion').val();
 	res_nombre_contacto=$('#res_nombre_contacto').val();
@@ -602,7 +608,8 @@ function agregarcem() {
 	cem_cedula=$('#cem_cedula').val();
 	cem_observacion=$('#cem_observacion').val();
 	cem_celular=$('#cem_celular').val();
-	cem_ciudad=$('#cem_ciudad').val();	
+	cem_ciudad=$('#cem_ciudad').val();
+	cem_nomtip='Cementerio';		
 
 	cadena= "id_rubro=" + id_rubro +
 			"&id_tipo_ingreso=" + id_tipo_ingreso +
@@ -610,7 +617,8 @@ function agregarcem() {
 			"&cem_cedula=" + cem_cedula +
 			"&cem_observacion=" + cem_observacion +
 			"&cem_celular=" + cem_celular +
-			"&cem_ciudad=" + cem_ciudad;
+			"&cem_ciudad=" + cem_ciudad +
+			"&cem_nomtip=" + cem_nomtip;
 		let nombre = cem_recibido.length;
 		let valores = cem_cedula.length;
 		
@@ -651,17 +659,20 @@ function agregaregreso() {
 		case "Diosesis de Pasto":
 			var id_tipo_egreso = 3
 		  break;
-		case "Templo Parroquial":
+		case "Vehiculo parroquial":
 			var id_tipo_egreso = 4
 		  break;
-		case "Casa Cural":
+		case "Templo Parroquial":
 			var id_tipo_egreso = 5
 		  break;
-		case "Despacho":
+		case "Casa Cural":
 			var id_tipo_egreso = 6
 		  break;
-		case "Otros egresos":
+		case "Despacho":
 			var id_tipo_egreso = 7
+		  break;
+		case "Otros egresos":
+			var id_tipo_egreso = 8
 		  break;
 		default:
 		  alert('seleccione un tipo de egreso');
@@ -682,8 +693,7 @@ function agregaregreso() {
 
 		let nombre = egreso_nombreapellido.length;
 		let valores = egreso_valor.length;
-
-		alert(cadena);
+		
 		
 		if(nombre > 1 &&  valores > 2)
 		{			
@@ -928,6 +938,40 @@ function subirregistro(){
 			}	
 				
 	}
+function agregarfechas(usuario) {
+		let fecha_inical = $('#fecha_inical').val();
+		let fecha_final = $('#fecha_final').val();
+		
+		
+		if (fecha_inical.length >= 1 && fecha_final.length >= 1) {
+			let cadena = "usuario=" + usuario +
+						 "&fecha_inical=" + encodeURIComponent(fecha_inical) +
+						 "&fecha_final=" + encodeURIComponent(fecha_final);
+
+						
+			$.ajax({
+				type: "POST",
+				url: "php/agregarfechas.php",
+				data: cadena,
+				success: function(r) {
+					if (r == 1) {
+						alert('Listo');
+						$('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
+						location.reload();
+					} else {
+						alertify.error("Error!");
+						$('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error("Error en AJAX:", error);
+					alertify.error("Fallo en la solicitud.");
+				}
+			});
+		} else {
+			alert('Faltan datos importantes');
+		}
+}
 
 async function imprimirFila3(boton) {
     const { jsPDF } = window.jspdf;

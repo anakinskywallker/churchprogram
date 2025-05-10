@@ -29,7 +29,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Gestion de Turnos</title>
+    <title>Reportes</title>
 
     <!-- Custom fonts for this template -->
     <link href="../componentes/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -64,7 +64,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
                 <img width="40px" src="../componentes/img/icono.png" alt="">
-                <div class="sidebar-brand-text mx-3">GestiónPlus<sup></sup></div>
+                <div class="sidebar-brand-text mx-3">Reportes<sup></sup></div>
             </a>
 
             <!-- Divider -->
@@ -73,7 +73,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="admin.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                <i class="fas fa-fw fa-church"></i>
                     <span>Inicio</span></a>
             </li>
 
@@ -86,36 +86,22 @@ $usuario = $_SESSION["nombre_usuario"];
             </div>
 
             <!-------- Nav Item - Pages Collapse Menu ---------->
+            
+
+            <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Turnos</span>
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Despacho</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Solicitud:</h6>
-                        <a class="collapse-item" href="clientes.php">Clientes</a>
-                        <a class="collapse-item" href="agregar_turnos.php">Nuevo Turno</a>
-                        <a class="collapse-item" href="gestionturnos.php">Gestion de Turnos</a>
-                        <a class="collapse-item" href="turnoslistos.php">Turnos Listos</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Contabilidad</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestrion de Facturas</h6>
-                        <a class="collapse-item" href="contabilidadPendientes.php">Pendientes </a>
-                        <a class="collapse-item" href="contabilidadPagos.php">Pagos </a>
+                        <a class="collapse-item" href="tramites.php">Trámites</a>
+                        <a class="collapse-item" href="registrar_egresos.php">Registrar Egreso</a>
+                        <a class="collapse-item" href="registro.php">Registro</a>
+                        
                     </div>
                 </div>
             </li>
@@ -125,14 +111,33 @@ $usuario = $_SESSION["nombre_usuario"];
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Gestion Empresarial
+                Gestion Iglesia
             </div>
+
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-comment-dollar"></i>
+                    <span>Contabilidad</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">gestion contable</h6>
+                        <a class="collapse-item" href="facturas.php">Facturas</a>
+                        <a class="collapse-item" href="diario.php">Diario</a>
+                        <a class="collapse-item" href="egresos.php">Egresos</a>
+                        <a class="collapse-item" href="reportes.php">Reportes</a>
+                    </div>
+                </div>
+            </li>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
+                    <i class="fas fa-fw fa-people-arrows"></i>
                     <span>Colaboradores</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -152,11 +157,11 @@ $usuario = $_SESSION["nombre_usuario"];
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-            <!-- Sidebar Message -->
+            <!-- Sidebar Message 
             <div class="sidebar-card d-none d-lg-flex">
                 <img class="sidebar-card-illustration mb-2" src="../componentes/img/undraw_rocket.png" alt="...">
             </div>
-
+            -->
         </ul>
 
        
@@ -169,7 +174,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-bar-ready topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-bar-ges topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <form class="form-inline">
@@ -179,10 +184,7 @@ $usuario = $_SESSION["nombre_usuario"];
                     </form>
 
                     <!-- Topbar buscar -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Turnos Listos</h1>
-                        
-                </div>
+                    
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -212,8 +214,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         </li>
                         
 
-                <div class="topbar-divider d-none d-sm-block"></div>
-                
+                        <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
@@ -233,48 +234,69 @@ $usuario = $_SESSION["nombre_usuario"];
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                
-                    <!------------------------------------------------- DataTales Turnos ------------------------------------------->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Turnos</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_turnos_listos" class="table-responsive">                                
-                            </div>
-                        </div>
-                    </div>
-                    <!------------------------------------------------ DataTales Tramites -------------------------------------------->  
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tramites Listos</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_tramites_listos" class="table-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <!------------------------------------------------ DataTales Tramites -------------------------------------------->  
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Tramites Entregados</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_tramites_entregados" class="table-responsive">
-                            </div>
-                        </div>
-                    </div>
-                    <!------------------------------------------------ DataTales Clientes -------------------------------------------->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos Clinete</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_datos_cliente" class="table-responsive">
-                            </div>
-                        </div>
-                    </div>
+                <div class="col-12 flex-wrap p-3">
+                                <button type="submit" href="#ingresarfechas" data-toggle="modal" class="btn btn-primary">Generar reporte por fecha</button>
+                                <button type="submit" href="#" data-toggle="modal" class="btn btn-primary">Generar PDF del reporte  </button>
+                </div>
 
+                   
+                    <!------------------------------------------------- Informe financiero ------------------------------------------->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Locales Parroquiales</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_localesparroquiales" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Ingreso Diario ( DESPACHO )</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_reportediario" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Descripcion despacho parroquial</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_despacho" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Otros Ingresos discriminado</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_otrosingresosdis" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Facturas</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_egresosdiario" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Total ingresos parroquiales</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_reportetotal" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
+    <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
+                    
                 </div>
                 <!-- /.container-fluid -->
 
@@ -313,7 +335,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Seleccione "Cerrar Sesion" para cerrar Gestio Plus</div>
+                <div class="modal-body">Seleccione "Cerrar Sesion" para cerrar Despacho</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a class="btn btn-primary" href="../cerrar_sesion.php">Cerrar Sesion</a>
@@ -335,19 +357,40 @@ $usuario = $_SESSION["nombre_usuario"];
 
     <!-- Custom scripts for all pages-->
     <script src="../componentes/js/sb-admin-2.js"></script>
-    
-<!---------------------------------------------------Modal agregar Entregar--------------------------------------------------------->
-<div class="modal fade" id="entregarmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+
+<script type="text/javascript">
+	$(document).ready(function(){
+                       
+        $('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
+        $('#tabla_egresosdiario').load('tablas/tabla_egresosreporte.php');  
+        $('#tabla_localesparroquiales').load('tablas/tabla_localesparroquiales.php');
+        $('#tabla_despacho').load('tablas/tabla_despacho.php');        
+        $('#tabla_otrosingresosdis').load('tablas/tabla_otrosingresosdis.php');    
+        $('#tabla_reportetotal').load('tablas/tabla_reportetotal.php');
+
+        
+     });
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){                
+        $('#agregarfechas').click(function(){
+            agregarfechas('<?php echo $usuario?>') 
+        });
+     });
+</script>
+
+<!---------------------------------------------------Modal Gestionar----------------------------------------------------------->
+<div class="modal fade" id="ingresarfechas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Entregar Tramite</h3>        
+                    <h3 class="mx-5 section-heading text-uppercase ">Generar Reporte</h3>        
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-              
+                <h6 class="mx-5">Recuerde quer la fecha final debe ser posterior a la inicial</h6>
                 <div class="modal-body ">
                     <div class=" container-Agregar">
                         <!---->
@@ -356,70 +399,42 @@ $usuario = $_SESSION["nombre_usuario"];
                         </div>
                         <form class="was-validated">
                             <!--Botones Inicio -->
-                            <div class=" row no-guters ">                        
-                                
-                                
-                                <div class="col-md-4">
-                                
+                            <div class=" row no-guters ">
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="col-md-9">
+                                        <label for="inputState" class="form-label">Fecha Inicial</label>
+                                        <input type="date" id="fecha_inical" class="form-control  " placeholder="Fecha Inicial" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="col-md-9">
+                                        <label for="inputState" class="form-label">Fecha Final</label>
+                                        <input type="date" id="fecha_final" class="form-control  " placeholder="Fecha Final " required>
+                                    </div>
+                                </div>                                                                 
                             </div>
                             
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
                                 <div class=" col-md-10 mb-2">
-     
-
-                                
-                                    <button id="entregar" type="button"
+                                        <button id="agregarfechas" type="button"
                                         class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>
-                                        
-                                        Entregar
-                                    </button>
-                                    
-                                    
+                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
+                                        Registrar
+                                        </button>                                   
                                 </div>
-                            </div>
-                                <div class="col-md-3"></div>
-                                
-
                             </div>
                         </form>
                     </div>
-
-
                 </div>
-
             </div>
         </div>
     </div>
-<!---------------------------------------------------FIN Modal --------------------------------------------------------->
-<script type="text/javascript">
-	$(document).ready(function(){
-          
-        $('#elimina').click(function(){
-        id_el=$('#validationTextarea11').val();
-        observacion=$('#validationTextarea22').val();
-        cambiarFactura2(id_el,observacion) 
-        });
-    $(document).ready(function(){                
-        $('#entregar').click(function(){
-	entregarTramite('<?php echo $usuario?>') 
-        });
-     });
-                  
-        $('#tabla_turnos_listos').load('tablas/tabla_turnos_listos.php'); 
-        $('#tabla_tramites_listos').load('tablas/tabla_tramites_listos.php'); 
-        $('#tabla_tramites_entregados').load('tablas/tabla_tramites_entregados.php');
-        $('#tabla_datos_cliente').load('tablas/tabla_datos_cliente.php');
-     });
-</script>
-
+<!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
 
 </body>
 
 </html>
-
 <?php
 } 
 ?>
-

@@ -114,7 +114,7 @@ $usuario = $_SESSION["nombre_usuario"];
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">gestion contable</h6>
                         <a class="collapse-item" href="facturas.php">Facturas</a>
-                        <a class="collapse-item" href="ingresos.php">Diario</a>
+                        <a class="collapse-item" href="diario.php">Diario</a>
                         <a class="collapse-item" href="egresos.php">Egresos</a>
                         <a class="collapse-item" href="reportes.php">Reportes</a>
                     </div>
@@ -377,7 +377,7 @@ $(document).ready(function(){
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-6">
                                         <label for="inputState" class="form-label">Tipo de egreso</label>
-                                        <select id="egreso_tipo" class="form-select">
+                                        <select id="egreso_tipo" class="form-select"> 
                                         <option selected>Talento humano</option> 
                                         <option selected>Servicios publicos</option>
                                         <option selected>Diosesis de Pasto</option> 

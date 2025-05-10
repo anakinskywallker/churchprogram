@@ -1,29 +1,47 @@
 <?php 
 session_start();
 require_once "../php/conexion.php";
-$conexion=conexion();
-    
-    $sql="SELECT
-    f.id_factura, 
+$conexion = conexion();
+
+// Asegúrate de que el usuario esté definido en la sesión
+if (!isset($_SESSION["nombre_usuario"])) {
+    die("Error: Usuario no autenticado.");
+}
+
+$usuario = $_SESSION["nombre_usuario"];
+
+// Consulta para obtener las fechas desde la tabla buscar
+$sqlfechas = "SELECT fecha_inicial, fecha_final FROM buscar WHERE Usuario = '$usuario'";
+$resultfecha = mysqli_query($conexion, $sqlfechas);
+
+if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
+    die("Error: No se encontraron fechas para el usuario.");
+}
+
+$rowfecha = mysqli_fetch_row($resultfecha);
+
+// Consulta principal usando las fechas obtenidas
+$sql = "SELECT 
+    f.id_factura,
+    f.correo_contacto,
     f.nombre_apellido_contacto,
+    f.Observacion ,
     f.telefono_contacto,
-    ti.nombre_tipo AS nombre_tipo_ingreso,
-    ru.nombre AS nombre_rubro,
-    f.ofrenda,
-    f.fecha_diligenciamiento
+    f.fecha_diligenciamiento,
+    f.ofrenda
 FROM 
     factura f
-JOIN 
+INNER JOIN 
     registro r ON f.id_registro = r.id_registro
-LEFT JOIN 
+INNER JOIN 
     tipo_ingreso ti ON r.id_tipo_ingreso = ti.id_tipo_ingreso
-LEFT JOIN 
-    rubro ru ON f.id_rubro = ru.id
+WHERE 
+    id_rubro IN (3, 4, 5, 6)
+    AND DATE(fecha_diligenciamiento) BETWEEN '$rowfecha[0]' AND '$rowfecha[1]'
 ORDER BY 
-    f.fecha_diligenciamiento DESC;";
-    
-    
+    fecha_diligenciamiento ASC;";
 ?>
+
 <script src="js/funciones.js"></script>
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
@@ -31,26 +49,24 @@ ORDER BY
                                       
                                     <thead>
                                        <tr>
-                                        <th>Mirar </th>
-                                            <th>No. Factura</th>
+                                            <th>Tipo </th>
+                                            <th>Factura </th>
                                             <th>Nombre</th>
+                                            <th>Observacion</th>
                                             <th>Telefono</th>
-                                            <th>Tipo</th>
-                                            <th>Rubro</th>
-                                            <th>Ofrenda</th>
                                             <th>Fecha</th>
+                                            <th>Ofrenda</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>Mirar</th>
-                                        <th>No. Factura</th>
-                                            <th>Nombre</th>
-                                            <th>Telefono</th>
                                             <th>Tipo</th>
-                                            <th>Rubro</th>
-                                            <th>Ofrenda</th>
+                                            <th>Factura </th>
+                                            <th>Nombre</th>
+                                            <th>Observacion</th>
+                                            <th>Telefono</th>
                                             <th>Fecha</th>
+                                            <th>Ofrenda</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -58,17 +74,17 @@ ORDER BY
                                         $utilidad = 0;
                                         $result=mysqli_query($conexion,$sql);
                                         while($ver=mysqli_fetch_row($result)){ 
-                                            $utilidad= $ver[5] + $utilidad;                                                                                       
+                                            $utilidad= $ver[6] + $utilidad;                                                                                       
                                         ?>
                                         <tr>
-                                        <td> <button onclick="mostrarTramites('<?php echo $ver[0]?>','<?php echo $_SESSION["nombre_usuario"]?>')"type="button" class="btn btn-secondary btn-sm">Mirar</button></td>
-                                            <td><?php echo 'FA'.$ver[0]?></td>
                                             <td><?php echo $ver[1]?></td>
+                                            <td><?php echo 'FA'.$ver[0]?></td>
                                             <td><?php echo $ver[2]?></td>
                                             <td><?php echo $ver[3]?></td>
                                             <td><?php echo $ver[4]?></td>
                                             <td><?php echo $ver[5]?></td>
-                                            <td><?php echo $ver[6]?></td>                                           
+                                            <td><?php echo $ver[6]?></td>                                      
+
                                             </tr>
                                         <?php
                                         }
@@ -79,6 +95,8 @@ ORDER BY
                                        
     </tbody>
 </table>
+
+
 <div class="row">
     <!-- Earnings (Monthly) Card Example -->
     <div class="col-xl-6 col-md-12 mb-4">
@@ -86,9 +104,12 @@ ORDER BY
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Ofrendas Totales</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".$utilidad ?></div>
+                            <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                                Ofrendas Totales <?php
+                                                    echo date('Y-m-d', strtotime($rowfecha[0])) . '-' . date('Y-m-d', strtotime($rowfecha[1]));
+                                                ?>
+                            </div>
+                        <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".number_format($utilidad)?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -97,9 +118,6 @@ ORDER BY
             </div>
         </div>
     </div>
-    <!-- Earnings (Monthly) Card Example -->
-    <!-- Pending Requests Card Example -->
-   
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>

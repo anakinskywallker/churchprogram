@@ -132,6 +132,9 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                 </div>
             </li>
+            <div class="sidebar-heading">
+            Gestion Iglesia
+            </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">

@@ -13,6 +13,7 @@ $cem_cedula       = $_POST['cem_cedula'];
 $cem_observacion  = $_POST['cem_observacion'];
 $cem_celular      = $_POST['cem_celular'];
 $cem_ciudad       = $_POST['cem_ciudad'];
+$cem_nomtip       = $_POST['cem_nomtip'];
 
 // Obtener nombre y valor del tipo_ingreso
 $sql_ofrenda = "SELECT nombre_tipo, valor_tipo FROM tipo_ingreso WHERE id_tipo_ingreso = '$id_tipo_ingreso'";
@@ -42,7 +43,8 @@ if (mysqli_query($conexion, $sql_registro)) {
         ofrenda,
         Observacion,
         fecha_ofrenda,
-        fecha_diligenciamiento
+        fecha_diligenciamiento,
+        correo_contacto
     ) VALUES (
         '$id_rubro',
         '$id_registro',
@@ -52,7 +54,8 @@ if (mysqli_query($conexion, $sql_registro)) {
         '$valor_ofrenda',
         '$cem_observacion',
         '$fecha_actual',
-        '$fecha_actual'
+        '$fecha_actual',
+        '$cem_nomtip '
     )";
 
     if (mysqli_query($conexion, $sql_factura)) {

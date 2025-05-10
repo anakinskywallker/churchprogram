@@ -19,19 +19,22 @@ LEFT JOIN
     tipo_ingreso ti ON r.id_tipo_ingreso = ti.id_tipo_ingreso
 LEFT JOIN 
     rubro ru ON f.id_rubro = ru.id
+WHERE 
+    DATE(f.fecha_diligenciamiento) = CURDATE()
 ORDER BY 
-    f.fecha_diligenciamiento DESC;";
+    f.fecha_diligenciamiento DESC;
+";
     
     
 ?>
 <script src="js/funciones.js"></script>
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 
                     
                                       
                                     <thead>
                                        <tr>
-                                        <th>Mirar </th>
+                                        <th>Factura </th>
                                             <th>No. Factura</th>
                                             <th>Nombre</th>
                                             <th>Telefono</th>
@@ -43,7 +46,7 @@ ORDER BY
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>Mirar</th>
+                                        <th>Factura</th>
                                         <th>No. Factura</th>
                                             <th>Nombre</th>
                                             <th>Telefono</th>
@@ -61,13 +64,13 @@ ORDER BY
                                             $utilidad= $ver[5] + $utilidad;                                                                                       
                                         ?>
                                         <tr>
-                                        <td> <button onclick="mostrarTramites('<?php echo $ver[0]?>','<?php echo $_SESSION["nombre_usuario"]?>')"type="button" class="btn btn-secondary btn-sm">Mirar</button></td>
+                                            <td>Ingreso</td>
                                             <td><?php echo 'FA'.$ver[0]?></td>
                                             <td><?php echo $ver[1]?></td>
                                             <td><?php echo $ver[2]?></td>
                                             <td><?php echo $ver[3]?></td>
                                             <td><?php echo $ver[4]?></td>
-                                            <td><?php echo $ver[5]?></td>
+                                            <td>$ <?php echo number_format($ver[5])?></td>
                                             <td><?php echo $ver[6]?></td>                                           
                                             </tr>
                                         <?php
@@ -86,9 +89,9 @@ ORDER BY
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Ofrendas Totales</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".$utilidad ?></div>
+                        <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                            Ofrendas Totales <?php echo date('Y-m-d'); ?></div>
+                        <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".number_format($utilidad)?></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -97,9 +100,6 @@ ORDER BY
             </div>
         </div>
     </div>
-    <!-- Earnings (Monthly) Card Example -->
-    <!-- Pending Requests Card Example -->
-   
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
