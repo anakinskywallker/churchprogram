@@ -29,7 +29,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Facturas</title>
+    <title>Misas</title>
 
     <!-- Custom fonts for this template -->
     <link href="../componentes/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -57,118 +57,11 @@ $usuario = $_SESSION["nombre_usuario"];
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-        <!-- Sidebar -->
+      <!------------------------------------------------------- Sidebar ----------------------------------------------------->
         <ul class="navbar-nav bg-login sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
-                <img width="40px" src="../componentes/img/icono.png" alt="">
-                <div class="sidebar-brand-text mx-3">Facturas<sup></sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
-                <a class="nav-link" href="admin.php">
-                <i class="fas fa-fw fa-church"></i>
-                    <span>Inicio</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Solicitudes
-            </div>
-
-            <!-------- Nav Item - Pages Collapse Menu ---------->
-            
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-book-medical"></i>
-                    <span>Despacho</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Solicitud:</h6>
-                        <a class="collapse-item" href="tramites.php">Trámites</a>
-                        <a class="collapse-item" href="registrar_egresos.php">Registrar Egreso</a>
-                        <a class="collapse-item" href="registro.php">Registro</a>
-                        
-                    </div>
-                </div>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Gestion Iglesia
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-comment-dollar"></i>
-                    <span>Contabilidad</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">gestion contable</h6>
-                        <a class="collapse-item" href="facturas.php">Facturas</a>
-                        <a class="collapse-item" href="diario.php">Diario</a>
-                        <a class="collapse-item" href="egresos.php">Egresos</a>
-                        <a class="collapse-item" href="reportes.php">Reportes</a>
-                    </div>
-                </div>
-            </li>
-            <div class="sidebar-heading">
-            Gestion Iglesia
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-people-arrows"></i>
-                    <span>Colaboradores</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Gestion</h6>
-                        <a class="collapse-item" href="usuarios.php">Agregar</a>
-                    </div>
-                </div>
-            </li>
-
-           
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-            <!-- Sidebar Message 
-            <div class="sidebar-card d-none d-lg-flex">
-                <img class="sidebar-card-illustration mb-2" src="../componentes/img/undraw_rocket.png" alt="...">
-            </div>
-            -->
         </ul>
-
-       
-        <!---------------------------------------------------- End of Sidebar ---------------------------------------->
+    <!------------------------------------------------------- End of Sidebar ------------------------------------------------------->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -237,26 +130,36 @@ $usuario = $_SESSION["nombre_usuario"];
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                
-
-                   
+                    <div class="col-12 flex-wrap p-3">
+                        <button type="submit" href="#ingresarfechasmisa" data-toggle="modal" class="btn btn-primary">Buscar Fecha</button>
+                    </div>
                     <!------------------------------------------------- DataTales Facturas ------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Facturas</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Misas</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_facturas" class="table-responsive">                                
+                            <div  id="tabla_misas" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
     <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos Evento</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Datos Misa</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_datos_evento" class="table-responsive">
+                            <div  id="tabla_datos_misa" class="table-responsive">
+                            </div>
+                        </div>
+                    </div>
+    <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Misas para esta fecha</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_misas_horario" class="table-responsive">
                             </div>
                         </div>
                     </div>
@@ -271,7 +174,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; QCodely 2023</span>
+                        <span>Copyright &copy; QCodely 2025</span>
                     </div>
                 </div>
             </footer>
@@ -323,832 +226,67 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="../componentes/js/sb-admin-2.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-          
-        $('#elimina').click(function(){
-        id_el=$('#validationTextarea11').val();
-        observacion=$('#validationTextarea22').val();
-        cambiarFactura2(id_el,observacion) 
+    $(document).ready(function(){                
+        $('#agregarfechasmisa').click(function(){
+            agregarfechasmisa('<?php echo $usuario?>') 
         });
-                  
-        $('#tabla_facturas').load('tablas/tabla_facturas.php'); 
-        $('#tabla_tramites').load('tablas/tabla_tramites.php'); 
-        $('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
      });
+          
+        $('#accordionSidebar').load('tablas/accordionSidebar.php');          
+        $('#tabla_misas').load('tablas/tabla_misas.php'); 
+        $('#tabla_datos_misa').load('tablas/tabla_datos_misa.php');
+        $('#tabla_misas_horario').load('tablas/tabla_misas_horario.php');
+     
 </script>
-
-<!---------------------------------------------------Modal Gestionar----------------------------------------------------------->
-<div class="modal fade" id="tramitesGestionar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Gestion de tramite</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            
-                            <div class=" row no-guters ">
- 			  
-                                <div class="col-md-6 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputLista" class="form-label">Poner en lista de espera</label>
-                                        <select id="inputListaEspera" class="form-select">
-                                            <option selected>SI</option>
-                                            <option selected>NO</option>
-                                        </select>
-                                    </div>                    
-                                </div>
-                        <div id="gestiondisplay" style="display: block;"> 
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="nombreprofecional" class="form-control  " placeholder="Nombre Profesional ">
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="date" id="fechacita" class="form-control  " placeholder="Fecha Cita " required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">Hora Cita</label>
-                                        <select id="horacita" class="form-select">
-                                        <option selected>7 am</option>
-                                        <option selected>8 am</option>
-                                        <option selected>9 am</option>
-                                        <option selected>10 am</option>
-                                        <option selected>11 am</option>
-                                        <option selected>12 pm</option>
-                                        <option selected>1 pm</option>
-                                        <option selected>2 pm</option>
-                                        <option selected>3 pm</option>
-                                        <option selected>4 pm</option>
-                                        <option selected>5 pm</option>
-                                        <option selected>6 pm</option>
-                                        </select>
-                                     </div>
-                                     
-                                </div> 
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">Minutos</label>
-                                        <select id="minutoscita" class="form-select">
-                                        <option selected>10</option>
-                                        <option selected>20</option>
-                                        <option selected>30</option>
-                                        <option selected>40</option>
-                                        <option selected>50</option>
-                                        <option selected>00</option>
-                                        </select>
-                                     </div>
-                                </div>                               
-                                                               
-                                <div class="col-md-3">
-                                </div>
-                            
-                                <div class=" row no-guters">
-                                    <div class="col-md-2"></div>
-                                    <div class=" col-md-10 mb-2">
-     
-
-                                
-                                    <button id="gestionar" type="button"
-                                        class="mx-5 col-md-8 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>
-                                        
-                                        Gestionar
-                                    </button>
-                                    
-                                    
-                                    </div>
-                                </div>
-                                <div class="col-md-3"></div>
-                        </div>
-		        <div id="listaEsperadisplay" style="display: none;"> 
-                                
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="date" id="fechaentregacita" class="form-control  " placeholder="Fecha entrega" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-3"></div>
-                                                            
-                                <div class=" row no-guters">
-                                    <div class="col-md-2"></div>
-                                    <div class=" col-md-10 mb-2">
-     
-
-                                
-                                    <button id="listadeespera" type="button"
-                                        class="mx-5 col-md-12 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>
-                                        
-                                        Poner lista de espera
-                                    </button>
-                                    
-                                    
-                                    </div>
-                                </div>
-                                <div class="col-md-3"></div>
-                        </div>        
-
-                            </div>
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
-
-<!---------------------------------------------------Modal  Gestionar examenes--------------------------------------------------------->
-<div class="modal fade" id="gestionarexamenes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="mx-5 section-heading text-uppercase">Gestión de Examenes</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <h6 class="mx-5">Subir el trámite en formato PDF</h6>
-                <div class="container-Agregar">
-                    <div class="col-12 col-md-12 mx-4 text-center"></div>
-                    <form id="upload-form" method="post" enctype="multipart/form-data">
-                        <!-- Botones Inicio -->
-                        <div class="row no-gutters">
-                            <div class="col-md-12 mb-2 mx-5">
-
-                                    <div class="input-group col-md-10">
-                                        <input type="text" id="observacionexam" class="form-control  " placeholder="Observaciones" required>
-                                    </div>
-                            </div>
-                            <div class="col-md-12 mb-2 my-2 mx-5">
-                                <div class="input-group col-md-9">
-                                    <input type="file" id="pdf-file" class="form-control"  name="pdf-file">
-                                </div>
-                            </div>
-                            <div class="col-md-4"></div>
-                            <div class="row no-gutters">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-10 mb-2">
-                                <button id="gestionarexam" type="button" style="margin-bottom: 10px;" class="btn btn-primary">Gestionar</button>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-3"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
-<!---------------------------------------------------Modal  Gestionar medicamentos--------------------------------------------------------->
-<div class="modal fade" id="gestionarmedicamentos" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="mx-5 section-heading text-uppercase">Gestión Medicamentos</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
-                <div class="container-Agregar">
-                    <div class="col-md-12 mb-2 mx-5">
-
-                                    <div class="input-group col-md-10">
-                                        <input type="text" id="observacionMed" class="form-control  " placeholder="Observaciones" required>
-                                    </div>
-                    </div>
-                    <div class="col-12 col-md-12 mx-4 text-center"></div>
-                    <form id="upload-form" method="post" ">
-                        <!-- Botones Inicio -->
-                        <div class="row no-gutters">
-                            <div class="col-md-4"></div>
-                            <div class="row no-gutters">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-10 mb-2">
-                                <button id="gesmedicamentos" type="button" style="margin-bottom: 10px;" class="btn btn-primary">Gestionar</button>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-3"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
-<!---------------------------------------------------Modal  Gestionar otros--------------------------------------------------------->
-<div class="modal fade" id="gestionarotro" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="mx-5 section-heading text-uppercase">Gestión de Tramite</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-Agregar">
-                    <div class="col-12 col-md-12 mx-4 text-center"></div>
-                    <form id="upload-form" method="post" enctype="multipart/form-data">
-                        <!-- Botones Inicio -->
-                            <div class="col-md-12 mb-2 mx-5">
-
-                                    <div class="input-group col-md-10">
-                                        <input type="text" id="observacionOtro" class="form-control  " placeholder="Observaciones" required>
-                                    </div>
-                            </div>
-                        <div class="row no-gutters">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputLista" class="form-label">Desea subir un archivo ?</label>
-                                        <select id="inputArchivo" class="form-select">
-                                            <option selected>SI</option>
-                                            <option selected>NO</option>
-                                        </select>
-                                    </div>                    
-                                </div>
-                        </div>
-                        <div id="sinarchivo" style="display: block;" class="row no-gutters">
-                            
-                            <div class="col-md-4"></div>
-                            <div class="row no-gutters">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-10 mb-2">
-                                <button id="gestionarotrotramite" type="button" style="margin-bottom: 10px;" class="btn btn-primary">Gestionar</button>
-                                </div>
-                            </div>
-                            <div class="col-md-3"></div>
-                        </div>
-                        <!-- Botones Inicio -->
-                        <div id="conarchivo" style="display: none;" class="row no-gutters">
-                            <div class="col-md-12 mb-2 my-2 mx-5">
-                                <div class="input-group col-md-9">
-                                    <input type="file" id="pdf-file_otro" class="form-control"  name="pdf-file">
-                                </div>
-                            </div>
-                            <div class="col-md-4"></div>
-                            <div class="row no-gutters">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-10 mb-2">
-                                <button id="gestionarotroarchivo" type="button" style="margin-bottom: 10px;" class="btn btn-primary">Gestionar</button>
-                                    
-                                </div>
-                            </div>
-                            <div class="col-md-3"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
-
-<!---------------------------------------------------Modal agregar Autorizar--------------------------------------------------------->
-<div class="modal fade" id="tramitesAutorizar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Gestionar Autorizacion</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                                               
-                                                                
-                                <?php 
-                                     $sql="SELECT * FROM eps ORDER BY EPS_ID desc";
-                                     $result=mysqli_query($conexion,$sql);
-                                     
-                                ?>
-                                
-                        
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Tipo_Autorizacion</label>
-                                        <select id="tipoautorizacion" class="form-select">
-                                            <option selected>Primera Vez</option>
-                                            <option selected>Control </option>
-                                            <option selected>Procedimiento </option>                                            
-                                            <option selected>Apoyo Diagnostico </option>
-                                        </select>
-                                    </div>                    
-                                </div>
-                            <div id="controldisplay" style="display: none;">                      
-                                <div class="col-md-12 mb-2 mx-5">
-
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="percontrol" class="form-control  " placeholder="Periodo Control" >
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <label for="inputState" class="form-label">Fecha proximo control</label>
-                                    <div class="input-group col-md-9">
-                                        <input type="date" id="fechacontrol" class="form-control  " placeholder="Proximo Control" >
-                                    </div>
-                                </div>
-                            </div>                
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="requerimiento" class="form-control  " placeholder="Requerimiento" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-6">
-                                        <label for="inputState" class="form-label">Lugar_de_Gestion</label>
-                                        <select id="municipio" class="form-select">
-                                        <option selected>Pasto</option> 
-                                        <option selected>La Union</option>
-                                        <option selected>La Cruz</option>                                      
-                                        </select>
-                                     </div>
-                                </div> 
-                                <?php 
-                                     $sql2="SELECT * FROM ips ORDER BY IPS_NOMBRE asc";
-                                     $result2=mysqli_query($conexion,$sql2);
-                                     
-                                ?>
-                        
-                                
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">IPS</label>
-                                        <select id="inputips" class="form-select">
-                                         <?php while($ver=mysqli_fetch_row($result2)){?>
-                                        <option selected><?php echo$ver[1]?></option>
-                                        <?php }?>
-                                                                                                         
-                                        </select>
-                                     </div>
-                                </div>
-                                <div class="col-md-12 mb-2 mx-5">
-
-                                    <div class="input-group col-md-10">
-                                        <input type="text" id="observacion" class="form-control  " placeholder="Observaciones">
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                
-                            </div>
-                            
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-     
-
-                                
-                                    <button id="autorizar" type="button"
-                                        class="mx-5 col-md-7 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>
-                                        
-                                        Gestionar
-                                    </button>
-                                    
-                                    
-                                </div>
-                            </div>
-                                <div class="col-md-3"></div>
-                                
-
-                            </div>
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-</div>
-<!---------------------------------------------------FIN Modal --------------------------------------------------------->
-<!---------------------------------------------------Modal agregar Informar--------------------------------------------------------->
-<div class="modal fade" id="tramitesInformar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Informar a Cliente</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                  
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="nom_informado" class="form-control  " placeholder="A quien se informo ? " required>
-                                    </div>
-                                </div>                           
-                                
-                                
-                                <div class="col-md-4">
-                                
-                            </div>
-                            
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-     
-
-                                
-                                    <button id="informar" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>
-                                        
-                                        Informar
-                                    </button>
-                                    
-                                    
-                                </div>
-                            </div>
-                                <div class="col-md-3"></div>
-                                
-
-                            </div>
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!---------------------------------------------------FIN Modal --------------------------------------------------------->
-<!---------------------------------------------------Modal agregar Suspendida--------------------------------------------------------->
-<div class="modal fade" id="tramitesQsuspendidad" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="mx-5 section-heading text-uppercase">Quitar de Espera</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-Agregar">
-                    <!---->
-                    <div class="col-12 col-md-12 mx-4 text-center">
-                    </div>
-                    <form class="was-validated">
-                        <!--Botones Inicio -->
-                        <div class="row no-gutters">
-                            <div class="col-md-12 mb-2 my-2 mx-5">
-                                <div class="input-group col-md-9">
-                                    <input type="text" id="observacionespera" class="form-control" placeholder="Observacion">
-                                </div>
-                            </div>
-                            <div class="row no-gutters">
-                                
-                            </div>
-                            <div class="col-md-12 text-center">
-                                        <button type="button" class="mx-5 col-md-6 btn btn-secondary" onclick="preguntarSiNoQuitarEspera('<?php echo $usuario?>')" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" required>
-                                                    Confirmar
-                                        </button>
-                                </div>
-                            <div class="col-md-3"></div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!---------------------------------------------------FIN Modal --------------------------------------------------------->
-<!---------------------------------------------------Modal Acciones Citas--------------------------------------------------------->
-<div class="modal fade" id="accionescitas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Acciones del Tramite</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-
-                            <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="obacciones" class="form-control  " placeholder="Observacion">
-                                    </div>
-                            </div>
-                            <div class="row no-gutters">
-                                            <div class="col-md-12 text-center"> <!-- Agregado: clase text-center -->
-                                                    <button type="button"
-                                                        class="mx-5 col-md-6 btn btn-secondary " onclick="preguntarSiNocambioAutorizacion('<?php echo $usuario?>')"  data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false">
-                                                        Cambio de autorizacion 
-                                                    </button> 
-                                                    <h6>si hay cambio de autorizacion se recomienda poner el lugar en la observacion </h6>
-                                            </div>                                                         
-                            </div>
-
-                            <div class="my-3"></div>
-                           
-                            <div class="row no-gutters">
-                                            <div class="col-md-12 text-center"> <!-- Agregado: clase text-center -->
-                                                    <button type="button"
-                                                        class="mx-5 col-md-6 btn btn-secondary " onclick="preguntarSiNoPonerenespera('<?php echo $usuario?>')"  data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false" required>
-                                                        Poner tramite en espera 
-                                                    </button> 
-                                            </div>                                                         
-                            </div>
-                            
-                            <div class="my-3"></div>
-
-                            <div class="row no-gutters">
-                            <div class="col-md-12 text-center"> <!-- Agregado: clase text-center -->
-                                                    <button type="button"
-                                                        class="mx-5 col-md-6 btn btn-secondary " onclick="preguntarSiNoEliminar('<?php echo $usuario?>')" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false" required>
-                                                        Eliminar tramite 
-                                                    </button> 
-                                            </div> 
-                                                                
-                            </div>
-
-                            
-
-                            </div>
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!---------------------------------------------------FIN Modal --------------------------------------------------------->
-<!---------------------------------------------------Modal Acciones Otros--------------------------------------------------------->
-<div class="modal fade" id="accionesotros" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Acciones del Tramite</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
-
-                        </div>
-                        <form class="was-validated">
-
-                            <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="obacciones" class="form-control  " placeholder="Observacion">
-                                    </div>
-                            </div>
-                                                      
-                            <div class="row no-gutters">
-                                            <div class="col-md-12 text-center"> <!-- Agregado: clase text-center -->
-                                                    <button type="button"
-                                                        class="mx-5 col-md-6 btn btn-secondary " onclick="preguntarSiNoPonerenespera('<?php echo $nombre_usuario?>')"  data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false" required>
-                                                        Poner tramite en espera 
-                                                    </button> 
-                                            </div>                                                         
-                            </div>
-
-                            <div class="my-3"></div>
-
-                            <div class="row no-gutters">
-                            <div class="col-md-12 text-center"> <!-- Agregado: clase text-center -->
-                                                    <button type="button"
-                                                        class="mx-5 col-md-6 btn btn-secondary " onclick="preguntarSiNoEliminar('<?php echo $nombre_usuario?>')" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false" required>
-                                                        Eliminar tramite 
-                                                    </button> 
-                                            </div> 
-                                                                
-                            </div>
-
-                            
-
-                            </div>
-                        </form>
-                    </div>
-
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!---------------------------------------------------FIN Modal --------------------------------------------------------->
 
 </body>
 
 </html>
+<!---------------------------------------------------Modal Gestionar----------------------------------------------------------->
+<div class="modal fade" id="ingresarfechasmisa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h3 class="mx-5 section-heading text-uppercase ">Generar Reporte</h3>        
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <div class=" container-Agregar">
+                        <!---->
+                        <div class="col-12 col-md-12 mx-4 text-center">
 
-<script type="text/javascript">
-	$(document).ready(function(){                
-        $('#informar').click(function(){
-        nombre_informado=$('#nom_informado').val();
-        informarTramite(nombre_informado, '<?php echo $usuario?>') 
-        });
-     });
-     $(document).ready(function(){                
-        $('#gestionar').click(function(){
-        gestionarTramite('<?php echo $usuario?>', 1 ) 
-        });
-     });
-     $(document).ready(function(){                
-        $('#autorizar').click(function(){
-        autorizarTramite('<?php echo $usuario?>', 4) 
-        });
-    });
-    $(document).ready(function() {
-        $('#gesmedicamentos').click(function() { 
-        gestionarTramite('<?php echo $usuario?>', 2)
-        });         
-    });
-    $(document).ready(function() {
-        $('#gestionarotrotramite').click(function() { 
-        gestionarTramite('<?php echo $usuario?>', 3)
-        });         
-    });
-    $(document).ready(function() {
-        $('#listadeespera').click(function() { 
-        gestionarListaEspera('<?php echo $usuario?>')
-        });         
-    });
-$(document).ready(function() {
-  $('#gestionarexam').click(function() { 
- 
-  const fileInput = document.getElementById('pdf-file');
-  const file = fileInput.files[0];
-  
-  if (!file) {
-    alert('Por favor, selecciona un archivo PDF.');
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('pdf-file', file);
-
-  fetch('php/procesar_examenes.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error al subir archivo.');
-    }
-    alert('Archivo subido con éxito.');
-    gestionarExamenes('<?php echo $usuario?>') 
-  })
-  .catch(error => {
-    console.error(error);
-    alert('Error al subir archivo.');
-  });
-
-  });
-});
-$(document).ready(function() {
-  $('#gestionarotroarchivo').click(function() { 
- 
-  const fileInput = document.getElementById('pdf-file_otro');
-  const file = fileInput.files[0];
-  
-  if (!file) {
-    alert('Por favor, selecciona un archivo PDF.');
-    return;
-  }
-
-  const formData = new FormData();
-  formData.append('pdf-file', file);
-
-  fetch('php/procesar_examenes.php', {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error al subir archivo.');
-    }
-    alert('Archivo subido con éxito.');
-    gestionarOtros('<?php echo $usuario?>') 
-  })
-  .catch(error => {
-    console.error(error);
-    alert('Error al subir archivo.');
-  });
-
-  });
-});
-</script>
-
-<script type="text/javascript">
-    const tipoAuto = document.querySelector('#tipoautorizacion');
-    const divControl = document.querySelector('#controldisplay');
-    const tipoGestion = document.querySelector('#inputListaEspera');
-    const divlistaEspera = document.querySelector('#listaEsperadisplay');
-    const divGestion = document.querySelector('#gestiondisplay');
-
-    const tipoArchivo = document.querySelector('#inputArchivo');
-    const divConArchivo = document.querySelector('#conarchivo');
-    const divSinArchivo = document.querySelector('#sinarchivo');
-   
-
-  tipoAuto.addEventListener('change', function() {
-    
-    if (this.value === 'Control') {
-      divControl.style.display = 'block'; // o 'inline-block'
-    } else {
-      divControl.style.display = 'none';
-    }
-    });
-
-  tipoGestion.addEventListener('change', function() {
-    
-    if (this.value === 'NO') {
-        divGestion.style.display = 'block';
-        divlistaEspera.style.display = 'none';// o 'inline-block'
-    } else {
-        divGestion.style.display = 'none';
-        divlistaEspera.style.display = 'block';
-    }
-    });
-
-   tipoArchivo.addEventListener('change', function() {
-    
-    if (this.value === 'SI') {
-        divConArchivo.style.display = 'block';
-        divSinArchivo.style.display = 'none';// o 'inline-block'
-    } else {
-        divConArchivo.style.display = 'none';
-        divSinArchivo.style.display = 'block';
-    }
-    });
-    
-
-</script>
+                        </div>
+                        <form class="was-validated">
+                            <!--Botones Inicio -->
+                            <div class=" row no-guters ">
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="col-md-9">
+                                        <label for="inputState" class="form-label">Fecha </label>
+                                        <input type="date" id="fecha_buscar_misa" class="form-control  " placeholder="Fecha Inicial" required>
+                                    </div>
+                                </div>                                                              
+                            </div>
+                            
+                            <div class=" row no-guters">
+                                <div class="col-md-2"></div>
+                                <div class=" col-md-10 mb-2">
+                                        <button id="agregarfechasmisa" type="button"
+                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
+                                        Buscar
+                                        </button>                                   
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
 
 <?php
 } 

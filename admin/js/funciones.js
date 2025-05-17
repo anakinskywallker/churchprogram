@@ -12,7 +12,7 @@ function mostrarTramites(id, usuario){
 				if(r==1){
 				    alertify.success("Listo!");
 					$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
-        			$('#tabla_tramites').load('tablas/tabla_tramites.php'); 
+        			$('#tabla_datos_misa').load('tablas/tabla_datos_misa.php');
        				$('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
 					$('#tabla_facturasdiario').load('tablas/tabla_facturasdiario.php'); 
 
@@ -239,6 +239,7 @@ function agregarresponso() {
 	res_hora=$('#res_hora').val();
 	res_intencion=$('#res_intencion').val();
 	res_nombre_contacto=$('#res_nombre_contacto').val();
+	res_identificacion=$('#res_identificacion').val();
 	res_celular_contacto=$('#res_celular_contacto').val();
 	
 
@@ -250,6 +251,7 @@ function agregarresponso() {
 			"&res_hora=" + res_hora +
 			"&res_intencion=" + res_intencion +
 			"&res_nombre_contacto=" + res_nombre_contacto +
+			"&res_identificacion=" + res_identificacion +
 			"&res_celular_contacto=" + res_celular_contacto;
   
 		let nombre = res_nombre_ofrece.length;
@@ -646,6 +648,64 @@ function agregarcem() {
 		}	
 			
 }
+function agregarcemabon() {	
+
+	cem_tipo=$('#cem_tipo').val();
+	switch (cem_tipo) {
+		case "Osarios":
+			var id_tipo_ingreso = 23
+		  break;
+		case "Bobedas":
+			var id_tipo_ingreso = 24
+		  break;
+		default:
+		  alert('seleccione un tipo de rubro');
+	  }
+	id_rubro = 5;
+	cem_recibido=$('#cem_recibido').val();
+	cem_cedula=$('#cem_cedula').val();
+	cem_observacion=$('#cem_observacion').val();
+	cem_celular=$('#cem_celular').val();
+	cem_ciudad=$('#cem_ciudad').val();
+	cem_nomtip='Cementerio';		
+
+	cadena= "id_rubro=" + id_rubro +
+			"&id_tipo_ingreso=" + id_tipo_ingreso +
+	        "&cem_recibido=" + cem_recibido +
+			"&cem_cedula=" + cem_cedula +
+			"&cem_observacion=" + cem_observacion +
+			"&cem_celular=" + cem_celular +
+			"&cem_ciudad=" + cem_ciudad +
+			"&cem_nomtip=" + cem_nomtip;
+		let nombre = cem_recibido.length;
+		let valores = cem_cedula.length;
+		alert(cadena);
+		/*
+		
+		if(nombre > 1 &&  valores > 2)
+		{			
+			$.ajax({
+				type:"POST",
+				url:"php/agregarcem.php",
+				data:cadena,
+				success:function(r){
+				   if(r==1){
+						location.reload();
+						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+					 }else{
+						alert('listo :)');
+						location.reload();
+						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+				   }
+				}
+				
+			}
+		   );
+		}else{
+		alert('Faltan datos importantes');
+		}	
+			*/
+}
 function agregaregreso() {
 
 	egreso_tipo=$('#egreso_tipo').val();
@@ -972,6 +1032,41 @@ function agregarfechas(usuario) {
 			alert('Faltan datos importantes');
 		}
 }
+function agregarfechasmisa(usuario) {
+		
+		let fecha_inical = $('#fecha_buscar_misa').val();
+		let fecha_final = $('#fecha_buscar_misa').val();
+		
+		
+		if (fecha_inical.length >= 1 && fecha_final.length >= 1) {
+			let cadena = "usuario=" + usuario +
+						 "&fecha_inical=" + encodeURIComponent(fecha_inical) +
+						 "&fecha_final=" + encodeURIComponent(fecha_final);
+
+						
+			$.ajax({
+				type: "POST",
+				url: "php/agregarfechas.php",
+				data: cadena,
+				success: function(r) {
+					if (r == 1) {
+						alert('Listo');
+						$('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
+						location.reload();
+					} else {
+						alertify.error("Error!");
+						$('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error("Error en AJAX:", error);
+					alertify.error("Fallo en la solicitud.");
+				}
+			});
+		} else {
+			alert('Faltan datos importantes');
+		}
+}
 function agregarColaborador(){
 
 	nombre=$('#nombreColaborador').val();
@@ -1160,6 +1255,82 @@ async function imprimirBoleta4(boton) {
 
     doc.save('registro.pdf');
 }
+async function imprimirMisa(boton) {
+	const { jsPDF } = window.jspdf;
+    const fila = boton.closest('tr');
+    const celdas = fila.querySelectorAll('td');
+
+    const evento = celdas[1].innerText.trim();
+    const nombreContacto = celdas[2].innerText.trim();
+    const identificacion = celdas[3].innerText.trim();
+    const celular = celdas[4].innerText.trim();
+    const fechaEvento = celdas[5].innerText.trim();
+    const horaEvento = celdas[6].innerText.trim();
+    const lugar = celdas[7].innerText.trim();
+    const ministro = celdas[8].innerText.trim();
+    const intencion = celdas[9].innerText.trim();
+
+    const labelFactura = document.querySelector('label');
+    const numeroFactura = labelFactura.innerText.match(/\d+/)[0];
+
+    const campoBaseAltura = 5;
+    const margenSuperior = 18;
+    const margenInferior = 10;
+    const anchoTexto = 54;
+
+    const tempDoc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: [58, 200]
+    });
+
+    const textoIntencion = tempDoc.splitTextToSize(`Intención: ${intencion}`, anchoTexto);
+    const numLineasIntencion = textoIntencion.length;
+    const totalLineas = 10 + numLineasIntencion; // líneas fijas + intencion
+    const altoTotal = margenSuperior + totalLineas * campoBaseAltura + margenInferior;
+
+    const doc = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: [58, altoTotal]
+    });
+
+    doc.setFontSize(10);
+
+    // Encabezado decorativo
+    doc.text("**************************", 2, 8);
+    doc.text("Datos de Misa", 2, 12);
+    doc.text(`Factura No: ${numeroFactura}`, 2, 16);
+    doc.text("**************************", 2, 20);
+
+    let y = 26;
+
+    const datos = [
+      ["Evento", evento],
+      ["Nombre Contacto", nombreContacto],
+      ["Identificación", identificacion],
+      ["Celular", celular],
+      ["Fecha Evento", fechaEvento],
+      ["Hora Evento", horaEvento],
+      ["Lugar", lugar],
+      ["Ministro", ministro]
+    ];
+
+    datos.forEach(([campo, valor]) => {
+      doc.text(`${campo}: ${valor}`, 2, y);
+      y += campoBaseAltura;
+    });
+
+    doc.text(textoIntencion, 2, y);
+    y += numLineasIntencion * campoBaseAltura;
+
+    // Línea final
+    doc.text("**************************", 2, y + 2);
+
+    doc.save(`misa_factura_${numeroFactura}.pdf`);
+}
+
+
 
 
 

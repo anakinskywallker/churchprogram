@@ -35,7 +35,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Solicitud:</h6>
-                        <a class="collapse-item" href="tramites.php">Trámites</a>                   
+                        <a class="collapse-item" href="tramites.php">Trámites</a>
+                        <a class="collapse-item" href="misas.php">Misas</a>                   
                         <a class="collapse-item" href="registrar_egresos.php">Registrar Egreso</a>
                         <a class="collapse-item" href="registro.php">Registro</a>
                         

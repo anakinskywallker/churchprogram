@@ -12,8 +12,9 @@ $res_nombre_ofrece     = $_POST['res_nombre_ofrece'];
 $res_lugar             = $_POST['res_lugar'];
 $res_fecha             = $_POST['res_fecha'];
 $res_hora              = $_POST['res_hora'];
-$res_intencion         = $_POST['res_intencion'];
+$res_intencion         = $_POST['res_intencion']; 
 $res_nombre_contacto   = $_POST['res_nombre_contacto'];
+$res_identificacion   = $_POST['res_identificacion'];
 $res_celular_contacto  = $_POST['res_celular_contacto'];
 
 // Obtener valor de la ofrenda desde tipo_ingreso
@@ -68,7 +69,7 @@ if (mysqli_query($conexion, $sql_registro)) {
         '$res_celular_contacto',
         NULL,
         '$res_nombre_contacto',
-        NULL,
+        '$res_identificacion',
         '$valor_ofrenda',
         NULL,
         '$fecha_actual',

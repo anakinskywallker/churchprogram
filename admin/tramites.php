@@ -226,10 +226,9 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>                                      
                                 
                                 <div class="col-12 flex-wrap p-3">
-                                
                                         <button type="submit" href="#registraringreso" data-toggle="modal" class="btn btn-primary">Registrar Ingresos</button>
                                         <button type="submit" href="#registrarcementerio" data-toggle="modal" class="btn btn-primary">Cementerio</button>
-                                           
+                                        <button type="submit" href="#registrarcementerioabono" data-toggle="modal" class="btn btn-primary">Cementerio Plazos</button>
                                 </div>
                                                                  
                             </div>
@@ -361,6 +360,12 @@ $usuario = $_SESSION["nombre_usuario"];
     $(document).ready(function(){
     $('#agregarcem').click(function(){       
         agregarcem()
+    });   
+    });
+      
+    $(document).ready(function(){
+    $('#agregarcemabon').click(function(){       
+        agregarcemabon()
     });   
     });  
 
@@ -1409,6 +1414,7 @@ $usuario = $_SESSION["nombre_usuario"];
             </div>
         </div>
 </div>
+<!--------------------------------------------------------modal otros----------------------------------------------------------------------------->
 <div class="modal fade" id="registrarcementerio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered " role="document">
@@ -1482,7 +1488,80 @@ $usuario = $_SESSION["nombre_usuario"];
             </div>
         </div>
 </div>
+<!--------------------------------------------------------modal otros----------------------------------------------------------------------------->
+<div class="modal fade" id="registrarcementerioabono" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h3 class="mx-5 section-heading text-uppercase ">Cementerio</h3>        
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <h6 class="mx-5">Los campos en rojo son obligatorios</h6>
+                <div class="modal-body ">
+                    <div class=" container-Agregar">
+                        <!---->
+                        <div class="col-12 col-md-12 mx-4 text-center">
 
+                        </div>
+                        <form class="was-validated">
+                            <!--Botones Inicio -->
+                            <div class=" row no-guters ">
+                               
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="col-md-6">
+                                        <label for="inputState" class="form-label">Tipo</label>
+                                        <select id="cem_tipo" class="form-select">
+                                        <option selected>Osarios plazos</option>
+                                        <option selected>Bobedas plazos</option> 
+                                        </select>
+                                     </div>
+                                </div>  
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="cem_recibido" class="form-control  " placeholder="Recibido de" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="cem_cedula" class="form-control  " placeholder="Cedula o Nit" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group  col-md-9">                                        
+                                        <textarea class="form-control" id="cem_observacion" placeholder="Onservacion" rows="3" required></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="cem_celular" class="form-control  " placeholder="Celular" >
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="cem_ciudad" class="form-control  " placeholder="Ciudad" >
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class=" row no-guters">
+                                <div class="col-md-2"></div>
+                                <div class=" col-md-10 mb-2">
+                                        <button id="agregarcemabon" type="button"
+                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
+                                        Registrar
+                                        </button>                                   
+                                </div>
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
 
 <?php
 } 
