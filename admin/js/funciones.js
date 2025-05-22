@@ -14,8 +14,8 @@ function mostrarTramites(id, usuario){
 					$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
         			$('#tabla_datos_misa').load('tablas/tabla_datos_misa.php');
        				$('#tabla_datos_evento').load('tablas/tabla_datos_evento.php');
-					$('#tabla_facturasdiario').load('tablas/tabla_facturasdiario.php'); 
-
+					$('#tabla_facturasdiario').load('tablas/tabla_facturasdiario.php');
+					$('#tabla_abonos').load('tablas/tabla_abonos.php'); 
 										               
 				}else{
 				 alert('Fallo el servicio');
@@ -24,6 +24,7 @@ function mostrarTramites(id, usuario){
 			 }
 		     });
 }
+
 function agregarComentario(usuario){
 
 		var informacion = $('#infoadmin').val();
@@ -599,7 +600,7 @@ function agregarcem() {
 		case "Osarios":
 			var id_tipo_ingreso = 21
 		  break;
-		case "Bobedas":
+		case "Bovedas":
 			var id_tipo_ingreso = 22
 		  break;
 		default:
@@ -650,25 +651,26 @@ function agregarcem() {
 }
 function agregarcemabon() {	
 
-	cem_tipo=$('#cem_tipo').val();
+	cem_tipo=$('#cem_tipo_abon').val();
 	switch (cem_tipo) {
-		case "Osarios":
+		case "Osarios plazos":
 			var id_tipo_ingreso = 23
 		  break;
-		case "Bobedas":
+		case "Bovedas plazos":
 			var id_tipo_ingreso = 24
 		  break;
 		default:
 		  alert('seleccione un tipo de rubro');
 	  }
 	id_rubro = 5;
-	cem_recibido=$('#cem_recibido').val();
-	cem_cedula=$('#cem_cedula').val();
-	cem_observacion=$('#cem_observacion').val();
-	cem_celular=$('#cem_celular').val();
-	cem_ciudad=$('#cem_ciudad').val();
+	cem_recibido=$('#cem_recibido_abon').val();
+	cem_cedula=$('#cem_cedula_abon').val();
+	cem_observacion=$('#cem_observacion_abon').val();
+	cem_celular=$('#cem_celular_abon').val();
+	cem_ciudad=$('#cem_ciudad_abon').val();
+	cem_ofrenda=$('#cem_ofrenda_abon').val();
 	cem_nomtip='Cementerio';		
-
+ 
 	cadena= "id_rubro=" + id_rubro +
 			"&id_tipo_ingreso=" + id_tipo_ingreso +
 	        "&cem_recibido=" + cem_recibido +
@@ -676,17 +678,16 @@ function agregarcemabon() {
 			"&cem_observacion=" + cem_observacion +
 			"&cem_celular=" + cem_celular +
 			"&cem_ciudad=" + cem_ciudad +
+			"&cem_ofrenda=" + cem_ofrenda +
 			"&cem_nomtip=" + cem_nomtip;
 		let nombre = cem_recibido.length;
 		let valores = cem_cedula.length;
-		alert(cadena);
-		/*
 		
 		if(nombre > 1 &&  valores > 2)
 		{			
 			$.ajax({
 				type:"POST",
-				url:"php/agregarcem.php",
+				url:"php/agregarcemabon.php",
 				data:cadena,
 				success:function(r){
 				   if(r==1){
@@ -703,8 +704,7 @@ function agregarcemabon() {
 		   );
 		}else{
 		alert('Faltan datos importantes');
-		}	
-			*/
+		}
 }
 function agregaregreso() {
 
@@ -1032,6 +1032,44 @@ function agregarfechas(usuario) {
 			alert('Faltan datos importantes');
 		}
 }
+function agregaform(numero){
+	window.idefactura = numero;
+
+}
+function agregarabono(usuario) {
+		let abono = $('#valor_abono').val();
+		let abono_observacion = $('#abono_observacion').val();
+		
+		
+		if (abono.length >= 1 ) {
+			let cadena = "usuario=" + usuario +
+             "&id_factura=" + window.idefactura +
+			 "&abono_observacion=" + abono_observacion +
+             "&valor_abono=" + abono;
+	
+			$.ajax({
+				type: "POST",
+				url: "php/agregarabono.php",
+				data: cadena,
+				success: function(r) {
+					if (r == 1) {
+						alert('Listo');
+						$('#tabla_abonos').load('tablas/tabla_abonos.php'); 
+						location.reload();
+					} else {
+						alertify.error("Error!");
+						$('#tabla_abonos').load('tablas/tabla_abonos.php'); 
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error("Error en AJAX:", error);
+					alertify.error("Fallo en la solicitud.");
+				}
+			});
+		} else {
+			alert('Faltan datos importantes');
+		}
+}
 function agregarfechasmisa(usuario) {
 		
 		let fecha_inical = $('#fecha_buscar_misa').val();
@@ -1203,6 +1241,66 @@ async function imprimirFila3(boton) {
 
     doc.save('factura.pdf');
 }
+async function imprimirFila(boton) {
+    const { jsPDF } = window.jspdf;
+
+    const fila = boton.closest('tr');
+    const celdas = fila.querySelectorAll('td');
+    const valores = Array.from(celdas).slice(1).map(td => td.innerText);
+
+    const labels = ["Factura", "Nombre", "ID", "Telefono", "Tipo", "Emitido", "Ofrenda", "Fecha"];
+    const lineHeight = 15;
+    const contentHeight = labels.length * lineHeight + 140; // Más espacio por encabezado
+    const margenSuperior = 40;
+    const margenInferior = 40;
+    const totalHeight = contentHeight + margenSuperior + margenInferior;
+
+    const doc = new jsPDF({
+        unit: 'pt',
+        format: [220, totalHeight], // 58 mm de ancho
+    });
+
+    const now = new Date();
+    const fecha = now.toLocaleDateString();
+    const hora = now.toLocaleTimeString();
+
+    let y = margenSuperior;
+
+    // Encabezado institucional
+    doc.setFontSize(9);
+    doc.text("Parroquia Nuestra Senora del Carmen", 110, y, { align: "center" });
+    y += 12;
+    doc.text("La Cruz - Narino", 110, y, { align: "center" });
+    y += 12;
+    doc.text("NIT: 8140038201", 110, y, { align: "center" });
+
+    y += 20;
+    doc.setFontSize(10);
+    doc.text("** FACTURA DE SERVICIO **", 110, y, { align: "center" });
+
+    y += 20;
+    doc.text(`Fecha: ${fecha}`, 10, y);
+    y += 15;
+    doc.text(`Hora: ${hora}`, 10, y);
+    y += 15;
+    doc.text("-------------------------------", 10, y);
+
+    y += 15;
+    for (let i = 0; i < labels.length; i++) {
+        doc.text(`${labels[i]}: ${valores[i]}`, 10, y);
+        y += lineHeight;
+    }
+
+    y += 10;
+    doc.text("-------------------------------", 10, y);
+    y += 20;
+    doc.text("¡ Gracias por su visita !", 110, y, { align: "center" });
+    y += 10;
+    doc.text("--------------------------------", 10, y);
+
+    doc.save('factura.pdf');
+}
+
 async function imprimirBoleta4(boton) {
     const { jsPDF } = window.jspdf;
 
@@ -1329,6 +1427,88 @@ async function imprimirMisa(boton) {
 
     doc.save(`misa_factura_${numeroFactura}.pdf`);
 }
+
+async function imprimirMisa2(boton) {
+    const { jsPDF } = window.jspdf;
+
+    // Obtener la fila desde el botón presionado
+    const fila = boton.closest('tr');
+    const celdas = fila.querySelectorAll('td');
+
+    // Obtener número de factura desde el label
+    const facturaText = document.getElementById('facturaLabel').innerText;
+
+    // Etiquetas esperadas
+    const labels = [
+        "Evento", "Nombre", "Identificacion", "Celular",
+        "Fecha del Evento", "Hora del Evento", "Lugar", 
+        "Ministro", "Intencion", "Ofrenda"
+    ];
+
+    // Obtener los valores de las celdas (omitir la primera celda con el botón)
+    const valores = Array.from(celdas).slice(1).map(td => td.innerText);
+
+    const lineHeight = 15;
+    const margenSuperior = 40;
+    const margenInferior = 40;
+    let estimatedHeight = labels.length * lineHeight + margenSuperior + margenInferior + 140;
+
+    const doc = new jsPDF({
+        unit: 'pt',
+        format: [220, estimatedHeight], // 58mm x alto dinámico
+    });
+
+    const now = new Date();
+    const fecha = now.toLocaleDateString();
+    const hora = now.toLocaleTimeString();
+
+    let y = margenSuperior;
+
+    // Encabezado de la parroquia
+    doc.setFontSize(9);
+    doc.text("Parroquia Nuestra Senora del Carmen", 110, y, { align: "center" });
+    y += 12;
+    doc.text("La Cruz - Narino", 110, y, { align: "center" });
+    y += 12;
+    doc.text("NIT: 8140038201", 110, y, { align: "center" });
+
+    y += 20;
+    doc.setFontSize(10);
+    doc.text("** REGISTRO DE MISA **", 110, y, { align: "center" });
+
+    y += 20;
+    doc.text(facturaText, 10, y); // Número de factura
+    y += 15;
+    doc.text(`Fecha: ${fecha}`, 10, y);
+    y += 15;
+    doc.text(`Hora: ${hora}`, 10, y);
+
+    y += 15;
+    doc.text("-------------------------------", 10, y);
+
+    y += 15;
+
+    // Contenido principal: etiquetas + valores
+    for (let i = 0; i < labels.length; i++) {
+        let texto = `${labels[i]}: ${valores[i]}`;
+
+        // Dividir texto largo (por ejemplo, Intención)
+        let lineas = doc.splitTextToSize(texto, 200); // Ancho máximo de línea: 200pt
+        doc.text(lineas, 10, y);
+        y += lineas.length * lineHeight;
+    }
+
+    y += 10;
+    doc.text("-------------------------------", 10, y);
+    y += 20;
+    doc.text("¡ Que Dios lo bendiga !", 110, y, { align: "center" });
+    y += 10;
+    doc.text("--------------------------------", 10, y);
+
+    doc.save('misa.pdf');
+}
+
+
 
 
 

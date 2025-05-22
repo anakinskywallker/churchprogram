@@ -19,6 +19,7 @@ $sql2="SELECT
     r.ministro,
     r.causa,
     f.Observacion,
+    f.ofrenda,
     f.id_factura
 FROM 
     factura f
@@ -40,7 +41,7 @@ $ver=mysqli_fetch_row($result2);
    
 <script src="../librerias/alertifyjs/alertify.js"></script>  
 
-<label id="facturaLabel">Numero de factura <?php echo $ver[10]?></label>
+<label id="facturaLabel">Numero de factura <?php echo $ver[11]?></label>
 <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 
                     
@@ -57,23 +58,25 @@ $ver=mysqli_fetch_row($result2);
                                             <th>Lugar</th>
                                             <th>Ministro</th>
                                             <th>Intencion</th>
+                                            <th>Ofrenda</th>
                                         </tr>
                                     </thead>
                                     
                                     <tbody>                                       
                                         <tr>
     <td>
-        <button onclick="imprimirMisa(this)" type="button" class="btn btn-secondary btn-sm">Descargar</button>
+        <button onclick="imprimirMisa2(this)" type="button" class="btn btn-secondary btn-sm">Descargar</button>
     </td>
     <td data-label="Evento"><?php echo $ver[0]?></td>
-    <td data-label="Nombre Contacto"><?php echo $ver[1]?></td>
-    <td data-label="Identificación"><?php echo $ver[2]?></td>
+    <td data-label="Nombre"><?php echo $ver[1]?></td>
+    <td data-label="Identificacion"><?php echo $ver[2]?></td>
     <td data-label="Celular"><?php echo $ver[3]?></td>
     <td data-label="Fecha Evento"><?php echo $ver[4]?></td>
-    <td data-label="Hora Evento"><?php echo $ver[5]?></td>
+    <td data-label="Hora Evento"><?php echo date("h:i A", strtotime($ver[5]));?></td>
     <td data-label="Lugar"><?php echo $ver[6]?></td>
     <td data-label="Ministro"><?php echo $ver[7]?></td>
-    <td data-label="Intención"><?php echo $ver[8]?></td>
+    <td data-label="Intencion"><?php echo $ver[8]?></td>
+    <td data-label="Intencion"><?php echo $ver[10]?></td>
 </tr>
     </tbody>
 </table>

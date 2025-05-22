@@ -29,7 +29,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Misas</title>
+    <title>Cementerio</title>
 
     <!-- Custom fonts for this template -->
     <link href="../componentes/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -130,50 +130,30 @@ $usuario = $_SESSION["nombre_usuario"];
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    
+                   
                     <!------------------------------------------------- DataTales Facturas ------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Misas</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Facturas Cementerio</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_misasall" class="table-responsive">                                
+                            <div  id="tabla_cementerio" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
     <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Datos Misa</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Facturas Cementerio</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_datos_misa" class="table-responsive">
+                            <div  id="tabla_abonos" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
-    <!------------------------------------------------ Organizar Agenda -------------------------------------------->
-                    <div class="col-12 flex-wrap p-3">
-                        <button type="submit" href="#ingresarfechasmisa" data-toggle="modal" class="btn btn-primary">Buscar Fecha</button>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Misas para esta fecha</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_misas" class="table-responsive">                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Misas para esta fecha</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_misas_horario" class="table-responsive">
-                            </div>
-                        </div>
-                    </div>
-
+    
+    <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
+                    
                 </div>
                 <!-- /.container-fluid -->
 
@@ -241,13 +221,19 @@ $usuario = $_SESSION["nombre_usuario"];
             agregarfechasmisa('<?php echo $usuario?>') 
         });
      });
+
+     $(document).ready(function(){                
+        $('#agregarabono').click(function(){
+            agregarabono('<?php echo $usuario?>') 
+        });
+     });
+
+     
           
         $('#accordionSidebar').load('tablas/accordionSidebar.php');          
-        $('#tabla_misas').load('tablas/tabla_misas.php'); 
-        $('#tabla_misasall').load('tablas/tabla_misasall.php'); 
+        $('#tabla_cementerio').load('tablas/tabla_cementerio.php'); 
+        $('#tabla_abonos').load('tablas/tabla_abonos.php'); 
 
-        $('#tabla_datos_misa').load('tablas/tabla_datos_misa.php');
-        $('#tabla_misas_horario').load('tablas/tabla_misas_horario.php');
      
 </script>
 
@@ -299,6 +285,57 @@ $usuario = $_SESSION["nombre_usuario"];
         </div>
     </div>
 <!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
+<div class="modal fade" id="hacerabono" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered " role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h3 class="mx-5 section-heading text-uppercase ">Abono</h3>        
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body ">
+                    <div class=" container-Agregar">
+                        <!---->
+                        <div class="col-12 col-md-12 mx-4 text-center">
+
+                        </div>
+                        <form class="was-validated">
+                            <!--Botones Inicio -->
+                            <div class=" row no-guters ">
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="col-md-9">
+                                        <label for="inputState" class="form-label">Observacion </label>
+                                        <input type="text" id="abono_observacion" class="form-control  " placeholder="Observacion" >
+                                    </div>
+                                </div>                                                              
+                            </div>
+                            <div class=" row no-guters ">
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="col-md-9">
+                                        <label for="inputState" class="form-label">Abono </label>
+                                        <input type="number" id="valor_abono" class="form-control  " placeholder="Valor Abono" required>
+                                    </div>
+                                </div>                                                              
+                            </div>
+                            
+                            <div class=" row no-guters">
+                                <div class="col-md-2"></div>
+                                <div class=" col-md-10 mb-2">
+                                        <button id="agregarabono" type="button"
+                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
+                                        Hacer abono
+                                        </button>                                   
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <?php
 } 

@@ -531,13 +531,13 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha misa</label>
+                                        <label for="inputState" class="form-label">Fecha entierro</label>
                                         <input type="date" id="ent_fecha_misa" class="form-control  " placeholder="Fecha Misa " required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Hora misa</label>
+                                        <label for="inputState" class="form-label">Hora entierro</label>
                                         <input type="time" id="ent_hora_misa" class="form-control  " placeholder="Hora Misa" required>
                                     </div>
                                 </div>
@@ -1441,7 +1441,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <label for="inputState" class="form-label">Tipo</label>
                                         <select id="cem_tipo" class="form-select">
                                         <option selected>Osarios</option>
-                                        <option selected>Bobedas</option> 
+                                        <option selected>Bovedas</option> 
                                         </select>
                                      </div>
                                 </div>  
@@ -1513,35 +1513,40 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-6">
                                         <label for="inputState" class="form-label">Tipo</label>
-                                        <select id="cem_tipo" class="form-select">
+                                        <select id="cem_tipo_abon" class="form-select">
                                         <option selected>Osarios plazos</option>
-                                        <option selected>Bobedas plazos</option> 
+                                        <option selected>Bovedas plazos</option> 
                                         </select>
                                      </div>
                                 </div>  
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="cem_recibido" class="form-control  " placeholder="Recibido de" required>
+                                        <input type="text" id="cem_recibido_abon" class="form-control  " placeholder="Recibido de" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="cem_cedula" class="form-control  " placeholder="Cedula o Nit" required>
+                                        <input type="text" id="cem_cedula_abon" class="form-control  " placeholder="Cedula o Nit" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group  col-md-9">                                        
-                                        <textarea class="form-control" id="cem_observacion" placeholder="Onservacion" rows="3" required></textarea>
+                                        <textarea class="form-control" id="cem_observacion_abon" placeholder="Observacion" rows="3" ></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="cem_celular" class="form-control  " placeholder="Celular" >
+                                        <input type="text" id="cem_celular_abon" class="form-control  " placeholder="Celular" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="cem_ciudad" class="form-control  " placeholder="Ciudad" >
+                                        <input type="text" id="cem_ciudad_abon" class="form-control  " placeholder="Ciudad" >
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="number" id="cem_ofrenda_abon" class="form-control  " placeholder="Abono" required>
                                     </div>
                                 </div>                            
                             </div>

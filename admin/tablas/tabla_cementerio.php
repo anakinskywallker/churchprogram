@@ -2,29 +2,48 @@
 session_start();
 require_once "../php/conexion.php";
 $conexion=conexion();
+
+$usuario = $_SESSION["nombre_usuario"];
+$conexion=conexion();
+$sqlfechas = "SELECT fecha_inicial, fecha_final FROM buscar WHERE Usuario = '$usuario'";
+$resultfecha = mysqli_query($conexion, $sqlfechas);
+
+
+$rowfecha = mysqli_fetch_row($resultfecha);
     
-    $sql="SELECT
-    f.id_factura, 
-    f.nombre_apellido_contacto,
-    f.identificacion,
-    f.telefono_contacto,
+$where_fecha = date("Y-m-d", strtotime($rowfecha[1])); // convierte DATETIME a DATE
+
+$sql = "SELECT
+    f.id_factura,
     ti.nombre_tipo AS nombre_tipo_ingreso,
-    ru.nombre AS nombre_rubro,
     f.ofrenda,
-    f.fecha_diligenciamiento,
-    f.correo_contacto,
-    f.id_registro
+    c.abono_valor,
+    c.abono_saldo,
+    f.fecha_diligenciamiento
 FROM 
     factura f
-JOIN 
+JOIN (
+    SELECT c1.*
+    FROM cementerio c1
+    INNER JOIN (
+        SELECT id_factura, MAX(abono_fecha) AS ultima_fecha
+        FROM cementerio
+        GROUP BY id_factura
+    ) c2 ON c1.id_factura = c2.id_factura AND c1.abono_fecha = c2.ultima_fecha
+) c ON f.id_factura = c.id_factura
+LEFT JOIN 
     registro r ON f.id_registro = r.id_registro
 LEFT JOIN 
     tipo_ingreso ti ON r.id_tipo_ingreso = ti.id_tipo_ingreso
 LEFT JOIN 
     rubro ru ON f.id_rubro = ru.id
-WHERE r.id_tipo_ingreso IN (8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 21, 22) 
+WHERE
+    f.id_rubro = 5
+    AND c.abono_saldo > 0
 ORDER BY 
-    f.fecha_diligenciamiento DESC;";
+    f.fecha_diligenciamiento DESC;
+";
+
     
     
 ?>
@@ -35,67 +54,62 @@ ORDER BY
                                       
                                     <thead>
                                        <tr>
-                                        <th>Mirar </th>
+                                            <th>Mirar</th>
+                                            <th>Abonar</th>
                                             <th>No. Factura</th>
-                                            <th>Nombre</th>
-                                            <th>Identificacion</th>
-                                            <th>Telefono</th>
                                             <th>Tipo</th>
-                                            <th>Rubro</th>
                                             <th>Ofrenda</th>
-                                            <th>Fecha</th>
+                                            <th>Ultimo Abono</th>
+                                            <th>Saldo</th>
+                                            <th>Fecha Diligenciamiento</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>Mirar</th>
-                                        <th>No. Factura</th>
-                                            <th>Nombre</th>
-                                            <th>Identificacion</th>
-                                            <th>Telefono</th>
+                                            <th>Mirar</th>
+                                            <th>Abonar</th>
+                                            <th>No. Factura</th>
                                             <th>Tipo</th>
-                                            <th>Rubro</th>
                                             <th>Ofrenda</th>
-                                            <th>Fecha</th>
+                                            <th>Ultimo Abono</th>
+                                            <th>Saldo</th>
+                                            <th>Fecha Diligenciamiento</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php
+                                        $utilidad = 0;
                                         $result=mysqli_query($conexion,$sql);
-                                        while($ver=mysqli_fetch_row($result)){                                                                                       
+                                        while($ver=mysqli_fetch_row($result)){ 
+                                            $utilidad= $ver[2] + $utilidad;                                                                                       
                                         ?>
                                         <tr>
-                                        <td> <button onclick="imprimirFila(this)" type="button" class="btn btn-secondary btn-sm">Descargar</button></td>
-                                            <td><?php echo 'FA'.$ver[0]?></td>
+                                        <td> <button onclick="mostrarTramites('<?php echo $ver[0]?>','<?php echo $_SESSION["nombre_usuario"]?>')"type="button" class="btn btn-primary btn-sm">Mirar</button></td>
+                                        <td>
+                                            <button onclick="agregaform('<?php echo $ver[0]?>')"type="submit" href="#hacerabono" data-toggle="modal" class="btn btn-primary btn-sm">Abonar</button>
+                                        </td> 
+                                        <td><?php echo 'FA'.$ver[0]?></td>
                                             <td><?php echo $ver[1]?></td>
                                             <td><?php echo $ver[2]?></td>
                                             <td><?php echo $ver[3]?></td>
-                                            <td><?php if($ver[9] == 20){echo $ver[8];}else{echo $ver[4];}?></td>                                            
+                                            <td><?php echo $ver[4]?></td>
                                             <td><?php echo $ver[5]?></td>
-                                            <td><?php echo $ver[6]?></td>
-                                            <td><?php echo $ver[7]?></td>                                             
                                             </tr>
                                         <?php
                                         }
+                                        $sqlin="UPDATE contabilidad SET UTIL_TOTAL = '$utilidad'  
+                                         WHERE ID_CONTABILIDAD = '1';";
+                                         $resultin=mysqli_query($conexion,$sqlin);
                                         ?>
                                        
     </tbody>
 </table>
-<script>
-
-</script>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-
-
 
 <!-- Plugin AutoTable para jsPDF -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-
 
     <script src="../../componentes/vendor/jquery/jquery.min.js"></script>
     <script src="../componentes/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
