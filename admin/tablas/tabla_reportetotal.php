@@ -40,7 +40,7 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
      
 ?>
 <script src="js/funciones.js"></script>
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<table class="table table-bordered" id="dataTable5" width="100%" cellspacing="0">
     <thead>
         <tr>
             <th>Locales Parroquiales</th>
@@ -53,6 +53,10 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
         <tr>
             <th>Otros Ingresos</th>
             <th>$ <?php echo number_format($ver[3]); ?></th>
+        </tr>
+        <tr>
+            <th>Cementerio</th>
+            <th>$ <?php echo number_format($ver[5]); ?></th>
         </tr>
         <tr>
             <th>Ofrendas</th>

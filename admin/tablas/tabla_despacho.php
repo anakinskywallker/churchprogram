@@ -41,7 +41,7 @@ ORDER BY
     
 ?>
 <script src="js/funciones.js"></script>
-<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+<table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
 <thead>
         <tr>
             <th>Tipo de Ingreso</th>
@@ -85,6 +85,12 @@ ORDER BY
             </div>
         </div>
     </div>
+<script>
+    const usuario = "<?php echo $_SESSION['nombre_usuario']; ?>";
+    const fechaInicio = "<?php echo $rowfecha[0]; ?>";
+    const fechaFin = "<?php echo $rowfecha[1]; ?>";
+</script>
+
     <!-- Earnings (Monthly) Card Example -->
     <!-- Pending Requests Card Example -->
    

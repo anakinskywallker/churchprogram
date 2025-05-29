@@ -58,6 +58,7 @@
                         <h6 class="collapse-header">gestion contable</h6>
                         <a class="collapse-item" href="facturas.php">Facturas</a>
                         <a class="collapse-item" href="diario.php">Diario</a>
+                        <a class="collapse-item" href="reportesdiario.php">Reportes Dirario</a>
                         <a class="collapse-item" href="reportes.php">Reportes</a>
                     </div>
                 </div>

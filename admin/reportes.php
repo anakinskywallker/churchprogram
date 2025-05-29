@@ -133,7 +133,7 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="container-fluid">
                 <div class="col-12 flex-wrap p-3">
                                 <button type="submit" href="#ingresarfechas" data-toggle="modal" class="btn btn-primary">Generar reporte por fecha</button>
-                                <button type="submit" href="#" data-toggle="modal" class="btn btn-primary">Generar PDF del reporte  </button>
+                                <button type="button" class="btn btn-primary" onclick="generarPDFReporte()">Generar PDF del reporte</button>
                 </div>
 
                    
@@ -173,7 +173,16 @@ $usuario = $_SESSION["nombre_usuario"];
                             <div  id="tabla_otrosingresosdis" class="table-responsive">                                
                             </div>
                         </div>
-                    </div>                    
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Cementerio</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_reportecem" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Egresos</h6>
@@ -262,7 +271,8 @@ $usuario = $_SESSION["nombre_usuario"];
         $('#tabla_localesparroquiales').load('tablas/tabla_localesparroquiales.php');
         $('#tabla_despacho').load('tablas/tabla_despacho.php');        
         $('#tabla_otrosingresosdis').load('tablas/tabla_otrosingresosdis.php');   
-        $('#tabla_egresosreporte').load('tablas/tabla_egresosreporte.php');  
+        $('#tabla_egresosreporte').load('tablas/tabla_egresosreporte.php');
+        $('#tabla_reportecem').load('tablas/tabla_reportecem.php');   
         $('#tabla_reportetotal').load('tablas/tabla_reportetotal.php');
 
         

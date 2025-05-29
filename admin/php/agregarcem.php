@@ -38,6 +38,7 @@ if (mysqli_query($conexion, $sql_registro)) {
         id_rubro,
         id_registro,
         telefono_contacto,
+        celular_adicional, 
         nombre_apellido_contacto,
         identificacion,
         ofrenda,
@@ -49,20 +50,48 @@ if (mysqli_query($conexion, $sql_registro)) {
         '$id_rubro',
         '$id_registro',
         '$cem_celular',
+        '$valor_ofrenda',
         '$cem_recibido',
         '$cem_cedula',
         '$valor_ofrenda',
         '$cem_observacion',
         '$fecha_actual',
         '$fecha_actual',
-        '$cem_nomtip '
+        '$cem_nomtip'
     )";
 
     if (mysqli_query($conexion, $sql_factura)) {
-        echo "Registro y factura insertados correctamente.";
+        $id_factura = mysqli_insert_id($conexion); // ID generado en factura
+
+        // Calcular saldo
+        $abono_valor = floatval($valor_ofrenda);
+        $abono_saldo = floatval($valor_ofrenda) - $abono_valor;
+
+        // Insertar en cementerio
+        $sql_cementerio = "INSERT INTO cementerio (
+            id_factura,
+            observacion,
+            abono_valor,
+            abono_saldo,
+            abono_fecha
+        ) VALUES (
+            '$id_factura',
+            '$cem_observacion',
+            '$abono_valor',
+            '$abono_saldo',
+            '$fecha_actual'
+        )";
+
+        if (mysqli_query($conexion, $sql_cementerio)) {
+            echo "Registro, factura y abono insertados correctamente.";
+        } else {
+            echo "Error al insertar en cementerio: " . mysqli_error($conexion);
+        }
+
     } else {
         echo "Error al insertar en factura: " . mysqli_error($conexion);
     }
+
 } else {
     echo "Error al insertar en registro: " . mysqli_error($conexion);
 }

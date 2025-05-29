@@ -1032,15 +1032,20 @@ function agregarfechas(usuario) {
 			alert('Faltan datos importantes');
 		}
 }
-function agregaform(numero){
+function agregaform(numero, saldo){
 	window.idefactura = numero;
+	window.saldo = saldo;
 
 }
 function agregarabono(usuario) {
 		let abono = $('#valor_abono').val();
 		let abono_observacion = $('#abono_observacion').val();
+
 		
-		
+	if(abono > window.saldo){
+		alert('No es posible hacer un abono superior al valor de saldo');
+	}else
+	{
 		if (abono.length >= 1 ) {
 			let cadena = "usuario=" + usuario +
              "&id_factura=" + window.idefactura +
@@ -1069,6 +1074,7 @@ function agregarabono(usuario) {
 		} else {
 			alert('Faltan datos importantes');
 		}
+	}
 }
 function agregarfechasmisa(usuario) {
 		
@@ -1507,6 +1513,224 @@ async function imprimirMisa2(boton) {
 
     doc.save('misa.pdf');
 }
+async function generarPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 40;
+    let y = margin;
+
+    // Estilo de fuente general
+    doc.setFont('helvetica');
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+
+    // ✅ Encabezado principal
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.text('PARROQUIA NUESTRA SEÑORA DEL CARMEN', pageWidth / 2, y, { align: 'center' });
+	y += 15;	
+    doc.text('INFORME ECONÓMICO PARROQUIAL', pageWidth / 2, y, { align: 'center' });
+
+    y += 25;
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    doc.text(`Presentado por: ${usuario}`, margin, y);
+    y += 15;
+    doc.text(`Dia: ${fechaInicio}`, margin, y);
+    y += 25;
+
+    const secciones = [
+        { id: 'tabla_despacho', titulo: 'Descripción despacho parroquial' },
+        { id: 'tabla_localesparroquiales', titulo: 'Locales Parroquiales' },
+        { id: 'tabla_otrosingresosdis', titulo: 'Otros Ingresos discriminado' },
+        { id: 'tabla_egresosreporte', titulo: 'Egresos' },
+        { id: 'tabla_reportetotal', titulo: 'Reportes Finales' }
+    ];
+
+    for (const seccion of secciones) {
+        const element = document.getElementById(seccion.id);
+        if (!element) continue;
+
+        // Título de sección
+        doc.setFontSize(11);
+        doc.setFont(undefined);
+		doc.setTextColor(0, 102, 102);
+        doc.text(seccion.titulo, margin, y);
+        y += 15;
+
+        // Captura con alta resolución
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = pageWidth - margin * 2;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Salto de página si no cabe
+        if (y + imgHeight > pageHeight - margin) {
+            doc.addPage();
+            y = margin;
+        }
+
+        doc.addImage(imgData, 'PNG', margin, y, imgWidth, imgHeight);
+        y += imgHeight + 20;
+    }
+
+    doc.save('reporte_parroquial.pdf');
+}
+async function generarPDFReporte() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 40;
+    let y = margin;
+
+    // Estilo de fuente general
+    doc.setFont('helvetica');
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+
+    // ✅ Encabezado principal
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.text('PARROQUIA NUESTRA SEÑORA DEL CARMEN', pageWidth / 2, y, { align: 'center' });
+	y += 15;	
+    doc.text('INFORME ECONÓMICO PARROQUIAL', pageWidth / 2, y, { align: 'center' });
+
+    y += 25;
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+    doc.text(`Presentado por: ${usuario}`, margin, y);
+    y += 15;
+    doc.text(`Rango de fechas: ${fechaInicio} al ${fechaFin}`, margin, y);
+    y += 25;
+
+    const secciones = [
+        { id: 'tabla_localesparroquiales', titulo: 'Locales Parroquiales' },
+        { id: 'tabla_reportediario', titulo: 'Reporte Diario' },
+		{ id: 'tabla_despacho', titulo: 'Descripción despacho parroquial' },
+        { id: 'tabla_otrosingresosdis', titulo: 'Otros Ingresos discriminado' },
+		{ id: 'tabla_reportecem', titulo: 'Tabla Cementerio' },
+        { id: 'tabla_egresosreporte', titulo: 'Egresos' },
+        { id: 'tabla_reportetotal', titulo: 'Reportes Finales' }
+    ];
+
+    for (const seccion of secciones) {
+        const element = document.getElementById(seccion.id);
+        if (!element) continue;
+
+        // Título de sección
+        doc.setFontSize(11);
+        doc.setFont(undefined);
+		doc.setTextColor(0, 102, 102);
+        doc.text(seccion.titulo, margin, y);
+        y += 15;
+
+        // Captura con alta resolución
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = pageWidth - margin * 2;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Salto de página si no cabe
+        if (y + imgHeight > pageHeight - margin) {
+            doc.addPage();
+            y = margin;
+        }
+
+        doc.addImage(imgData, 'PNG', margin, y, imgWidth, imgHeight);
+        y += imgHeight + 20;
+    }
+
+    doc.save('reporte_parroquial.pdf');
+}
+async function generarWordReporte() {
+    const { Document, Packer, Paragraph, TextRun, HeadingLevel } = window.docx;
+
+    const doc = new Document({
+        sections: [{
+            children: [
+                new Paragraph({
+                    text: "PARROQUIA NUESTRA SEÑORA DEL CARMEN",
+                    heading: HeadingLevel.HEADING_1,
+                    alignment: "center",
+                }),
+                new Paragraph({
+                    text: "INFORME ECONÓMICO PARROQUIAL",
+                    heading: HeadingLevel.HEADING_2,
+                    alignment: "center",
+                    spacing: { after: 200 }
+                }),
+                new Paragraph({
+                    children: [new TextRun(`Presentado por: ${usuario}`)],
+                    spacing: { after: 100 }
+                }),
+                new Paragraph({
+                    children: [new TextRun(`Rango de fechas: ${fechaInicio} al ${fechaFin}`)],
+                    spacing: { after: 200 }
+                })
+            ]
+        }]
+    });
+
+    const secciones = [
+        { id: 'tabla_localesparroquiales', titulo: 'Locales Parroquiales' },
+        { id: 'tabla_reportediario', titulo: 'Reporte Diario' },
+        { id: 'tabla_despacho', titulo: 'Descripción despacho parroquial' },
+        { id: 'tabla_otrosingresosdis', titulo: 'Otros Ingresos discriminado' },
+        { id: 'tabla_egresosreporte', titulo: 'Egresos' },
+        { id: 'tabla_reportetotal', titulo: 'Reportes Finales' }
+    ];
+
+    for (const seccion of secciones) {
+        const element = document.getElementById(seccion.id);
+        if (!element) continue;
+
+        // Capturar imagen de la tabla (igual que con html2canvas)
+        const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+        const dataUrl = canvas.toDataURL('image/png');
+
+        // Convertir la imagen a formato base64 sin encabezado
+        const base64 = dataUrl.replace(/^data:image\/png;base64,/, "");
+
+        doc.addSection({
+            children: [
+                new Paragraph({
+                    text: seccion.titulo,
+                    heading: HeadingLevel.HEADING_3,
+                    spacing: { after: 100 }
+                }),
+                new Paragraph({
+                    children: [
+                        new window.docx.ImageRun({
+                            data: Uint8Array.from(atob(base64), c => c.charCodeAt(0)),
+                            transformation: {
+                                width: 500,
+                                height: (canvas.height * 500) / canvas.width
+                            }
+                        })
+                    ],
+                    spacing: { after: 300 }
+                })
+            ]
+        });
+    }
+
+    const blob = await Packer.toBlob(doc);
+    saveAs(blob, "reporte_parroquial.docx");
+}
+
+
+
 
 
 

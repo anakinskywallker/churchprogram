@@ -29,7 +29,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cementerio</title>
+    <title>Reportes</title>
 
     <!-- Custom fonts for this template -->
     <link href="../componentes/vendor/fontawesome-free/css/all.css" rel="stylesheet" type="text/css">
@@ -57,7 +57,8 @@ $usuario = $_SESSION["nombre_usuario"];
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-      <!------------------------------------------------------- Sidebar ----------------------------------------------------->
+
+         <!------------------------------------------------------- Sidebar ----------------------------------------------------->
         <ul class="navbar-nav bg-login sidebar sidebar-dark accordion" id="accordionSidebar">
 
         </ul>
@@ -130,38 +131,60 @@ $usuario = $_SESSION["nombre_usuario"];
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
+                <div class="col-12 flex-wrap p-3">
+                                <button type="submit" href="#ingresarfechas" data-toggle="modal" class="btn btn-primary">Generar reporte por fecha</button>
+                                <button type="button" class="btn btn-primary" onclick="generarPDF()">Generar PDF del reporte</button>
+                          <!--     <button type="button" class="btn btn-primary" onclick="generarWordReporte()">Generar Word del reporte</button> -->
+                </div>
+
                    
-                    <!------------------------------------------------- DataTales Facturas ------------------------------------------->
+                    <!------------------------------------------------- Informe financiero ------------------------------------------->
+                    
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Facturas Cementerio</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Descripcion despacho parroquial</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_cementerio" class="table-responsive">                                
+                            <div  id="tabla_despacho" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>                    
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Locales Parroquiales</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_localesparroquiales" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Otros Ingresos discriminado</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_otrosingresosdis" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Egresos</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_egresosreporte" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
-                    <!------------------------------------------------- DataTales Facturas ------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Total Facturas Cementerio</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Reportes Finales</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_cementerioall" class="table-responsive">                                
+                            <div  id="tabla_reportetotal" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
-    <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Abonos de esta factura</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_abonos" class="table-responsive">                                
-                            </div>
-                        </div>
-                    </div>
-    
     <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
                     
                 </div>
@@ -174,7 +197,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; QCodely 2025</span>
+                        <span>Copyright &copy; QCodely 2023</span>
                     </div>
                 </div>
             </footer>
@@ -226,33 +249,28 @@ $usuario = $_SESSION["nombre_usuario"];
     <script src="../componentes/js/sb-admin-2.js"></script>
 
 <script type="text/javascript">
-    $(document).ready(function(){                
-        $('#agregarfechasmisa').click(function(){
+	$(document).ready(function(){
+        $('#accordionSidebar').load('tablas/accordionSidebar.php');                       
+        $('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
+        $('#tabla_localesparroquiales').load('tablas/tabla_localesparroquiales.php');
+        $('#tabla_despacho').load('tablas/tabla_despacho.php');        
+        $('#tabla_otrosingresosdis').load('tablas/tabla_otrosingresosdis.php');   
+        $('#tabla_egresosreporte').load('tablas/tabla_egresosreporte.php');  
+        $('#tabla_reportetotal').load('tablas/tabla_reportetotal.php');
+
+        
+     });
+</script>
+<script type="text/javascript">
+	$(document).ready(function(){                
+        $('#agregarfechas').click(function(){
             agregarfechasmisa('<?php echo $usuario?>') 
         });
      });
-
-     $(document).ready(function(){                
-        $('#agregarabono').click(function(){
-            agregarabono('<?php echo $usuario?>') 
-        });
-     });
-
-     
-          
-        $('#accordionSidebar').load('tablas/accordionSidebar.php');          
-        $('#tabla_cementerio').load('tablas/tabla_cementerio.php'); 
-        $('#tabla_cementerioall').load('tablas/tabla_cementerioall.php'); 
-        $('#tabla_abonos').load('tablas/tabla_abonos.php'); 
-
-     
 </script>
 
-</body>
-
-</html>
 <!---------------------------------------------------Modal Gestionar----------------------------------------------------------->
-<div class="modal fade" id="ingresarfechasmisa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
+<div class="modal fade" id="ingresarfechas" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered " role="document">
             <div class="modal-content ">
@@ -262,6 +280,7 @@ $usuario = $_SESSION["nombre_usuario"];
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <h6 class="mx-5">Recuerde quer la fecha final debe ser posterior a la inicial</h6>
                 <div class="modal-body ">
                     <div class=" container-Agregar">
                         <!---->
@@ -274,18 +293,18 @@ $usuario = $_SESSION["nombre_usuario"];
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
                                         <label for="inputState" class="form-label">Fecha </label>
-                                        <input type="date" id="fecha_buscar_misa" class="form-control  " placeholder="Fecha Inicial" required>
+                                        <input type="date" id="fecha_buscar_misa" class="form-control  " placeholder="Fecha" required>
                                     </div>
-                                </div>                                                              
+                                </div>                                                               
                             </div>
                             
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
                                 <div class=" col-md-10 mb-2">
-                                        <button id="agregarfechasmisa" type="button"
+                                        <button id="agregarfechas" type="button"
                                         class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Buscar
+                                        Registrar
                                         </button>                                   
                                 </div>
                             </div>
@@ -296,58 +315,13 @@ $usuario = $_SESSION["nombre_usuario"];
         </div>
     </div>
 <!---------------------------------------------------FIN Modal ------------------------------------------------------------------------>
-<div class="modal fade" id="hacerabono" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" 
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered " role="document">
-            <div class="modal-content ">
-                <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Abono</h3>        
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body ">
-                    <div class=" container-Agregar">
-                        <!---->
-                        <div class="col-12 col-md-12 mx-4 text-center">
 
-                        </div>
-                        <form class="was-validated">
-                            <!--Botones Inicio -->
-                            <div class=" row no-guters ">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Observacion </label>
-                                        <input type="text" id="abono_observacion" class="form-control  " placeholder="Observacion" >
-                                    </div>
-                                </div>                                                              
-                            </div>
-                            <div class=" row no-guters ">
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Abono </label>
-                                        <input type="number" id="valor_abono" class="form-control  " placeholder="Valor Abono" required>
-                                    </div>
-                                </div>                                                              
-                            </div>
-                            
-                            <div class=" row no-guters">
-                                <div class="col-md-2"></div>
-                                <div class=" col-md-10 mb-2">
-                                        <button id="agregarabono" type="button"
-                                        class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false" requerid>                                        
-                                        Hacer abono
-                                        </button>                                   
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+<script src="https://unpkg.com/docx@8.4.1/build/index.umd.js"></script>
 
+</html>
 <?php
 } 
 ?>

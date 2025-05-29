@@ -39,7 +39,6 @@ LEFT JOIN
     rubro ru ON f.id_rubro = ru.id
 WHERE
     f.id_rubro = 5
-    AND c.abono_saldo > 0
 ORDER BY 
     f.fecha_diligenciamiento DESC;
 ";
@@ -55,7 +54,6 @@ ORDER BY
                                     <thead>
                                        <tr>
                                             <th>Mirar</th>
-                                            <th>Abonar</th>
                                             <th>No. Factura</th>
                                             <th>Tipo</th>
                                             <th>Ofrenda</th>
@@ -67,7 +65,6 @@ ORDER BY
                                     <tfoot>
                                         <tr>
                                             <th>Mirar</th>
-                                            <th>Abonar</th>
                                             <th>No. Factura</th>
                                             <th>Tipo</th>
                                             <th>Ofrenda</th>
@@ -87,14 +84,16 @@ ORDER BY
                                         ?>
                                         <tr>
                                         <td> <button onclick="mostrarTramites('<?php echo $ver[0]?>','<?php echo $_SESSION["nombre_usuario"]?>')"type="button" class="btn btn-primary btn-sm">Mirar</button></td>
-                                        <td>
-                                            <button onclick="agregaform('<?php echo $ver[0]?>','<?php echo $saldototal?>')"type="submit" href="#hacerabono" data-toggle="modal" class="btn btn-primary btn-sm">Abonar</button>
-                                        </td> 
-                                        <td><?php echo 'FA'.$ver[0]?></td>
+                                            <td><?php echo 'FA'.$ver[0]?></td>
                                             <td><?php echo $ver[1]?></td>
                                             <td>$ <?php echo $ver[2]?></td>
                                             <td>$ <?php echo ($ver[2] - $ver[4])?></td>
-                                            <td>$ <?php echo $ver[4]?></td>
+                                            <?php 
+                                            if ($ver[4] == 0)
+                                            {echo '<td class="table-success">'.$ver[4].'</td>';}
+                                            else
+                                            {echo '<td class="table-warning">'.$ver[4].'</td>';}
+                                            ?>
                                             <td><?php echo $ver[5]?></td>
                                             </tr>
                                         <?php

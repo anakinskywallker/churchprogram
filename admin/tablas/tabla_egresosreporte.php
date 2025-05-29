@@ -32,7 +32,7 @@ GROUP BY
     te.nombre_tipo_egreso
 ORDER BY 
     te.nombre_tipo_egreso ASC;
-";
+"; 
     
     
     
@@ -76,6 +76,28 @@ while ($ver = mysqli_fetch_row($result)) {
 ?>
 </tbody>
 </table>
+<div class="row">
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-6 col-md-12 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                            <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                                Ofrendas Totales <?php
+                                                    echo date('Y-m-d', strtotime($rowfecha[0])) . '-' . date('Y-m-d', strtotime($rowfecha[1]));
+                                                ?>
+                            </div>
+                        <div class="h4 mb-0 font-weight-bold text-gray-800"><?php echo "$ ".number_format($total_general)?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <script>
