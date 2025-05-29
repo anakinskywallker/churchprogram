@@ -886,11 +886,11 @@ cadena = "id_tipo_ingreso=" + id_tipo_ingreso +
 				success:function(r){
 				   if(r==1){
 						alertify.success("Listo!");
-						$('#tabla_registro').load('tablas/tabla_registro.php');
+						$('#tabla_registro_bautizo').load('tablas/tabla_registro_bautizo.php');
 						location.reload();
 					 }else{
 						alertify.error("Error!");
-						$('#tabla_registro').load('tablas/tabla_registro.php');
+						$('#tabla_registro_bautizo').load('tablas/tabla_registro_bautizo.php');
 				   }
 				}
 				
@@ -940,10 +940,10 @@ cadena = "id_tipo_ingreso=" + id_tipo_ingreso +
 				success:function(r){
 				   if(r==1){
 					alertify.success("Listo!");
-					$('#tabla_registro').load('tablas/tabla_registro.php');
+					$('#tabla_registro_primera').load('tablas/tabla_registro_primera.php');
 				 	}else{
 					alertify.error("Error!");
-					$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+					$('#tabla_registro_primera').load('tablas/tabla_registro_primera.php');
 				   }
 				}
 				
@@ -997,10 +997,12 @@ cadena = "id_rubro=" + id_rubro +
 				success:function(r){
 					if(r==1){
 						alertify.success("Listo!");
-						$('#tabla_registro').load('tablas/tabla_registro.php');
+						    $('#tabla_registro_confirmacion').load('tablas/tabla_registro_confirmacion.php');
+							location.reload();
 						 }else{
 						alertify.error("Error!");
-						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+						    $('#tabla_registro_confirmacion').load('tablas/tabla_registro_confirmacion.php');
+
 					}
 				}
 				
@@ -1009,6 +1011,70 @@ cadena = "id_rubro=" + id_rubro +
 		}else{
 		alert('Faltan datos importantes');
 		}	
+			
+}
+function regagregarmatri() {
+id_rubro = 1;
+id_tipo_ingreso = 11;
+reg_matri_nombrenovio = $('#reg_matri_nombrenovio').val();
+reg_matri_nombrenovia = $('#reg_matri_nombrenovia').val();
+reg_matri_padresnovio = $('#reg_matri_padresnovio').val();
+reg_matri_padresnovia = $('#reg_matri_padresnovia').val();
+reg_matri_testigouno = $('#reg_matri_testigouno').val();
+reg_matri_testigodos = $('#reg_matri_testigodos').val();
+reg_matri_infobautisonovio = $('#reg_matri_infobautisonovio').val();
+reg_matri_infobautisonovio_fecha = $('#reg_matri_infobautisonovio_fecha').val();
+reg_matri_infobautisonovia = $('#reg_matri_infobautisonovia').val();
+reg_matri_infobautisonovia_fecha = $('#reg_matri_infobautisonovia_fecha').val();
+reg_matri_ministro = $('#reg_matri_ministro').val();
+
+reg_matri_libro = $('#reg_matri_libro').val();
+reg_matri_folio = $('#reg_matri_folio').val();
+reg_matri_numero_reg = $('#reg_matri_numero_reg').val();
+
+cadena = "id_rubro=" + id_rubro +
+         "&id_tipo_ingreso=" + id_tipo_ingreso +
+         "&reg_matri_nombrenovio=" + reg_matri_nombrenovio +
+         "&reg_matri_nombrenovia=" + reg_matri_nombrenovia +
+         "&reg_matri_padresnovio=" + reg_matri_padresnovio +
+         "&reg_matri_padresnovia=" + reg_matri_padresnovia +
+         "&reg_matri_testigouno=" + reg_matri_testigouno +
+         "&reg_matri_testigodos=" + reg_matri_testigodos +
+         "&reg_matri_infobautisonovio=" + reg_matri_infobautisonovio +
+         "&reg_matri_infobautisonovio_fecha=" + reg_matri_infobautisonovio_fecha +
+		 "&reg_matri_infobautisonovia=" + reg_matri_infobautisonovia +
+         "&reg_matri_infobautisonovia_fecha=" + reg_matri_infobautisonovia_fecha +
+         "&reg_matri_ministro=" + reg_matri_ministro +
+         "&reg_matri_libro=" + reg_matri_libro +
+         "&reg_matri_folio=" + reg_matri_folio +
+		 "&reg_matri_numero_reg=" + reg_matri_numero_reg;
+
+
+		let nombre = reg_matri_nombrenovio.length;
+		if(nombre > 1)
+		{			
+			$.ajax({
+				type:"POST",
+				url:"php/regagregarmatri.php",
+				data:cadena,
+				success:function(r){
+					if(r==1){
+						alertify.success("Listo!");
+						    $('#tabla_registro_matrimonio').load('tablas/tabla_registro_matrimonio.php');
+							location.reload();
+						 }else{
+						alertify.error("Error!");
+						    $('#tabla_registro_matrimonio').load('tablas/tabla_registro_matrimonio.php');
+					}
+				}
+				
+			}
+		   );
+		}else{
+		alert('Faltan datos importantes');
+		}	
+			
+	
 			
 }
 function formaregistro(datos){
@@ -1421,6 +1487,7 @@ async function imprimirBoleta4(boton) {
 
     doc.save('registro.pdf');
 }
+
 async function imprimirMisa(boton) {
 	const { jsPDF } = window.jspdf;
     const fila = boton.closest('tr');
