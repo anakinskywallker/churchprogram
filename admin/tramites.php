@@ -310,6 +310,8 @@ $usuario = $_SESSION["nombre_usuario"];
 <script type="text/javascript">
     $('#tabla_imprimir').load('tablas/tabla_imprimir.php'); 
     $('#accordionSidebar').load('tablas/accordionSidebar.php');
+    
+    
     $(document).ready(function(){
     $('#agregarmisa').click(function(){
         creartramite()
@@ -1076,94 +1078,77 @@ $usuario = $_SESSION["nombre_usuario"];
                         <form class="was-validated">
                             <!--Botones Inicio -->
                             <div class=" row no-guters ">
-
-                                  <div class="col-md-12 mb-2 my-2 mx-5">
+                                <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_parroquia" class="form-control  " placeholder="Parroquia" required>
+                                        <input type="text" id="bol_matri_nombrenovio" class="form-control  " placeholder="Nombre novio" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_y_apellido" class="form-control  " placeholder="Nombre y apellido" required>
+                                        <input type="text" id="bol_matri_nombrenovia" class="form-control  " placeholder="Nombre novia" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_lugar_bautizo" class="form-control  " placeholder="Lugar de bautismo" required>
+                                        <input type="text" id="bol_matri_padresnovio" class="form-control  " placeholder="Padres Novio" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="bol_matri_padresnovia" class="form-control  " placeholder="Padres Novia" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="bol_matri_testigouno" class="form-control  " placeholder="Testigo 1" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-2 my-2 mx-5">
+                                    <div class="input-group col-md-9">
+                                        <input type="text" id="bol_matri_testigodos" class="form-control  " placeholder="Testigo 2" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha de bautismo</label>
-                                        <input type="date" id="bol_con_fecha_bautismo" class="form-control  " placeholder="Fecha de bautismo " required>
+                                        <input type="text" id="bol_matri_infobautisonovio" class="form-control  " placeholder="Bautismo (libro y folio) Novio" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha de nacimiento</label>
-                                        <input type="date" id="bol_con_bautismo_libro" class="form-control  " placeholder="Bautismo (libro y folio) " required>
+                                        <label for="inputState" class="form-label">Fecha de bautiso novio</label>
+                                        <input type="Date" id="bol_matri_infobautisonovio_fecha" class="form-control  " placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="col-md-9">
-                                        <label for="inputState" class="form-label">Fecha de confirmación</label>
-                                        <input type="date" id="bol_con_fecha_confirmacion" class="form-control  " placeholder="Fecha de confirmación " required>
+                                        <input type="text" id="bol_matri_infobautisonovia" class="form-control  " placeholder="Bautismo (libro y folio) Novia" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_padre" class="form-control  " placeholder="Nombre padre" required>
+                                    <div class="col-md-9">
+                                        <label for="inputState" class="form-label">Fecha de bautiso novia</label>
+                                        <input type="Date" id="bol_matri_infobautisonovia_fecha" class="form-control  " placeholder="" required>
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_madre" class="form-control  " placeholder="Nombre madre" required>
+                                    <div class="col-md-9">
+                                        <input type="text" id="bol_matri_ministro" class="form-control  " placeholder="Ministro" required>
                                     </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_nombre_padrino_madrina" class="form-control  " placeholder="Nombre padrino o madrina" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_ministro" class="form-control  " placeholder="Ministro" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_ministro" class="form-control  " placeholder="Nombre y apellido del contacto" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_correo" class="form-control  " placeholder="Correo del contacto" required>
-                                    </div>
-                                </div> <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_direccion" class="form-control  " placeholder="Direccion del contacto" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12 mb-2 my-2 mx-5">
-                                    <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_celular" class="form-control  " placeholder="Celular del contacto" required>
-                                    </div>
-                                </div>
-                                
+                                </div>                                 
                                 <h6 class="mx-5">------------------- Datos recibo --------------------</h6>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_recibido" class="form-control  " placeholder="Recibido de " >
+                                        <input type="text" id="bol_matri_recibido" class="form-control  " placeholder="Recibido de " >
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_identificacion" class="form-control  " placeholder="Identificacion" >
+                                        <input type="text" id="bol_matri_identificacion" class="form-control  " placeholder="Identificacion" >
                                     </div>
                                 </div>
                                 <div class="col-md-12 mb-2 my-2 mx-5">
                                     <div class="input-group col-md-9">
-                                        <input type="text" id="bol_con_celular" class="form-control  " placeholder="Celular" >
+                                        <input type="text" id="bol_matri_celular" class="form-control  " placeholder="Celular" >
                                     </div>
                                 </div>
                             </div>
@@ -1171,7 +1156,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             <div class=" row no-guters">
                                 <div class="col-md-2"></div>
                                 <div class=" col-md-10 mb-2">
-                                        <button id="agregarmisaparticular" type="button"
+                                        <button id="agregarbolmatri" type="button"
                                         class="mx-5 col-md-6 btn btn-secondary " data-dismiss="modal" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false" requerid>                                        
                                         Registrar

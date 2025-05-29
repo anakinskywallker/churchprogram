@@ -450,6 +450,68 @@ function agregarbolconfirma() {
 		}	
 			
 }
+function agregarbolmatri() {
+	id_rubro = 1;	
+	id_tipo_ingreso = 11;
+	bol_matri_nombrenovio=$('#bol_matri_nombrenovio').val();
+	bol_matri_nombrenovia=$('#bol_matri_nombrenovia').val();
+	bol_matri_padresnovio=$('#bol_matri_padresnovio').val();
+	bol_matri_padresnovia=$('#bol_matri_padresnovia').val();
+	bol_matri_testigouno=$('#bol_matri_testigouno').val();
+	bol_matri_testigodos=$('#bol_matri_testigodos').val();
+	bol_matri_infobautisonovio=$('#bol_matri_infobautisonovio').val();
+	bol_matri_infobautisonovio_fecha=$('#bol_matri_infobautisonovio_fecha').val();
+	bol_matri_infobautisonovia=$('#bol_matri_infobautisonovia').val();
+	bol_matri_infobautisonovia_fecha=$('#bol_matri_infobautisonovia_fecha').val();
+	bol_matri_ministro=$('#bol_matri_ministro').val();
+	bol_matri_recibido=$('#bol_matri_recibido').val();
+	bol_matri_identificacion=$('#bol_matri_identificacion').val();
+	bol_matri_celular=$('#bol_matri_celular').val();
+
+
+	cadena= "id_rubro=" + id_rubro +
+			"&id_tipo_ingreso=" + id_tipo_ingreso +
+	        "&bol_matri_nombrenovio=" + bol_matri_nombrenovio +
+			"&bol_matri_nombrenovia=" + bol_matri_nombrenovia +
+			"&bol_matri_padresnovio=" + bol_matri_padresnovio +
+			"&bol_matri_padresnovia=" + bol_matri_padresnovia +
+			"&bol_matri_testigouno=" + bol_matri_testigouno +
+			"&bol_matri_testigodos=" + bol_matri_testigodos +
+			"&bol_matri_infobautisonovio=" + bol_matri_infobautisonovio +
+			"&bol_matri_infobautisonovio_fecha=" + bol_matri_infobautisonovio_fecha + 
+			"&bol_matri_infobautisonovia=" + bol_matri_infobautisonovia + 
+			"&bol_matri_infobautisonovia_fecha=" + bol_matri_infobautisonovia_fecha +
+			"&bol_matri_ministro=" + bol_matri_ministro +  
+			"&bol_matri_recibido=" + bol_matri_recibido + 
+			"&bol_matri_identificacion=" + bol_matri_identificacion +
+			"&bol_matri_celular=" + bol_matri_celular;
+			
+		let nombre = bol_matri_nombrenovio.length;
+		if(nombre > 1)
+		{			
+			$.ajax({
+				type:"POST",
+				url:"php/agregarbolmatri.php",
+				data:cadena,
+				success:function(r){
+				   if(r==1){
+						location.reload();
+						alert('listo :)');
+						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+					 }else{
+						
+						location.reload();
+						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
+				   }
+				}
+				
+			}
+		   );
+		}else{
+		alert('Faltan datos importantes');
+		}	
+			
+}
 function descargarTablaPDF() {
 	alert('here');
     const tabla = document.getElementById('datosaimprimir');
@@ -1239,7 +1301,7 @@ async function imprimirFila3(boton) {
     y += 10;
     doc.text("-------------------------------", 10, y);
     y += 20;
-    doc.text("¡ Gracias por su visita !", 110, y, { align: "center" });
+    doc.text("¡ Dios lo bendiga !", 110, y, { align: "center" });
 	y += 10;
     doc.text("--------------------------------", 10, y);
    
