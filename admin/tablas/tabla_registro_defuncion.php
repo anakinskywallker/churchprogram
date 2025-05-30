@@ -37,7 +37,7 @@ $conexion=conexion();
 FROM registro r
 JOIN tipo_ingreso ti 
 ON r.id_tipo_ingreso = ti.id_tipo_ingreso
-WHERE r.id_tipo_ingreso = 11
+WHERE r.id_tipo_ingreso IN (4,5)
 ORDER BY r.id_registro DESC;";
     
     
@@ -56,8 +56,6 @@ ORDER BY r.id_registro DESC;";
             <th>Folio</th>
             <th>Número Registro</th>
             <th>Nombre_y_Apellido</th>
-            <th>Lugar Nacimiento</th>
-            <th>Fecha Nacimiento</th>
             <th>Fecha Muerte</th>
             <th>Edad</th>
             <th>Estado Civil</th>
@@ -65,19 +63,14 @@ ORDER BY r.id_registro DESC;";
             <th>Nombre Hijos</th>
             <th>Nombre Padre</th>
             <th>Nombre Madre</th>
-            <th>Nombre Padrino</th>
-            <th>Nombre Madrina</th>
-            <th>Abuelos Paternos</th>
-            <th>Abuelos Maternos</th>
+           
             <th>Fecha Misa</th>
             <th>Hora Misa</th>
             <th>Lugar Evento</th>
             <th>Causa</th>
             <th>Últimos Sacramentos</th>
             <th>Ministro</th>
-            <th>Lugar Bautismo/Cnf</th>
-            <th>Fecha Bautismo/Cnf</th>
-            <th>Información Bautismo</th>
+           
             <th>Biografía</th>
         </tr>
     </thead>
@@ -90,8 +83,6 @@ ORDER BY r.id_registro DESC;";
             <th>Folio</th>
             <th>Número Registro</th>
             <th>Nombre_y_Apellido</th>
-            <th>Lugar Nacimiento</th>
-            <th>Fecha Nacimiento</th>
             <th>Fecha Muerte</th>
             <th>Edad</th>
             <th>Estado Civil</th>
@@ -99,19 +90,14 @@ ORDER BY r.id_registro DESC;";
             <th>Nombre Hijos</th>
             <th>Nombre Padre</th>
             <th>Nombre Madre</th>
-            <th>Nombre Padrino</th>
-            <th>Nombre Madrina</th>
-            <th>Abuelos Paternos</th>
-            <th>Abuelos Maternos</th>
+          
             <th>Fecha Misa</th>
             <th>Hora Misa</th>
             <th>Lugar Evento</th>
             <th>Causa</th>
             <th>Últimos Sacramentos</th>
             <th>Ministro</th>
-            <th>Lugar Bautismo/Cnf</th>
-            <th>Fecha Bautismo/Cnf</th>
-            <th>Información Bautismo</th>
+           
             <th>Biografía</th>
         </tr>
     </tfoot>
@@ -132,8 +118,6 @@ ORDER BY r.id_registro DESC;";
     <td data-label="Folio">             <?php echo $ver[3]?></td> 
     <td data-label="Número Registro">   <?php echo $ver[4]?></td> 
     <td data-label="Nombre y Apellido"> <?php echo $ver[5]?></td> 
-    <td data-label="Lugar Nacimiento">  <?php echo $ver[6]?></td> 
-    <td data-label="Fecha Nacimiento">  <?php echo $ver[7]?></td> 
     <td data-label="Fecha Muerte">      <?php echo $ver[8]?></td> 
     <td data-label="Edad">              <?php echo $ver[9]?></td> 
     <td data-label="Estado Civil">      <?php echo $ver[10]?></td> 
@@ -141,19 +125,14 @@ ORDER BY r.id_registro DESC;";
     <td data-label="Nombre Hijos">      <?php echo $ver[12]?></td> 
     <td data-label="Nombre Padre">      <?php echo $ver[13]?></td>
     <td data-label="Nombre Madre">      <?php echo $ver[14]?></td>  
-    <td data-label="Nombre Padrino">    <?php echo $ver[15]?></td>
-    <td data-label="Nombre Madrina">    <?php echo $ver[16]?></td> 
-    <td data-label="Abuelos Paternos">  <?php echo $ver[17]?></td> 
-    <td data-label="Abuelos Maternos">  <?php echo $ver[18]?></td> 
+     
     <td data-label="Fecha Misa">        <?php echo $ver[19]?></td> 
     <td data-label="Hora Misa">         <?php echo $ver[20]?></td>
     <td data-label="Lugar Evento">      <?php echo $ver[21]?></td> 
     <td data-label="Causa">             <?php echo $ver[22]?></td> 
     <td data-label="Últimos Sacramentos"><?php echo $ver[23]?></td> 
     <td data-label="Ministro">          <?php echo $ver[24]?></td> 
-    <td data-label="Lugar Bautismo/Cnf"><?php echo $ver[25]?></td> 
-    <td data-label="Fecha Bautismo/Cnf"><?php echo $ver[26]?></td> 
-<td data-label="Información Bautismo">  <?php echo $ver[27]?></td>
+  
     <td data-label="Biografia">         <?php echo $ver[28]?></td>      
 </tr>
 

@@ -234,7 +234,10 @@ $usuario = $_SESSION["nombre_usuario"];
     $(document).ready(function(){
     $('#regagregarmatri').click(function(){ 
         regagregarmatri()
-    });   
+    });
+    $('#modificar').click(function(){
+        subirregistro();
+    });     
     });
 
 </script>

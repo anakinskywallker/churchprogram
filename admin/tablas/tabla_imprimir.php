@@ -13,7 +13,8 @@ $conexion=conexion();
     f.ofrenda,
     f.fecha_diligenciamiento,
     f.correo_contacto,
-    f.id_registro
+    f.id_registro,
+    f.Observacion
 FROM 
     factura f
 JOIN 
@@ -22,7 +23,7 @@ LEFT JOIN
     tipo_ingreso ti ON r.id_tipo_ingreso = ti.id_tipo_ingreso
 LEFT JOIN 
     rubro ru ON f.id_rubro = ru.id
-WHERE r.id_tipo_ingreso IN (8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 21, 22) 
+WHERE r.id_tipo_ingreso IN (8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 20, 21, 22) 
 ORDER BY 
     f.fecha_diligenciamiento DESC;";
     
@@ -30,9 +31,6 @@ ORDER BY
 ?>
 <script src="js/funciones.js"></script>
 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-
-                    
-                                      
                                     <thead>
                                        <tr>
                                         <th>Mirar </th>
@@ -43,6 +41,7 @@ ORDER BY
                                             <th>Tipo</th>
                                             <th>Rubro</th>
                                             <th>Ofrenda</th>
+                                            <th>Observacion</th>
                                             <th>Fecha</th>
                                         </tr>
                                     </thead>
@@ -56,6 +55,7 @@ ORDER BY
                                             <th>Tipo</th>
                                             <th>Rubro</th>
                                             <th>Ofrenda</th>
+                                            <th>Observacion</th>
                                             <th>Fecha</th>
                                         </tr>
                                     </tfoot>
@@ -73,6 +73,7 @@ ORDER BY
                                             <td><?php if($ver[9] == 20){echo $ver[8];}else{echo $ver[4];}?></td>                                            
                                             <td><?php echo $ver[5]?></td>
                                             <td><?php echo $ver[6]?></td>
+                                            <td><?php echo $ver[10]?></td>    
                                             <td><?php echo $ver[7]?></td>                                             
                                             </tr>
                                         <?php

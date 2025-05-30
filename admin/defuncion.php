@@ -145,11 +145,7 @@ $usuario = $_SESSION["nombre_usuario"];
                                 </div>                                      
                                 
                                 <div class="col-12 flex-wrap p-3">
-                                
-                                        <button type="submit" href="#regbautizo" data-toggle="modal" class="btn btn-primary">Registrar Bautizo</button>
-                                        <button type="submit" href="#regprimeracomunion" data-toggle="modal" class="btn btn-primary">Registrar Comunión</button>
-                                        <button type="submit" href="#regconfirmacion" data-toggle="modal" class="btn btn-primary">Registrar Confirmación</button>
-                                        <button type="submit" href="#regmatrimonio" data-toggle="modal" class="btn btn-primary">Registrar Matrimonio</button>  
+                                        <button type="submit" href="#regdefuncion" data-toggle="modal" class="btn btn-primary">Registrar Defuncion</button>  
                                 </div>
                                                                  
                             </div>
@@ -164,7 +160,7 @@ $usuario = $_SESSION["nombre_usuario"];
                              <h5 class="m-0 font-weight-bold text-primary">Registros</h5>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_registro" class="table-responsive">                                
+                            <div  id="tabla_registro_defuncion" class="table-responsive">                                
                             </div>
                         </div>
             </div>
@@ -232,7 +228,7 @@ $usuario = $_SESSION["nombre_usuario"];
     <!-- Page level custom scripts -->
     <script src="../componentes/js/demo/datatables-demo.js"></script>
 <script type="text/javascript">
-    $('#tabla_registro').load('tablas/tabla_registro.php');
+    $('#tabla_registro_defuncion').load('tablas/tabla_registro_defuncion.php');
     $('#accordionSidebar').load('tablas/accordionSidebar.php');
     $(document).ready(function(){
     $('#regagregarbautizo').click(function(){ 
@@ -274,12 +270,12 @@ $usuario = $_SESSION["nombre_usuario"];
 </html>
 
 <!---------------------------------------------------------------------------------------------------------------------------------------------->
-<div class="modal fade" id="regbautizo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" id="regdefuncion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h3 class="mx-5 section-heading text-uppercase ">Bautizo</h3>        
+                    <h3 class="mx-5 section-heading text-uppercase ">Defuncion </h3>        
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

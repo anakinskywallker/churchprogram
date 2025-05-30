@@ -20,7 +20,8 @@ $sql = "SELECT
             r.lugar_evento,
             r.hora_misa,
             r.nombre_apellido,
-            r.causa
+            r.causa,
+            r.biagrafia
         FROM 
             factura f
         JOIN 
@@ -56,7 +57,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 
     $misas[$clave]['intenciones'][] = [
         'nombre' => $row['nombre_apellido'],
-        'causa' => $row['causa']
+        'causa' => $row['causa'],
+        'biografia' => $row['biagrafia']
     ];
 }
 foreach ($misas as $misa) {
@@ -65,7 +67,7 @@ foreach ($misas as $misa) {
     echo "<p><strong>Intenciones:</strong></p>";
     echo "<ul>";
     foreach ($misa['intenciones'] as $intencion) {
-        echo "<li><strong>" . $intencion['nombre'] . "</strong> – " . $intencion['causa'] . "</li>";
+        echo "<li><strong>" . $intencion['nombre'] . "</strong> – " . $intencion['biografia'] . "</li>";
     }
     echo "</ul><hr>";
 }

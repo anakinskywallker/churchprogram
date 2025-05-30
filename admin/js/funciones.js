@@ -24,7 +24,6 @@ function mostrarTramites(id, usuario){
 			 }
 		     });
 }
-
 function agregarComentario(usuario){
 
 		var informacion = $('#infoadmin').val();
@@ -68,7 +67,6 @@ function eliminariformacion(id) {
 				 }
 				 });
 }
-
 function creartramite() {
       
 	tipomisa=$('#tipomisa').val();
@@ -1027,7 +1025,6 @@ reg_matri_infobautisonovio_fecha = $('#reg_matri_infobautisonovio_fecha').val();
 reg_matri_infobautisonovia = $('#reg_matri_infobautisonovia').val();
 reg_matri_infobautisonovia_fecha = $('#reg_matri_infobautisonovia_fecha').val();
 reg_matri_ministro = $('#reg_matri_ministro').val();
-
 reg_matri_libro = $('#reg_matri_libro').val();
 reg_matri_folio = $('#reg_matri_folio').val();
 reg_matri_numero_reg = $('#reg_matri_numero_reg').val();
@@ -1049,7 +1046,6 @@ cadena = "id_rubro=" + id_rubro +
          "&reg_matri_folio=" + reg_matri_folio +
 		 "&reg_matri_numero_reg=" + reg_matri_numero_reg;
 
-
 		let nombre = reg_matri_nombrenovio.length;
 		if(nombre > 1)
 		{			
@@ -1067,15 +1063,11 @@ cadena = "id_rubro=" + id_rubro +
 						    $('#tabla_registro_matrimonio').load('tablas/tabla_registro_matrimonio.php');
 					}
 				}
-				
 			}
 		   );
 		}else{
 		alert('Faltan datos importantes');
 		}	
-			
-	
-			
 }
 function formaregistro(datos){
 
@@ -1125,7 +1117,7 @@ function subirregistro(){
 			alert('Faltan datos importantes');
 			}	
 				
-	}
+}
 function agregarfechas(usuario) {
 		let fecha_inical = $('#fecha_inical').val();
 		let fecha_final = $('#fecha_final').val();
@@ -1317,7 +1309,6 @@ function suspenderUsuario(id){
 			 }
 		     });
 }
-
 async function imprimirFila3(boton) {
     const { jsPDF } = window.jspdf;
 
@@ -1382,7 +1373,7 @@ async function imprimirFila(boton) {
     const celdas = fila.querySelectorAll('td');
     const valores = Array.from(celdas).slice(1).map(td => td.innerText);
 
-    const labels = ["Factura", "Nombre", "ID", "Telefono", "Tipo", "Emitido", "Ofrenda", "Fecha"];
+    const labels = ["Factura", "Nombre", "ID", "Telefono", "Tipo", "Emitido", "Ofrenda", "Observacion" , "Fecha"];
     const lineHeight = 15;
     const contentHeight = labels.length * lineHeight + 140; // Más espacio por encabezado
     const margenSuperior = 40;
@@ -1434,7 +1425,6 @@ async function imprimirFila(boton) {
 
     doc.save('factura.pdf');
 }
-
 async function imprimirBoleta4(boton) {
     const { jsPDF } = window.jspdf;
 
@@ -1487,7 +1477,6 @@ async function imprimirBoleta4(boton) {
 
     doc.save('registro.pdf');
 }
-
 async function imprimirMisa(boton) {
 	const { jsPDF } = window.jspdf;
     const fila = boton.closest('tr');
@@ -1562,7 +1551,6 @@ async function imprimirMisa(boton) {
 
     doc.save(`misa_factura_${numeroFactura}.pdf`);
 }
-
 async function imprimirMisa2(boton) {
     const { jsPDF } = window.jspdf;
 

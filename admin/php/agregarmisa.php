@@ -80,7 +80,7 @@ $sql_registro = "INSERT INTO `registro` (
     NULL,
     NULL,
     NULL,
-    NULL
+    '$misa_intencion'
 )";
     if (mysqli_query($conexion, $sql_registro)) {
 		$id_registro = mysqli_insert_id($conexion); // obtener el ID del registro insertado

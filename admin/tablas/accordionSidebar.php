@@ -46,7 +46,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree"
                     aria-expanded="true" aria-controls="collapseTree">
-                    <i class="fas fa-fw fa-book-medical"></i>
+                    <i class="fas fa-fw fa-book"></i>
                     <span>Registro</span>
                 </a>
                 <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
