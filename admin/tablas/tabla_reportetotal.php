@@ -34,7 +34,7 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
     $result = mysqli_query($conexion, $sql);  
     $ver = mysqli_fetch_row($result);  
 
-    $total = $ver[1] + $ver[2] + $ver[3] + $ver[5] + $ofrendas;
+    $total = $ver[1] + $ver[2] + $ver[3] + $ver[5] + $ver[7] + $ver[8]+ $ofrendas;
     $Egresos = $ver[4];
     $Utilidades = $total - $Egresos;
      
@@ -53,6 +53,14 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
         <tr>
             <th>Otros Ingresos</th>
             <th>$ <?php echo number_format($ver[3]); ?></th>
+        </tr>
+        <tr>
+            <th>Tienda</th>
+            <th>$ <?php echo number_format($ver[7]); ?></th>
+        </tr>
+        <tr>
+            <th>Sectores parroquiales</th>
+            <th>$ <?php echo number_format($ver[8]); ?></th>
         </tr>
         <tr>
             <th>Cementerio</th>

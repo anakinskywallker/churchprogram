@@ -36,7 +36,7 @@ INNER JOIN
 INNER JOIN 
     tipo_ingreso ti ON r.id_tipo_ingreso = ti.id_tipo_ingreso
 WHERE 
-    id_rubro IN (3)
+    id_rubro IN (6)
     AND DATE(fecha_diligenciamiento) BETWEEN '$rowfecha[0]' AND '$rowfecha[1]'
 ORDER BY 
     fecha_diligenciamiento ASC;";
@@ -91,7 +91,7 @@ ORDER BY
                                             </tr>
                                         <?php
                                         }
-                                        $sqlin="UPDATE contabilidad SET REP_OTROS = '$utilidad'  
+                                        $sqlin="UPDATE contabilidad SET NUM_PAGAS = '$utilidad'  
                                          WHERE ID_CONTABILIDAD = '2';";
                                          $resultin=mysqli_query($conexion,$sqlin);
                                         ?> 

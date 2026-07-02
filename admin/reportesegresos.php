@@ -133,80 +133,81 @@ $usuario = $_SESSION["nombre_usuario"];
                 <div class="container-fluid">
                 <div class="col-12 flex-wrap p-3">
                                 <button type="submit" href="#ingresarfechas" data-toggle="modal" class="btn btn-primary">Generar reporte por fecha</button>
-                                <button type="button" class="btn btn-primary" onclick="generarPDFReporte()">Generar PDF del reporte</button>
+                                <button type="button" class="btn btn-primary" onclick="generarPDFReporteegresos()">Generar PDF del reporte</button>
                 </div>
 
                    
                     <!------------------------------------------------- Informe financiero ------------------------------------------->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Locales Parroquiales</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Talento Humano</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_localesparroquiales" class="table-responsive">                                
+                            <div  id="tabla_talento_humano_egresos" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Ingreso Diario ( DESPACHO )</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Servicios Publicos</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_reportediario" class="table-responsive">                                
+                            <div  id="tabla_servicios_publicos" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Descripcion despacho parroquial</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Diocesis Pasto</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_despacho" class="table-responsive">                                
+                            <div  id="tabla_diocesis_pasto_egresos" class="table-responsive">                                
                             </div>
                         </div>
-                    </div>                    
+                    </div> 
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Otros Ingresos discriminado</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Veiculo Parroquial</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_otrosingresosdis" class="table-responsive">                                
+                            <div  id="tabla_veiculo_parroquial_egresos" class="table-responsive">                                
                             </div>
                         </div>
-                    </div>
+                    </div> 
+                                       
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Ingresos Tienda</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Templo Parroquial</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_ingresostienda" class="table-responsive">                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Sectores parroquiales</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_sectores" class="table-responsive">                                
+                            <div  id="tabla_templo_parroquial_egresos" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Ingresos de ofrendas templo</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Casa cural</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_reporteofrendas" class="table-responsive">                                
+                            <div  id="tabla_casa_cural_egresos" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Cementerio</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Despacho Parroquial</h6>
                         </div>
                         <div class="card-body">
-                            <div  id="tabla_reportecem" class="table-responsive">                                
+                            <div  id="tabla_despacho_egresos" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Otros egresos</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_otros_egresos" class="table-responsive">                                
                             </div>
                         </div>
                     </div>
@@ -219,15 +220,7 @@ $usuario = $_SESSION["nombre_usuario"];
                             </div>
                         </div>
                     </div>
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Reportes Finales</h6>
-                        </div>
-                        <div class="card-body">
-                            <div  id="tabla_reportetotal" class="table-responsive">                                
-                            </div>
-                        </div>
-                    </div>
+                    
     <!------------------------------------------------ DataTales Evento y Contacto -------------------------------------------->
                     
                 </div>
@@ -286,6 +279,8 @@ $usuario = $_SESSION["nombre_usuario"];
 
     <script src="../componentes/vendor/datatables/jquery.dataTables.js"></script>
     <script src="../componentes/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 
     <!-- Custom scripts for all pages-->
@@ -294,17 +289,15 @@ $usuario = $_SESSION["nombre_usuario"];
 <script type="text/javascript">
 	$(document).ready(function(){
         $('#accordionSidebar').load('tablas/accordionSidebar.php');                       
-        $('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
-        $('#tabla_localesparroquiales').load('tablas/tabla_localesparroquiales.php');
-        $('#tabla_despacho').load('tablas/tabla_despacho.php');        
-        $('#tabla_otrosingresosdis').load('tablas/tabla_otrosingresosdis.php');
-        $('#tabla_egresosreporte').load('tablas/tabla_egresosreporte.php');
-        $('#tabla_reporteofrendas').load('tablas/tabla_reporteofrendas.php');
-        $('#tabla_reportecem').load('tablas/tabla_reportecem.php');   
-        $('#tabla_reportetotal').load('tablas/tabla_reportetotal.php');
-        $('#tabla_sectores').load('tablas/tabla_sectores.php');
-        $('#tabla_ingresostienda').load('tablas/tabla_ingresostienda.php');      
-
+        $('#tabla_talento_humano_egresos').load('tablas/egresos/tabla_talento_humano_egresos.php');
+        $('#tabla_servicios_publicos').load('tablas/egresos/tabla_servicios_publicos.php');
+        $('#tabla_diocesis_pasto_egresos').load('tablas/egresos/tabla_diocesis_pasto_egresos.php');
+        $('#tabla_templo_parroquial_egresos').load('tablas/egresos/tabla_templo_parroquial_egresos.php');
+        $('#tabla_casa_cural_egresos').load('tablas/egresos/tabla_casa_cural_egresos.php');
+        $('#tabla_despacho_egresos').load('tablas/egresos/tabla_despacho_egresos.php');
+        $('#tabla_otros_egresos').load('tablas/egresos/tabla_otros_egresos.php');
+        $('#tabla_egresosreporte').load('tablas/egresos/tabla_egresosreporte.php');
+        $('#tabla_veiculo_parroquial_egresos').load('tablas/egresos/tabla_veiculo_parroquial_egresos.php');      
              
      });
 </script>

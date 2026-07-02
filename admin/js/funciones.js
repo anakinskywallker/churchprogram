@@ -1743,10 +1743,13 @@ async function generarPDFReporte() {
         { id: 'tabla_reportediario', titulo: 'Reporte Diario' },
 		{ id: 'tabla_despacho', titulo: 'Descripción despacho parroquial' },
         { id: 'tabla_otrosingresosdis', titulo: 'Otros Ingresos discriminado' },
+		{ id: 'tabla_ingresostienda', titulo: 'Ingresos Tienda' },
+		{ id: 'tabla_sectores', titulo: 'Sectores Parroquiales' },
 		{ id: 'tabla_reporteofrendas', titulo: 'Ofrendas del templo' },
-		{ id: 'tabla_reportecem', titulo: 'Tabla Cementerio' },
+		{ id: 'tabla_reportecem', titulo: 'Cementerio' },
         { id: 'tabla_egresosreporte', titulo: 'Egresos' },
         { id: 'tabla_reportetotal', titulo: 'Reportes Finales' }
+          	
     ];
 
     for (const seccion of secciones) {
@@ -1781,6 +1784,76 @@ async function generarPDFReporte() {
     }
 
     doc.save('reporte_parroquial.pdf');
+}
+async function generarPDFReporteegresos() {
+
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('p', 'pt', 'a4');
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 40;
+    let y = margin;
+
+    // Estilo de fuente general
+    doc.setFont('helvetica');
+    doc.setFontSize(10);
+    doc.setFont(undefined, 'normal');
+
+    // Encabezado principal
+    doc.setFontSize(14);
+    doc.setFont(undefined, 'bold');
+    doc.text('PARROQUIA NUESTRA SEÑORA DEL CARMEN', pageWidth / 2, y, { align: 'center' });
+    y += 15;    
+    doc.text('INFORME ECONÓMICO PARROQUIAL', pageWidth / 2, y, { align: 'center' });
+
+    y += 25;
+    const secciones = [
+        { id: 'tabla_talento_humano_egresos', titulo: 'Talento Humano' },
+        { id: 'tabla_servicios_publicos', titulo: 'Servicios Publicos' }, // ID Corregido aquí
+        { id: 'tabla_diocesis_pasto_egresos', titulo: 'Diocesis Pasto' },
+        { id: 'tabla_templo_parroquial_egresos', titulo: 'Templo Parroquial' },
+        { id: 'tabla_veiculo_parroquial_egresos', titulo: 'Vehículo Parroquial' },
+        { id: 'tabla_casa_cural_egresos', titulo: 'Casa Cural' }, // Typo corregido (Curale -> Cural)
+        { id: 'tabla_despacho_egresos', titulo: 'Despacho Parroquial' },
+        { id: 'tabla_otros_egresos', titulo: 'Otros Egresos' },
+        { id: 'tabla_egresosreporte', titulo: 'Egresos' }
+    ];
+        
+    for (const seccion of secciones) {
+        const element = document.getElementById(seccion.id);
+        
+        // Si el elemento no existe o está vacío, lo saltamos
+        if (!element || element.innerHTML.trim() === '') continue; 
+
+        // Título de sección
+        doc.setFontSize(11);
+        doc.setFont(undefined);
+        doc.setTextColor(0, 102, 102);
+        doc.text(seccion.titulo, margin, y);
+        y += 15;
+
+        // Captura con alta resolución
+        const canvas = await html2canvas(element, {
+            scale: 2,
+            useCORS: true
+        });
+
+        const imgData = canvas.toDataURL('image/png');
+        const imgWidth = pageWidth - margin * 2;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+        // Salto de página si no cabe
+        if (y + imgHeight > pageHeight - margin) {
+            doc.addPage();
+            y = margin;
+        }
+
+        doc.addImage(imgData, 'PNG', margin, y, imgWidth, imgHeight);
+        y += imgHeight + 20;
+    }
+
+    doc.save('reporte_egresos_parroquial.pdf');
 }
 async function generarWordReporte() {
     const { Document, Packer, Paragraph, TextRun, HeadingLevel } = window.docx;

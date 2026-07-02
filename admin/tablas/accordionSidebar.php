@@ -77,6 +77,7 @@
                         <a class="collapse-item" href="diario.php">Diario</a>
                         <a class="collapse-item" href="reportesdiario.php">Reportes Dirario</a>
                         <a class="collapse-item" href="reportes.php">Reportes</a>
+                        <a class="collapse-item" href="reportesegresos.php">Reporte Egresos</a>
                     </div>
                 </div>
             </li>
