@@ -265,7 +265,7 @@ function agregarresponso() {
 						location.reload();
 						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
 					 }else{
-						alert('listo :)');
+						alert('fallo servicio :)');
 						location.reload();
 						$('#tabla_facturas').load('tablas/tabla_facturas.php'); 
 				   }
@@ -605,6 +605,9 @@ function agregarotros() {
 		  break;
 		case "Otros Ingresos":
 			var id_rubro = 3
+			break;
+		case "Sectores Parroquiales":
+			var id_rubro = 8
 			break;
 		default:
 		  alert('seleccione un tipo de rubro');
@@ -1136,7 +1139,13 @@ function agregarfechas(usuario) {
 				success: function(r) {
 					if (r == 1) {
 						alert('Listo');
-						$('#tabla_reportediario').load('tablas/tabla_reportediario.php'); 
+						$('#tabla_reportediario').load('tablas/tabla_reportediario.php');
+        				$('#tabla_localesparroquiales').load('tablas/tabla_localesparroquiales.php');
+       				    $('#tabla_despacho').load('tablas/tabla_despacho.php');        
+        				$('#tabla_otrosingresosdis').load('tablas/tabla_otrosingresosdis.php');   
+        				$('#tabla_egresosreporte').load('tablas/tabla_egresosreporte.php');
+        				$('#tabla_reportecem').load('tablas/tabla_reportecem.php');   
+        				$('#tabla_reportetotal').load('tablas/tabla_reportetotal.php');
 						location.reload();
 					} else {
 						alertify.error("Error!");
@@ -1358,7 +1367,7 @@ async function imprimirFila3(boton) {
     y += 10;
     doc.text("-------------------------------", 10, y);
     y += 20;
-    doc.text("¡ Dios lo bendiga !", 110, y, { align: "center" });
+    doc.text("¡ Que Dios le bendiga !", 110, y, { align: "center" });
 	y += 10;
     doc.text("--------------------------------", 10, y);
    
@@ -1419,7 +1428,7 @@ async function imprimirFila(boton) {
     y += 10;
     doc.text("-------------------------------", 10, y);
     y += 20;
-    doc.text("¡ Gracias por su visita !", 110, y, { align: "center" });
+    doc.text("¡ Que Dios le bendiga !", 110, y, { align: "center" });
     y += 10;
     doc.text("--------------------------------", 10, y);
 
@@ -1624,7 +1633,7 @@ async function imprimirMisa2(boton) {
     y += 10;
     doc.text("-------------------------------", 10, y);
     y += 20;
-    doc.text("¡ Que Dios lo bendiga !", 110, y, { align: "center" });
+    doc.text("¡ Que Dios le bendiga !", 110, y, { align: "center" });
     y += 10;
     doc.text("--------------------------------", 10, y);
 
@@ -1662,8 +1671,10 @@ async function generarPDF() {
         { id: 'tabla_despacho', titulo: 'Descripción despacho parroquial' },
         { id: 'tabla_localesparroquiales', titulo: 'Locales Parroquiales' },
         { id: 'tabla_otrosingresosdis', titulo: 'Otros Ingresos discriminado' },
+		{ id: 'tabla_reporteofrendas', titulo: 'Ofrendas del templo' },
         { id: 'tabla_egresosreporte', titulo: 'Egresos' },
-        { id: 'tabla_reportetotal', titulo: 'Reportes Finales' }
+        { id: 'tabla_reportetotal', titulo: 'Reportes Finales' }		
+		
     ];
 
     for (const seccion of secciones) {
@@ -1732,6 +1743,7 @@ async function generarPDFReporte() {
         { id: 'tabla_reportediario', titulo: 'Reporte Diario' },
 		{ id: 'tabla_despacho', titulo: 'Descripción despacho parroquial' },
         { id: 'tabla_otrosingresosdis', titulo: 'Otros Ingresos discriminado' },
+		{ id: 'tabla_reporteofrendas', titulo: 'Ofrendas del templo' },
 		{ id: 'tabla_reportecem', titulo: 'Tabla Cementerio' },
         { id: 'tabla_egresosreporte', titulo: 'Egresos' },
         { id: 'tabla_reportetotal', titulo: 'Reportes Finales' }

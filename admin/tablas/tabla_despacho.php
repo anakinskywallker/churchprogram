@@ -61,7 +61,10 @@ ORDER BY
             <td><?php echo $row['cantidad_registros']; ?></td>
             <td>$ <?php echo number_format($row['total_ofrendas']); ?></td>
         </tr>
-        <?php } ?>
+        <?php } 
+        $sqlin="UPDATE contabilidad SET REP_DESPACHO = '$utilidad '  
+                                         WHERE ID_CONTABILIDAD = '2';";
+        $resultin=mysqli_query($conexion,$sqlin);?>
     </tbody>
 </table>
 <div class="row">

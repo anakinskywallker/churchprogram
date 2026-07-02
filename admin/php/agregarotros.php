@@ -32,7 +32,7 @@ $otros_ciudad       = $_POST['otros_ciudad'];
         fecha_diligenciamiento
     ) VALUES (
         '$id_rubro',
-        20,
+        141,
         '$otros_recibido',
         '$otros_celular',
         '$otros_recibido',

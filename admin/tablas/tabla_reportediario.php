@@ -57,7 +57,9 @@ ORDER BY
         }
         $sqlin="UPDATE contabilidad SET REP_DESPACHO = '$ofrendas'  
                                          WHERE ID_CONTABILIDAD = '2';";
-                                         $resultin=mysqli_query($conexion,$sqlin);
+        $resultin=mysqli_query($conexion,$sqlin);
+            
+   
 
         $total = count($rows);
         for ($i = 0; $i < $total; $i += 2) {

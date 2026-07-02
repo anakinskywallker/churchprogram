@@ -176,6 +176,15 @@ $usuario = $_SESSION["nombre_usuario"];
                     </div>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Ingresos de ofrendas templo</h6>
+                        </div>
+                        <div class="card-body">
+                            <div  id="tabla_reporteofrendas" class="table-responsive">                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Cementerio</h6>
                         </div>
                         <div class="card-body">
@@ -213,7 +222,7 @@ $usuario = $_SESSION["nombre_usuario"];
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; QCodely 2023</span>
+                        <span>Copyright &copy; QCodely 2026</span>
                     </div>
                 </div>
             </footer>
@@ -272,6 +281,7 @@ $usuario = $_SESSION["nombre_usuario"];
         $('#tabla_despacho').load('tablas/tabla_despacho.php');        
         $('#tabla_otrosingresosdis').load('tablas/tabla_otrosingresosdis.php');   
         $('#tabla_egresosreporte').load('tablas/tabla_egresosreporte.php');
+        $('#tabla_reporteofrendas').load('tablas/tabla_reporteofrendas.php');
         $('#tabla_reportecem').load('tablas/tabla_reportecem.php');   
         $('#tabla_reportetotal').load('tablas/tabla_reportetotal.php');
 

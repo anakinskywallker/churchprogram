@@ -84,7 +84,7 @@ while ($ver = mysqli_fetch_row($result)) {
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                             <div class="text-s font-weight-bold text-success text-uppercase mb-1">
-                                Ofrendas Totales <?php
+                                Egresos Totales <?php
                                                     echo date('Y-m-d', strtotime($rowfecha[0])) . '-' . date('Y-m-d', strtotime($rowfecha[1]));
                                                 ?>
                             </div>

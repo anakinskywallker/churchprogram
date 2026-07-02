@@ -1347,7 +1347,8 @@ $usuario = $_SESSION["nombre_usuario"];
                                         <select id="otros_tipo" class="form-select">
                                         <option selected>Locales parroquiales</option> 
                                         <option selected>Ofrendas parroquiales</option>
-                                        <option selected>Tienda</option> 
+                                        <option selected>Tienda</option>
+                                        <option selected>Sectores Parroquiales</option>  
                                         <option selected>Otros Ingresos</option>  
                                         </select>
                                      </div>

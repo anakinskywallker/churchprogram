@@ -34,7 +34,7 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
     $result = mysqli_query($conexion, $sql);  
     $ver = mysqli_fetch_row($result);  
 
-    $total = $ver[1] + $ver[2] + $ver[3] + $ofrendas;
+    $total = $ver[1] + $ver[2] + $ver[3] + $ver[5] + $ofrendas;
     $Egresos = $ver[4];
     $Utilidades = $total - $Egresos;
      
@@ -106,7 +106,7 @@ if (!$resultfecha || mysqli_num_rows($resultfecha) == 0) {
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                     <div class="text-s font-weight-bold text-success text-uppercase mb-1">
-                                Utilidades en :  <?php
+                                Total :  <?php
                                         echo date('Y-m-d', strtotime($rowfecha[0])) . '-' . date('Y-m-d', strtotime($rowfecha[1]));
                                       ?>
                             </div>

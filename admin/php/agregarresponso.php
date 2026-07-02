@@ -30,13 +30,15 @@ $sql_registro = "INSERT INTO registro (
     lugar_evento,
     fecha_misa,
     hora_misa,
-    causa
+    causa,
+    biagrafia
 ) VALUES (
     '$id_tipo_ingreso',
     '$res_nombre_ofrece',
     '$res_lugar',
     '$res_fecha',
     '$res_hora',
+    '$res_intencion',
     '$res_intencion'
 )";
 
@@ -77,7 +79,7 @@ if (mysqli_query($conexion, $sql_registro)) {
     )";
 
     if (mysqli_query($conexion, $sql_factura)) {
-        echo "Registro y factura insertados correctamente.";
+        echo "1";
     } else {
         echo "Error al insertar en factura: " . mysqli_error($conexion);
     }
